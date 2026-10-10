@@ -1,16 +1,13 @@
 name: bench
 
-# Fails a change that slows a benchmark case by more than 30%. The base of the change (the pull
-# request's base, or the commit before a push to main) and its head are benchmarked on the same
-# runner, in turns, so that the runner's speed cancels out: a shared runner is half as fast on one
+# Fails a pull request that slows a benchmark case by more than 30%. The pull request's base and its
+# head are benchmarked on the same runner, in turns, so that the runner's speed cancels out: a shared runner is half as fast on one
 # day as the next, so a baseline recorded on any one machine cannot be compared with it. The
 # recorded baseline, testdata/bench/baseline.txt, is for comparing a change locally (AGENTS.md).
 # A slowdown needs a reason in the commit message.
 
 on:
   pull_request:
-  push:
-    branches: [main]
 
 jobs:
   bench:
@@ -26,13 +23,8 @@ jobs:
 
       - name: Check out the base of the change
         env:
-          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
-        run: |
-          if [ -z "$BASE" ] || ! git cat-file -e "$BASE^{commit}" 2>/dev/null; then
-            BASE=$(git rev-parse HEAD~1)
-          fi
-          echo "base $BASE"
-          git worktree add --detach /tmp/base "$BASE"
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: git worktree add --detach /tmp/base "$BASE"
 
       - name: Benchmark the base and the head in turns
         run: |

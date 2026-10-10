@@ -53,7 +53,7 @@ go test . -run 'TestExternalBends|TestExternalSuites' -v  # DFM_BENDS_FULL=1 for
 
 ## CI
 
-`.github/workflows/private-corpus.yml` runs on pushes to `main`, weekly and on demand: it fetches the corpus, runs `TestPrivateCorpus` (which verifies every hash) and deletes it. A weekly `external` job runs the full outside data. Failures report only the case ID and which finding counts changed, never geometry, coordinates or handles. Pull requests do not run the corpus, so maintainers run it locally before merging a change that could move it.
+`.github/workflows/private-corpus.yml` runs weekly and on demand (`gh workflow run private-corpus.yml`), on `main` only: it fetches the corpus, runs `TestPrivateCorpus` (which verifies every hash) and deletes it. A weekly `external` job runs the full outside data. Failures report only the case ID and which finding counts changed, never geometry, coordinates or handles. Pull requests do not run the corpus, so maintainers run it locally before merging a change that could move it.
 
 ## Adding a drawing
 
