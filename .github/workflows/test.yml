@@ -6,7 +6,6 @@ name: test
 # when the two differ.
 
 on:
-  push:
   pull_request:
 
 jobs:

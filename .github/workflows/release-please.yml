@@ -2,6 +2,8 @@ name: release-please
 
 # Keeps a release PR open on main that bumps EngineVersion, fixtures/results.json and CHANGELOG.md from the conventional commit titles since the last release. Merging it tags vX.Y.Z and publishes a GitHub release; the Go module proxy serves the tag.
 
+# It is the only workflow that runs on a merge to main; the checks run on pull requests.
+
 on:
   push:
     branches: [main]

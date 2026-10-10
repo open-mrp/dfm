@@ -2,7 +2,7 @@ name: private-corpus
 
 # Checks the engine against the private corpus: every real drawing, published or proprietary
 # (docs/private-corpus.md). Only this file, in the private-corpus environment, can read the corpus.
-# The quick job runs the corpus of drawings on every push to main and weekly; it takes a minute or two.
+# The quick job runs the corpus of drawings weekly and on demand; it takes a minute or two.
 # The external job runs the outside data (the bend dataset in full and the format test suites), about
 # an hour, weekly and when a dispatch asks for it. Pull requests do not run either: the reader role
 # trusts only this file on main in the private-corpus environment, so a change is reviewed and merged
@@ -11,8 +11,6 @@ name: private-corpus
 # The bucket, region and reader role are variables of the private-corpus environment, not in the repository.
 
 on:
-  push:
-    branches: [main]
   schedule:
     - cron: "17 6 * * 1"
   workflow_dispatch:
