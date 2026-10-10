@@ -50,6 +50,10 @@ Real drawings and outside datasets live in the private corpus ([private-corpus.m
 5. Add table-driven tests in `rules/` and a fixture in `fixtures/gen`, then regenerate the goldens.
 6. Add a row to [checks.md](checks.md).
 
+## Releases
+
+Releases are tagged `vX.Y.Z` by release-please. PRs are squash-merged, and their titles are conventional commits: before 1.0, `feat` (and a breaking `!`) releases a minor version and `fix` a patch. The `release-please` workflow keeps a release PR open that sets `EngineVersion`, `fixtures/results.json` and `CHANGELOG.md`; merging it tags the release. A PR that changes expected results must be `feat` or `fix` (the `pr-title` workflow checks), so every change in results ships under a new `EngineVersion`.
+
 ## Running tests
 
 ```bash
