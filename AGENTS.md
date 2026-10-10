@@ -27,7 +27,8 @@ go run ./cmd/dfm --help       # CLI: check, plan, fix, preview, replay, feedback
 
 - Keep results deterministic. Do not rename or remove finding or error codes.
 - Results must not depend on the CPU. Go fuses `a*b + c` into one instruction on arm64 but not on amd64, which can move a coordinate by one bit and flip a finding. Write `float64(a*b) + c` in coordinate arithmetic, and check both with `GOARCH=amd64 go test ./...` (Rosetta on Apple silicon). `go run golang.org/x/tools/cmd/bisect -compile=fma go test ...` finds a fused line that changes a result.
-- Golden files hold `"engine_version": "dev"`. When results change, bump `EngineVersion` and run `go test . -update`.
+- Golden files hold `"engine_version": "dev"`. When results change, run `go test . -update` and title the PR `feat:` or `fix:`. Release-please sets `EngineVersion`; never edit it by hand.
+- PR titles are conventional commits (`fix(rules): ...`); PRs are squash-merged and the title becomes the commit and the changelog entry.
 - A new or changed check needs a fixture with a known outcome and a row in `docs/checks.md`.
 - Never commit compiled binaries (`scripts/check-no-binaries`).
 - Never commit, print or upload anything from `fixtures/private/` (see `docs/private-corpus.md`).

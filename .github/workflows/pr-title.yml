@@ -1,0 +1,35 @@
+name: pr-title
+
+# PRs are squash-merged with their title as the commit message, and release-please reads those titles to choose the next version. The title must be a conventional commit (type, optional scope, optional !). A PR that changes any expected result (the digest in fixtures/results.json) must be feat or fix, so the next release gives the new results a new EngineVersion.
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  title:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Check the title
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          types='feat|fix|perf|refactor|docs|test|build|ci|chore|revert'
+          if ! printf '%s' "$TITLE" | grep -Eq "^($types)(\([a-z0-9._/-]+\))?!?: .+"; then
+            echo "::error::PR title must be a conventional commit, such as 'fix(rules): ...' (types: ${types//|/, })"
+            exit 1
+          fi
+          digest() { git show "$1:fixtures/results.json" 2>/dev/null | grep '"sha256"' || true; }
+          if [ "$(digest "$BASE")" != "$(digest "$HEAD")" ] && ! printf '%s' "$TITLE" | grep -Eq '^(feat|fix)(\(|!|:)'; then
+            echo "::error::This PR changes expected results (fixtures/results.json), so its title must start with feat or fix to release a new EngineVersion"
+            exit 1
+          fi

@@ -1,0 +1,20 @@
+name: release-please
+
+# Keeps a release PR open on main that bumps EngineVersion, fixtures/results.json and CHANGELOG.md from the conventional commit titles since the last release. Merging it tags vX.Y.Z and publishes a GitHub release; the Go module proxy serves the tag.
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
