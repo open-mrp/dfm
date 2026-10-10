@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="60mm" height="40mm" viewBox="0 0 60 40">
+<g fill="none" stroke="black">
+  <rect id="plate" x="0" y="0" width="60" height="40"/>
+  <circle id="hole" cx="30" cy="20" r="3"/>
+  <rect id="preview" x="80" y="0" width="30" height="20"/>
+</g>
+</svg>

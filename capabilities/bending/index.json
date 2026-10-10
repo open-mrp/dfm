@@ -1,0 +1,70 @@
+{
+  "presets": [
+    {
+      "id": "trumpf-trubend-7036",
+      "version": 3,
+      "title": "TRUMPF TruBend 7036 (36 t)",
+      "sources": [
+        "TruBend 7036: 360 kN press force, 1020 mm bending length (consistent across machine listings)",
+        "Air-bending force rule 60 t^2 L / V tonnes with V = 8 t; material factors stainless about 1.5, aluminum about 0.55 (press brake tonnage charts)",
+        "Limits plus the inside radius R the tooling forms (t by default, so the same as 3 t / 4 t then): flange 2 t + R error, 3 t + R warning (services publish 3 t to 4 t); feature distance 2 t + R and relief depth t + R as warnings only (services publish 2.5 t + R or warn of deformed geometry near bends rather than refusing; corpus parts were made with features 1.3 t and reliefs 0.65 t from bends); designs drawn below 0.25 t inside radius fail (corpus: parts made at 0.33 t, refused at 0.17 t and tighter)"
+      ],
+      "notes": "Listing data, consistent across sources. Maximum thickness per material (6.35 mm) is a conservative assumption, not maker data; the force check is the real limit for long bends. 6061 aluminum is left out: it cracks when bent."
+    },
+    {
+      "id": "trumpf-trubend-3100",
+      "version": 3,
+      "title": "TRUMPF TruBend 3100 (100 t)",
+      "sources": [
+        "TruBend 3100: 1000 kN, 3060 mm bending length (machine listings; TRUMPF's series table gives 3230 mm for the current version)",
+        "Air-bending force rule 60 t^2 L / V tonnes with V = 8 t; material factors stainless about 1.5, aluminum about 0.55 (press brake tonnage charts)",
+        "Limits plus the inside radius R the tooling forms (t by default, so the same as 3 t / 4 t then): flange 2 t + R error, 3 t + R warning (services publish 3 t to 4 t); feature distance 2 t + R and relief depth t + R as warnings only (services publish 2.5 t + R or warn of deformed geometry near bends rather than refusing; corpus parts were made with features 1.3 t and reliefs 0.65 t from bends); designs drawn below 0.25 t inside radius fail (corpus: parts made at 0.33 t, refused at 0.17 t and tighter)"
+      ],
+      "notes": "Listing data; the shorter of the published bending lengths. Maximum thickness per material (12.7 mm) is a conservative assumption, not maker data; the force check is the real limit for long bends. 6061 aluminum is left out: it cracks when bent."
+    },
+    {
+      "id": "trumpf-trubend-5130",
+      "version": 3,
+      "title": "TRUMPF TruBend 5130 (130 t)",
+      "sources": [
+        "TruBend 5130: 1300 kN press force, 3230 mm bending length (most listings)",
+        "Air-bending force rule 60 t^2 L / V tonnes with V = 8 t; material factors stainless about 1.5, aluminum about 0.55 (press brake tonnage charts)",
+        "Limits plus the inside radius R the tooling forms (t by default, so the same as 3 t / 4 t then): flange 2 t + R error, 3 t + R warning (services publish 3 t to 4 t); feature distance 2 t + R and relief depth t + R as warnings only (services publish 2.5 t + R or warn of deformed geometry near bends rather than refusing; corpus parts were made with features 1.3 t and reliefs 0.65 t from bends); designs drawn below 0.25 t inside radius fail (corpus: parts made at 0.33 t, refused at 0.17 t and tighter)"
+      ],
+      "notes": "Listing data. Maximum thickness per material (12.7 mm) is a conservative assumption, not maker data; the force check is the real limit for long bends. 6061 aluminum is left out: it cracks when bent."
+    },
+    {
+      "id": "amada-hg-1303",
+      "version": 3,
+      "title": "AMADA HG-1303 (130 t)",
+      "sources": [
+        "HG-1303: about 146 US tons (1300 kN), 122.4 in (3109 mm) maximum bending length (machine listings)",
+        "Air-bending force rule 60 t^2 L / V tonnes with V = 8 t; material factors stainless about 1.5, aluminum about 0.55 (press brake tonnage charts)",
+        "Limits plus the inside radius R the tooling forms (t by default, so the same as 3 t / 4 t then): flange 2 t + R error, 3 t + R warning (services publish 3 t to 4 t); feature distance 2 t + R and relief depth t + R as warnings only (services publish 2.5 t + R or warn of deformed geometry near bends rather than refusing; corpus parts were made with features 1.3 t and reliefs 0.65 t from bends); designs drawn below 0.25 t inside radius fail (corpus: parts made at 0.33 t, refused at 0.17 t and tighter)"
+      ],
+      "notes": "Listing data. Maximum thickness per material (12.7 mm) is a conservative assumption, not maker data; the force check is the real limit for long bends. 6061 aluminum is left out: it cracks when bent."
+    },
+    {
+      "id": "amada-eg-6013",
+      "version": 3,
+      "title": "AMADA EG-6013 (60 t)",
+      "sources": [
+        "EG-6013: 60 t (600 kN), 55.1 in (about 1400 mm) bending length (machine listings)",
+        "Air-bending force rule 60 t^2 L / V tonnes with V = 8 t; material factors stainless about 1.5, aluminum about 0.55 (press brake tonnage charts)",
+        "Limits plus the inside radius R the tooling forms (t by default, so the same as 3 t / 4 t then): flange 2 t + R error, 3 t + R warning (services publish 3 t to 4 t); feature distance 2 t + R and relief depth t + R as warnings only (services publish 2.5 t + R or warn of deformed geometry near bends rather than refusing; corpus parts were made with features 1.3 t and reliefs 0.65 t from bends); designs drawn below 0.25 t inside radius fail (corpus: parts made at 0.33 t, refused at 0.17 t and tighter)"
+      ],
+      "notes": "Listing data; the robotic-cell version is shorter (53.1 in). Maximum thickness per material (6.35 mm) is a conservative assumption, not maker data; the force check is the real limit for long bends. 6061 aluminum is left out: it cracks when bent."
+    },
+    {
+      "id": "bystronic-xpert-150-3100",
+      "version": 3,
+      "title": "Bystronic Xpert 150/3100 (150 t)",
+      "sources": [
+        "Bystronic Xpert Pro 150/3100 technical specification: 1500 kN, 3100 mm bending length",
+        "Air-bending force rule 60 t^2 L / V tonnes with V = 8 t; material factors stainless about 1.5, aluminum about 0.55 (press brake tonnage charts)",
+        "Limits plus the inside radius R the tooling forms (t by default, so the same as 3 t / 4 t then): flange 2 t + R error, 3 t + R warning (services publish 3 t to 4 t); feature distance 2 t + R and relief depth t + R as warnings only (services publish 2.5 t + R or warn of deformed geometry near bends rather than refusing; corpus parts were made with features 1.3 t and reliefs 0.65 t from bends); designs drawn below 0.25 t inside radius fail (corpus: parts made at 0.33 t, refused at 0.17 t and tighter)"
+      ],
+      "notes": "Maker data. Maximum thickness per material (12.7 mm) is a conservative assumption, not maker data; the force check is the real limit for long bends. 6061 aluminum is left out: it cracks when bent."
+    }
+  ]
+}

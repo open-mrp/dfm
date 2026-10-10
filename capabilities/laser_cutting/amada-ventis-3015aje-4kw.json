@@ -1,0 +1,199 @@
+{
+  "schema_version": "3.0",
+  "process": "laser_cutting",
+  "laser_cutting": {
+    "usable_area": {
+      "width": {
+        "value": "3000",
+        "unit": "mm"
+      },
+      "height": {
+        "value": "1500",
+        "unit": "mm"
+      }
+    },
+    "kerf_width": {
+      "value": "0.15",
+      "unit": "mm"
+    },
+    "contour_closure_tolerance": {
+      "value": "0.05",
+      "unit": "mm"
+    },
+    "multiple_parts": "accepted",
+    "drawing_units": [
+      "mm",
+      "in"
+    ],
+    "limits": {
+      "hole_diameter": {
+        "error": {
+          "min": {
+            "value": "1",
+            "unit": "mm"
+          },
+          "thickness_ratio": "0.4"
+        },
+        "warning": {
+          "min": {
+            "value": "1.5",
+            "unit": "mm"
+          },
+          "thickness_ratio": "1"
+        }
+      },
+      "slot_width": {
+        "error": {
+          "min": {
+            "value": "0.3",
+            "unit": "mm"
+          },
+          "thickness_ratio": "0.5"
+        },
+        "warning": {
+          "min": {
+            "value": "1",
+            "unit": "mm"
+          },
+          "thickness_ratio": "1"
+        }
+      },
+      "web_width": {
+        "error": {
+          "min": {
+            "value": "0.3",
+            "unit": "mm"
+          },
+          "thickness_ratio": "0.25"
+        },
+        "warning": {
+          "min": {
+            "value": "0.5",
+            "unit": "mm"
+          },
+          "thickness_ratio": "1"
+        }
+      },
+      "feature_spacing": {
+        "warning": {
+          "thickness_ratio": "2"
+        }
+      },
+      "edge_distance": {
+        "error": {
+          "thickness_ratio": "0.25"
+        },
+        "warning": {
+          "thickness_ratio": "1"
+        }
+      },
+      "part_width": {
+        "error": {
+          "min": {
+            "value": "2.54",
+            "unit": "mm"
+          }
+        },
+        "warning": {
+          "min": {
+            "value": "6",
+            "unit": "mm"
+          }
+        }
+      },
+      "cutout_width": {
+        "error": {
+          "min": {
+            "value": "0.3",
+            "unit": "mm"
+          },
+          "thickness_ratio": "0.25"
+        },
+        "warning": {
+          "min": {
+            "value": "1",
+            "unit": "mm"
+          },
+          "thickness_ratio": "1"
+        }
+      },
+      "feature_width": {
+        "error": {
+          "min": {
+            "value": "0.5",
+            "unit": "mm"
+          },
+          "thickness_ratio": "0.8"
+        },
+        "warning": {
+          "min": {
+            "value": "1",
+            "unit": "mm"
+          },
+          "thickness_ratio": "2"
+        }
+      },
+      "max_removed_area_percent": "50",
+      "min_tip_angle": {
+        "value": "30",
+        "unit": "deg"
+      }
+    }
+  },
+  "materials": [
+    {
+      "code": "mild_steel",
+      "laser_cutting": {
+        "max_thickness": {
+          "value": "25",
+          "unit": "mm"
+        }
+      }
+    },
+    {
+      "code": "stainless_304",
+      "laser_cutting": {
+        "max_thickness": {
+          "value": "20",
+          "unit": "mm"
+        }
+      }
+    },
+    {
+      "code": "aluminum_5052",
+      "laser_cutting": {
+        "max_thickness": {
+          "value": "15",
+          "unit": "mm"
+        }
+      }
+    },
+    {
+      "code": "aluminum_6061",
+      "laser_cutting": {
+        "max_thickness": {
+          "value": "15",
+          "unit": "mm"
+        }
+      }
+    },
+    {
+      "code": "copper_110",
+      "laser_cutting": {
+        "max_thickness": {
+          "value": "8",
+          "unit": "mm"
+        }
+      }
+    },
+    {
+      "code": "brass_260",
+      "laser_cutting": {
+        "max_thickness": {
+          "value": "10",
+          "unit": "mm"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{ "stock": { "material_code": "mild_steel", "thickness": { "value": "2", "unit": "mm" } }, "capabilities": ["examples/laser.json", "preset:trumpf-trubend-7036"] }

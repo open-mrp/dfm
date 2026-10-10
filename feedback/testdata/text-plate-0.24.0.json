@@ -1,0 +1,576 @@
+{
+  "object": "dfm_check",
+  "process": "laser_cutting",
+  "engine_version": "0.24.0",
+  "manufacturable": false,
+  "error_count": 6,
+  "warning_count": 4,
+  "part_count": 1,
+  "parts": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null,
+      "has_next_page": false,
+      "has_prev_page": false
+    },
+    "data": [
+      {
+        "object": "dfm_part",
+        "number": 1,
+        "quantity": 1,
+        "instances": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null,
+            "has_next_page": false,
+            "has_prev_page": false
+          },
+          "data": [
+            {
+              "object": "dfm_part_instance",
+              "number": 1,
+              "entity_ids": [
+                "100",
+                "101",
+                "102",
+                "103"
+              ],
+              "rotation": {
+                "object": "quantity",
+                "value": "0",
+                "unit": "deg",
+                "display_value": "0°"
+              },
+              "offset": {
+                "object": "point",
+                "x": "0",
+                "y": "0",
+                "unit": "mm"
+              }
+            }
+          ]
+        },
+        "entity_ids": [
+          "100",
+          "101",
+          "102",
+          "103"
+        ],
+        "outline_closed": true,
+        "width": {
+          "object": "quantity",
+          "value": "100",
+          "unit": "mm",
+          "display_value": "100 mm"
+        },
+        "height": {
+          "object": "quantity",
+          "value": "40",
+          "unit": "mm",
+          "display_value": "40 mm"
+        },
+        "manufacturable": false,
+        "error_count": 6,
+        "warning_count": 4,
+        "holes": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null,
+            "has_next_page": false,
+            "has_prev_page": false
+          },
+          "data": []
+        },
+        "issues": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null,
+            "has_next_page": false,
+            "has_prev_page": false
+          },
+          "data": [
+            {
+              "object": "dfm_issue",
+              "code": "file_noncut_geometry",
+              "severity": "error",
+              "message": "Geometry is drawn as a construction or hidden line; remove it or draw it as a cut line",
+              "remediation": "Delete the construction geometry, or draw it with a continuous line type on a visible layer if it should be cut.",
+              "required": null,
+              "required_basis": null,
+              "occurrences": {
+                "object": "list",
+                "page_info": {
+                  "next_page_url": null,
+                  "previous_page_url": null,
+                  "has_next_page": false,
+                  "has_prev_page": false
+                },
+                "data": [
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_822efea437c8daa9",
+                    "entity_ids": [
+                      "104"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "object": "point",
+                      "x": "10",
+                      "y": "10",
+                      "unit": "mm"
+                    },
+                    "fix": {
+                      "object": "dfm_fix",
+                      "action": "remove",
+                      "entity_ids": [
+                        "104"
+                      ],
+                      "units": null
+                    }
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_fdeb3b3c1295574f",
+                    "entity_ids": [
+                      "105"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "object": "point",
+                      "x": "90",
+                      "y": "10",
+                      "unit": "mm"
+                    },
+                    "fix": {
+                      "object": "dfm_fix",
+                      "action": "remove",
+                      "entity_ids": [
+                        "105"
+                      ],
+                      "units": null
+                    }
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_ca08e5490339ed3f",
+                    "entity_ids": [
+                      "106"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "object": "point",
+                      "x": "90",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "fix": {
+                      "object": "dfm_fix",
+                      "action": "remove",
+                      "entity_ids": [
+                        "106"
+                      ],
+                      "units": null
+                    }
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_72ae2f3415a0dc84",
+                    "entity_ids": [
+                      "107"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "object": "point",
+                      "x": "10",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "fix": {
+                      "object": "dfm_fix",
+                      "action": "remove",
+                      "entity_ids": [
+                        "107"
+                      ],
+                      "units": null
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "object": "dfm_issue",
+              "code": "floating_island",
+              "severity": "error",
+              "message": "Material island is disconnected from the part",
+              "remediation": "Bridge the island to the surrounding material, remove it, or upload it as a separate part.",
+              "required": null,
+              "required_basis": null,
+              "occurrences": {
+                "object": "list",
+                "page_info": {
+                  "next_page_url": null,
+                  "previous_page_url": null,
+                  "has_next_page": false,
+                  "has_prev_page": false
+                },
+                "data": [
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_ff2c2cd01e0f29bc",
+                    "entity_ids": [
+                      "120",
+                      "121",
+                      "122",
+                      "123",
+                      "124",
+                      "125",
+                      "126",
+                      "127",
+                      "128",
+                      "129"
+                    ],
+                    "actual": null,
+                    "location": null,
+                    "fix": null
+                  }
+                ]
+              }
+            },
+            {
+              "object": "dfm_issue",
+              "code": "features_too_close",
+              "severity": "warning",
+              "message": "Cut-outs are closer than configured minimum spacing",
+              "remediation": "Move the cut-outs apart to at least the required spacing.",
+              "required": {
+                "object": "quantity",
+                "value": "3",
+                "unit": "mm",
+                "display_value": "3 mm"
+              },
+              "required_basis": "thickness_ratio",
+              "occurrences": {
+                "object": "list",
+                "page_info": {
+                  "next_page_url": null,
+                  "previous_page_url": null,
+                  "has_next_page": false,
+                  "has_prev_page": false
+                },
+                "data": [
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_e3f77450a85bdc6f",
+                    "entity_ids": [
+                      "108",
+                      "109",
+                      "110",
+                      "111",
+                      "112",
+                      "113",
+                      "114",
+                      "115",
+                      "116",
+                      "117",
+                      "118",
+                      "119",
+                      "130",
+                      "131",
+                      "132",
+                      "133",
+                      "134",
+                      "135",
+                      "136",
+                      "137",
+                      "138",
+                      "139"
+                    ],
+                    "actual": {
+                      "object": "quantity",
+                      "value": "2.834244",
+                      "unit": "mm",
+                      "display_value": "2.834244 mm"
+                    },
+                    "location": {
+                      "object": "point",
+                      "x": "23.818214",
+                      "y": "22.581855",
+                      "unit": "mm"
+                    },
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_5373264eec1aa8d9",
+                    "entity_ids": [
+                      "130",
+                      "131",
+                      "132",
+                      "133",
+                      "134",
+                      "135",
+                      "136",
+                      "137",
+                      "138",
+                      "139",
+                      "140",
+                      "141",
+                      "142",
+                      "143",
+                      "144",
+                      "145",
+                      "146",
+                      "147",
+                      "148",
+                      "149",
+                      "150",
+                      "151",
+                      "152",
+                      "153",
+                      "154"
+                    ],
+                    "actual": {
+                      "object": "quantity",
+                      "value": "2.517056",
+                      "unit": "mm",
+                      "display_value": "2.517056 mm"
+                    },
+                    "location": {
+                      "object": "point",
+                      "x": "36.613236",
+                      "y": "30.000001",
+                      "unit": "mm"
+                    },
+                    "fix": null
+                  }
+                ]
+              }
+            },
+            {
+              "object": "dfm_issue",
+              "code": "cutout_too_narrow",
+              "severity": "warning",
+              "message": "Cut-out is narrower than configured minimum",
+              "remediation": "Widen the cut-out at the location given to at least the required width.",
+              "required": {
+                "object": "quantity",
+                "value": "1.5",
+                "unit": "mm",
+                "display_value": "1.5 mm"
+              },
+              "required_basis": "thickness_ratio",
+              "occurrences": {
+                "object": "list",
+                "page_info": {
+                  "next_page_url": null,
+                  "previous_page_url": null,
+                  "has_next_page": false,
+                  "has_prev_page": false
+                },
+                "data": [
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_d7211bfc686de566",
+                    "entity_ids": [
+                      "140",
+                      "141",
+                      "142",
+                      "143",
+                      "144",
+                      "145",
+                      "146",
+                      "147",
+                      "148",
+                      "149",
+                      "150",
+                      "151",
+                      "152",
+                      "153",
+                      "154"
+                    ],
+                    "actual": {
+                      "object": "quantity",
+                      "value": "1.452372",
+                      "unit": "mm",
+                      "display_value": "1.452372 mm"
+                    },
+                    "location": {
+                      "object": "point",
+                      "x": "45.812214",
+                      "y": "16.92076",
+                      "unit": "mm"
+                    },
+                    "fix": null
+                  }
+                ]
+              }
+            },
+            {
+              "object": "dfm_issue",
+              "code": "feature_too_thin",
+              "severity": "error",
+              "message": "Material feature is thinner than configured minimum",
+              "remediation": "Widen the strip at the location given to at least the required width.",
+              "required": {
+                "object": "quantity",
+                "value": "1.5",
+                "unit": "mm",
+                "display_value": "1.5 mm"
+              },
+              "required_basis": "thickness_ratio",
+              "occurrences": {
+                "object": "list",
+                "page_info": {
+                  "next_page_url": null,
+                  "previous_page_url": null,
+                  "has_next_page": false,
+                  "has_prev_page": false
+                },
+                "data": [
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_85e876ad21d52920",
+                    "entity_ids": [
+                      "140",
+                      "141",
+                      "142",
+                      "143",
+                      "144",
+                      "145",
+                      "146",
+                      "147",
+                      "148",
+                      "149",
+                      "150",
+                      "151",
+                      "152",
+                      "153",
+                      "154"
+                    ],
+                    "actual": {
+                      "object": "quantity",
+                      "value": "0.308604",
+                      "unit": "mm",
+                      "display_value": "0.308604 mm"
+                    },
+                    "location": {
+                      "object": "point",
+                      "x": "45.134934",
+                      "y": "17.643034",
+                      "unit": "mm"
+                    },
+                    "fix": null
+                  }
+                ]
+              }
+            },
+            {
+              "object": "dfm_issue",
+              "code": "tip_too_sharp",
+              "severity": "warning",
+              "message": "Corner comes to a sharper point than configured minimum angle",
+              "remediation": "Widen the angle at the location given, or blunt the tip.",
+              "required": {
+                "object": "quantity",
+                "value": "30",
+                "unit": "deg",
+                "display_value": "30°"
+              },
+              "required_basis": null,
+              "occurrences": {
+                "object": "list",
+                "page_info": {
+                  "next_page_url": null,
+                  "previous_page_url": null,
+                  "has_next_page": false,
+                  "has_prev_page": false
+                },
+                "data": [
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_668edbf4767ecb63",
+                    "entity_ids": [
+                      "140",
+                      "141",
+                      "142",
+                      "143",
+                      "144",
+                      "145",
+                      "146",
+                      "147",
+                      "148",
+                      "149",
+                      "150",
+                      "151",
+                      "152",
+                      "153",
+                      "154"
+                    ],
+                    "actual": {
+                      "object": "quantity",
+                      "value": "18.764864",
+                      "unit": "deg",
+                      "display_value": "18.764864°"
+                    },
+                    "location": {
+                      "object": "point",
+                      "x": "39.785133",
+                      "y": "27.769442",
+                      "unit": "mm"
+                    },
+                    "fix": null
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "drawing_issues": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null,
+      "has_next_page": false,
+      "has_prev_page": false
+    },
+    "data": []
+  },
+  "skipped_checks": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null,
+      "has_next_page": false,
+      "has_prev_page": false
+    },
+    "data": [
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_too_short",
+        "limit": "laser_cutting.limits.part_length"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_area_too_small",
+        "limit": "laser_cutting.limits.part_area"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_too_slender",
+        "limit": "laser_cutting.limits.slender_part"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "internal_corner_too_sharp",
+        "limit": "laser_cutting.limits.internal_corner_radius"
+      }
+    ]
+  }
+}

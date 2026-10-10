@@ -1,0 +1,232 @@
+{
+  "object": "dfm_check",
+  "process": "laser_cutting",
+  "engine_version": "dev",
+  "verdict": "not_manufacturable",
+  "error_count": 1,
+  "review_count": 0,
+  "warning_count": 1,
+  "part_count": 1,
+  "parts": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": [
+      {
+        "object": "dfm_part",
+        "number": 1,
+        "copy_count": 1,
+        "instances": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null
+          },
+          "data": [
+            {
+              "object": "dfm_part_instance",
+              "number": 1,
+              "entity_ids": [
+                "2F"
+              ],
+              "rotation": {
+                "value": "0",
+                "unit": "deg"
+              },
+              "offset": {
+                "x": "0",
+                "y": "0",
+                "unit": "mm"
+              }
+            }
+          ]
+        },
+        "entity_ids": [
+          "2F"
+        ],
+        "sheet": {
+          "outline": "closed",
+          "width": {
+            "value": "4",
+            "unit": "mm"
+          },
+          "height": {
+            "value": "2",
+            "unit": "mm"
+          },
+          "area": {
+            "value": "8",
+            "unit": "mm2"
+          },
+          "cut_length": {
+            "value": "12",
+            "unit": "mm"
+          },
+          "pierce_count": 1,
+          "holes": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": []
+          },
+          "bends": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": []
+          }
+        },
+        "verdict": "not_manufacturable",
+        "error_count": 1,
+        "review_count": 0,
+        "warning_count": 0,
+        "issues": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null
+          },
+          "data": [
+            {
+              "object": "dfm_issue",
+              "code": "part_too_small",
+              "severity": "error",
+              "message": "Part is narrower than configured minimum",
+              "remediation": "Make the part at least the required width, or attach it to a larger part with tabs.",
+              "required": {
+                "value": "2.54",
+                "unit": "mm"
+              },
+              "required_basis": "min",
+              "occurrences": {
+                "object": "list",
+                "page_info": {
+                  "next_page_url": null,
+                  "previous_page_url": null
+                },
+                "data": [
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_07a85ee95b58296d",
+                    "entity_ids": [
+                      "2F"
+                    ],
+                    "actual": {
+                      "value": "2",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "2",
+                      "y": "1",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "drawing_issues": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": [
+      {
+        "object": "dfm_issue",
+        "code": "units_suspect",
+        "severity": "warning",
+        "message": "Drawing's size is implausible in its units; it may be drawn in inches or millimeters instead",
+        "remediation": "Confirm the drawing's units; if they are wrong, check it again with the right units set (the design's units override the file's).",
+        "required": null,
+        "required_basis": null,
+        "occurrences": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null
+          },
+          "data": [
+            {
+              "object": "dfm_occurrence",
+              "id": "fnd_bca1afe4af66141b",
+              "entity_ids": [],
+              "actual": {
+                "value": "4",
+                "unit": "mm"
+              },
+              "location": null,
+              "span": [],
+              "fix": {
+                "action": "set_units",
+                "entity_ids": [],
+                "units": "in"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "skipped_checks": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": [
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_too_short",
+        "limit": "laser_cutting.limits.part_length"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_area_too_small",
+        "limit": "laser_cutting.limits.part_area"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_too_slender",
+        "limit": "laser_cutting.limits.slender_part"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_may_fall_through",
+        "limit": "laser_cutting.support_spacing"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "cutout_too_slender",
+        "limit": "laser_cutting.limits.slender_cutout"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "notch_too_slender",
+        "limit": "laser_cutting.limits.slender_cutout"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "slot_fit_too_tight",
+        "limit": "laser_cutting.limits.slot_fit_clearance"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "internal_corner_too_sharp",
+        "limit": "laser_cutting.limits.internal_corner_radius"
+      }
+    ]
+  }
+}

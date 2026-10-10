@@ -1,0 +1,26 @@
+{
+  "report": "triage 2026-10-08: V spike in cut-out text",
+  "note": "The 0.31 mm 'strip' is the spike of material between the arms of the cut-out letter V, which narrows to a point; the laser only blunts its tip, and shops cut such letters routinely.",
+  "absent": [
+    {
+      "code": "feature_too_thin",
+      "entity_ids": [
+        "140",
+        "141",
+        "142",
+        "143",
+        "144",
+        "145",
+        "146",
+        "147",
+        "148",
+        "149",
+        "150",
+        "151",
+        "152",
+        "153",
+        "154"
+      ]
+    }
+  ]
+}

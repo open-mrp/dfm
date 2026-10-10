@@ -1,0 +1,145 @@
+{
+  "$defs": {
+    "FindingCodeInfo": {
+      "additionalProperties": false,
+      "description": "Describes a finding code: what it means, how severe it can be and how to fix it.",
+      "properties": {
+        "code": {
+          "description": "The finding code.",
+          "type": "string"
+        },
+        "description": {
+          "description": "What the finding means.",
+          "type": "string"
+        },
+        "limit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Capability setting that drives the check, as a path from the capability's root, or null if none."
+        },
+        "object": {
+          "const": "dfm_finding_code",
+          "description": "Resource type identifier."
+        },
+        "remediation": {
+          "description": "How to fix the design.",
+          "type": "string"
+        },
+        "scope": {
+          "description": "What findings with this code are about: the drawing as a whole (attributed to the parts they fall in) or one part.",
+          "enum": [
+            "drawing",
+            "part"
+          ],
+          "type": "string"
+        },
+        "severities": {
+          "anyOf": [
+            {
+              "items": {
+                "enum": [
+                  "error",
+                  "review",
+                  "warning"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Severities the code can be reported with."
+        }
+      },
+      "required": [
+        "object",
+        "code",
+        "severities",
+        "scope",
+        "limit",
+        "description",
+        "remediation"
+      ],
+      "type": "object"
+    },
+    "List_FindingCodeInfo": {
+      "additionalProperties": false,
+      "description": "An array of resources.",
+      "properties": {
+        "data": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/FindingCodeInfo"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The resources."
+        },
+        "object": {
+          "const": "list",
+          "description": "Resource type identifier."
+        },
+        "page_info": {
+          "$ref": "#/$defs/PageInfo",
+          "description": "Position of this page; empty for embedded lists."
+        }
+      },
+      "required": [
+        "object",
+        "page_info",
+        "data"
+      ],
+      "type": "object"
+    },
+    "PageInfo": {
+      "additionalProperties": false,
+      "description": "Describes the position of a list page: the URLs of its neighbors, null where there is none.",
+      "properties": {
+        "next_page_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Relative URL that fetches the next page of results."
+        },
+        "previous_page_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Relative URL that fetches the previous page of results."
+        }
+      },
+      "required": [
+        "next_page_url",
+        "previous_page_url"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/open-mrp/dfm/schema/finding-codes.schema.json",
+  "$ref": "#/$defs/List_FindingCodeInfo",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DFM finding codes"
+}

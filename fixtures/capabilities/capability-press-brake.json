@@ -1,0 +1,173 @@
+{
+  "schema_version": "3.0",
+  "process": "bending",
+  "bending": {
+    "max_bend_length": {
+      "value": "3060",
+      "unit": "mm"
+    },
+    "max_force": {
+      "value": "1000",
+      "unit": "kN"
+    },
+    "limits": {
+      "flange_length": {
+        "error": {
+          "thickness_ratio": "2"
+        },
+        "warning": {
+          "thickness_ratio": "3"
+        },
+        "offset": "inside_radius"
+      },
+      "feature_distance": {
+        "warning": {
+          "thickness_ratio": "2"
+        },
+        "offset": "inside_radius"
+      },
+      "relief_width": {
+        "error": {
+          "min": {
+            "value": "0.4",
+            "unit": "mm"
+          },
+          "thickness_ratio": "0.5"
+        },
+        "warning": {
+          "min": {
+            "value": "0.8",
+            "unit": "mm"
+          },
+          "thickness_ratio": "1"
+        }
+      },
+      "relief_depth": {
+        "warning": {
+          "thickness_ratio": "1"
+        },
+        "offset": "inside_radius"
+      },
+      "min_inside_radius": {
+        "error": {
+          "thickness_ratio": "0.25"
+        }
+      }
+    },
+    "tooling": {
+      "punch": {
+        "tip_angle": {
+          "value": "88",
+          "unit": "deg"
+        },
+        "width": {
+          "value": "10",
+          "unit": "mm"
+        },
+        "height": {
+          "value": "120",
+          "unit": "mm"
+        },
+        "gooseneck": {
+          "nose_height": {
+            "value": "12",
+            "unit": "mm"
+          },
+          "throat_depth": {
+            "value": "25",
+            "unit": "mm"
+          },
+          "throat_height": {
+            "value": "60",
+            "unit": "mm"
+          }
+        }
+      },
+      "die": {
+        "opening": {
+          "min": {
+            "value": "6",
+            "unit": "mm"
+          },
+          "thickness_ratio": "8",
+          "max": {
+            "value": "50",
+            "unit": "mm"
+          }
+        },
+        "width": {
+          "value": "15",
+          "unit": "mm"
+        },
+        "height": {
+          "value": "60",
+          "unit": "mm"
+        }
+      }
+    }
+  },
+  "materials": [
+    {
+      "code": "mild_steel",
+      "bending": {
+        "max_thickness": {
+          "value": "12.7",
+          "unit": "mm"
+        }
+      }
+    },
+    {
+      "code": "stainless_304",
+      "bending": {
+        "max_thickness": {
+          "value": "12.7",
+          "unit": "mm"
+        },
+        "force_factor": "1.5"
+      }
+    },
+    {
+      "code": "aluminum_5052",
+      "bending": {
+        "max_thickness": {
+          "value": "12.7",
+          "unit": "mm"
+        },
+        "force_factor": "0.55"
+      }
+    },
+    {
+      "code": "aluminum_6061",
+      "bending": {
+        "max_thickness": {
+          "value": "12.7",
+          "unit": "mm"
+        },
+        "force_factor": "0.7",
+        "inside_radius": {
+          "thickness_ratio": "2"
+        }
+      }
+    },
+    {
+      "code": "copper_110",
+      "bending": {
+        "max_thickness": {
+          "value": "12.7",
+          "unit": "mm"
+        },
+        "force_factor": "0.5"
+      }
+    },
+    {
+      "code": "spring_steel",
+      "bending": {
+        "max_thickness": {
+          "value": "12.7",
+          "unit": "mm"
+        },
+        "force_factor": "2"
+      }
+    }
+  ]
+}

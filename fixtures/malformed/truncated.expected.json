@@ -1,0 +1,10 @@
+{
+  "error": {
+    "code": "design_invalid",
+    "type": "invalid_request_error",
+    "message": "invalid design: odd number of lines (truncated file?); group code without value at line 621",
+    "param": "design",
+    "is_transient": false,
+    "errors": []
+  }
+}

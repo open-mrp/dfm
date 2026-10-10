@@ -1,0 +1,10 @@
+{
+  "error": {
+    "code": "design_invalid",
+    "type": "invalid_request_error",
+    "message": "invalid design: no cut geometry found in ENTITIES section",
+    "param": "design",
+    "is_transient": false,
+    "errors": []
+  }
+}

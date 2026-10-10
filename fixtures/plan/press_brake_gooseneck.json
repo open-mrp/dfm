@@ -1,0 +1,86 @@
+{
+  "schema_version": "3.0",
+  "process": "bending",
+  "bending": {
+    "max_bend_length": {
+      "value": "3060",
+      "unit": "mm"
+    },
+    "inside_radius": {
+      "thickness_ratio": "1"
+    },
+    "limits": {
+      "flange_length": {
+        "error": {
+          "thickness_ratio": "2"
+        },
+        "offset": "inside_radius"
+      }
+    },
+    "tooling": {
+      "punch": {
+        "tip_angle": {
+          "value": "86",
+          "unit": "deg"
+        },
+        "width": {
+          "value": "12",
+          "unit": "mm"
+        },
+        "height": {
+          "value": "100",
+          "unit": "mm"
+        },
+        "length": {
+          "value": "500",
+          "unit": "mm"
+        },
+        "gooseneck": {
+          "nose_height": {
+            "value": "12",
+            "unit": "mm"
+          },
+          "throat_depth": {
+            "value": "25",
+            "unit": "mm"
+          },
+          "throat_height": {
+            "value": "60",
+            "unit": "mm"
+          }
+        }
+      },
+      "die": {
+        "opening": {
+          "min": {
+            "value": "12",
+            "unit": "mm"
+          }
+        },
+        "width": {
+          "value": "15",
+          "unit": "mm"
+        },
+        "height": {
+          "value": "60",
+          "unit": "mm"
+        },
+        "length": {
+          "value": "500",
+          "unit": "mm"
+        }
+      }
+    }
+  },
+  "materials": [
+    {
+      "code": "mild_steel",
+      "bending": {
+        "max_thickness": {
+          "value": "6.35",
+          "unit": "mm"
+        }
+      }
+    }
+  ]
+}

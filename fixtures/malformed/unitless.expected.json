@@ -1,0 +1,10 @@
+{
+  "error": {
+    "code": "design_units_unknown",
+    "type": "invalid_request_error",
+    "message": "design units unknown: the file does not declare its units ($INSUNITS missing or 0); its $MEASUREMENT says metric (likely millimeters); supply the units explicitly",
+    "param": "design.units",
+    "is_transient": false,
+    "errors": []
+  }
+}

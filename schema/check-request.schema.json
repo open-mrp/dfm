@@ -1,0 +1,1260 @@
+{
+  "$defs": {
+    "AdjustmentInput": {
+      "additionalProperties": false,
+      "description": "An accepted fix: a change to how the drawing is read.",
+      "properties": {
+        "action": {
+          "description": "What the fix does to how the drawing is read, as the result's fix gave it.",
+          "enum": [
+            "mark_bend_line",
+            "remove",
+            "set_units"
+          ],
+          "type": "string"
+        },
+        "entity_ids": {
+          "description": "Entities it applies to, for mark_bend_line and remove.",
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "units": {
+          "description": "Units to read the drawing in, for set_units.",
+          "enum": [
+            "um",
+            "mm",
+            "cm",
+            "m",
+            "in",
+            "ft"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "action"
+      ],
+      "type": "object"
+    },
+    "AngleInput": {
+      "additionalProperties": false,
+      "description": "An angle together with the unit it is expressed in.",
+      "properties": {
+        "unit": {
+          "description": "Unit the value is expressed in.",
+          "enum": [
+            "deg"
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "Decimal value, as a string to preserve precision.",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "type": "object"
+    },
+    "AreaInput": {
+      "additionalProperties": false,
+      "description": "A rectangular area.",
+      "properties": {
+        "height": {
+          "$ref": "#/$defs/QuantityInput"
+        },
+        "width": {
+          "$ref": "#/$defs/QuantityInput"
+        }
+      },
+      "required": [
+        "width",
+        "height"
+      ],
+      "type": "object"
+    },
+    "AreaLimitInput": {
+      "additionalProperties": false,
+      "description": "A minimum area with an error tier and/or a warning tier.",
+      "properties": {
+        "error": {
+          "$ref": "#/$defs/AreaQuantityInput",
+          "description": "Below this the part cannot be made."
+        },
+        "warning": {
+          "$ref": "#/$defs/AreaQuantityInput",
+          "description": "Below this the part can be made with reduced quality."
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "AreaQuantityInput": {
+      "additionalProperties": false,
+      "description": "An area together with the unit it is expressed in.",
+      "properties": {
+        "unit": {
+          "description": "Unit the value is expressed in.",
+          "enum": [
+            "mm2",
+            "cm2",
+            "m2",
+            "in2",
+            "ft2"
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "Decimal value, as a string to preserve precision.",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "type": "object"
+    },
+    "BendAssignmentInput": {
+      "additionalProperties": false,
+      "description": "Gives some bend lines of the design their angle, direction and inside radius. A bend line no assignment names is bent 90 degrees up at the brake's inside radius.",
+      "properties": {
+        "angle": {
+          "$ref": "#/$defs/AngleInput",
+          "description": "Bend angle from flat (90 for a right angle, up to 180 for a flange folded back flat); 90 when omitted."
+        },
+        "direction": {
+          "description": "Way the flange turns: up (toward the viewer of the drawing) or down; up when omitted.",
+          "enum": [
+            "up",
+            "down"
+          ],
+          "type": "string"
+        },
+        "entity_ids": {
+          "description": "Bend lines, as reported in the result's bends.",
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "inside_radius": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Inside radius the design is drawn for; the brake's inside radius when omitted."
+        }
+      },
+      "required": [
+        "entity_ids"
+      ],
+      "type": "object"
+    },
+    "BendLimitInput": {
+      "additionalProperties": false,
+      "description": "A bending limit: an error and/or a warning threshold, optionally measured from the inside radius the tooling forms.",
+      "properties": {
+        "error": {
+          "$ref": "#/$defs/ThresholdInput",
+          "description": "Below this the bend cannot be made."
+        },
+        "offset": {
+          "description": "What both thresholds are added to: none (the default) or inside_radius, the inside radius the tooling forms (e.g. 2 x thickness + radius), so the limit grows with the bend.",
+          "enum": [
+            "none",
+            "inside_radius"
+          ],
+          "type": "string"
+        },
+        "warning": {
+          "$ref": "#/$defs/ThresholdInput",
+          "description": "Below this the bend can be made with reduced quality."
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "BendingInput": {
+      "additionalProperties": false,
+      "description": "Holds a press brake's limits.",
+      "properties": {
+        "inside_radius": {
+          "$ref": "#/$defs/ThresholdInput",
+          "description": "Inside radius the tooling forms, as max(min, thickness_ratio x thickness) capped at max (air bending forms about the thickness with a die opening of 8 x thickness); the stock thickness when omitted. Bends are made at this radius whatever the design gives."
+        },
+        "k_factor": {
+          "description": "Where the neutral axis lies, as a fraction of the thickness from the inside of the bend (above 0, at most 0.5), as a decimal string; it sets each bend's allowance. 0.44 when omitted.",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        },
+        "limits": {
+          "$ref": "#/$defs/BendingLimitsInput",
+          "description": "Limits of the bending checks; an omitted one is not checked."
+        },
+        "max_angle": {
+          "$ref": "#/$defs/AngleInput",
+          "description": "Largest bend angle the tooling forms, from flat (90 for a right angle); angles are not checked when omitted."
+        },
+        "max_bend_length": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Longest bend the brake forms (its usable bending length)."
+        },
+        "max_force": {
+          "$ref": "#/$defs/ForceInput",
+          "description": "The brake's press force; each bend's air-bending force is checked against it when given."
+        },
+        "min_angle": {
+          "$ref": "#/$defs/AngleInput",
+          "description": "Smallest bend angle the brake holds repeatably, from flat (a shallow bend springs back unpredictably); not checked when omitted."
+        },
+        "min_bend_length": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Shortest bend the tooling holds (the narrowest punch and die segment); bends are not checked for it when omitted."
+        },
+        "tooling": {
+          "$ref": "#/$defs/ToolingInput",
+          "description": "Punch and die the bends are formed with. When given, the engine searches for a bend order in which no bend runs the part into either tool; when omitted, bends that form a channel are flagged for review."
+        }
+      },
+      "required": [
+        "max_bend_length"
+      ],
+      "type": "object"
+    },
+    "BendingLimitsInput": {
+      "additionalProperties": false,
+      "description": "Holds the bending checks' limits.",
+      "properties": {
+        "feature_distance": {
+          "$ref": "#/$defs/BendLimitInput",
+          "description": "Least distance from a bend line to a hole or cut-out, which the bend would distort (often 2 x thickness plus the inside radius); not checked when omitted."
+        },
+        "flange_length": {
+          "$ref": "#/$defs/BendLimitInput",
+          "description": "Shortest flange beside a bend: the material from the bend line to the part's edge, on either side (often about 3 x thickness plus the inside radius); not checked when omitted."
+        },
+        "min_inside_radius": {
+          "$ref": "#/$defs/BendLimitInput",
+          "description": "Tightest inside radius a design may be drawn for, as a model or a request's bends give it (often about 0.25 x thickness); not checked when omitted. offset does not apply."
+        },
+        "relief_depth": {
+          "$ref": "#/$defs/BendLimitInput",
+          "description": "Shallowest bend relief: how far the gap reaches past the bend line (often the thickness plus the inside radius); not checked when omitted."
+        },
+        "relief_width": {
+          "$ref": "#/$defs/BendLimitInput",
+          "description": "Narrowest bend relief: the gap a bend line ends at, measured along the line (often the thickness, at least about 0.8 mm); not checked when omitted."
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "CapabilityInput": {
+      "additionalProperties": false,
+      "description": "Describes what a manufacturing setup can produce, independent of any one job.",
+      "properties": {
+        "bending": {
+          "$ref": "#/$defs/BendingInput",
+          "description": "Press-brake limits, required when process is bending."
+        },
+        "hole_operations": {
+          "description": "Taps, countersinks and press-in fasteners the setup offers, which a check request can assign to holes.",
+          "items": {
+            "$ref": "#/$defs/HoleOperationInput"
+          },
+          "type": "array"
+        },
+        "laser_cutting": {
+          "$ref": "#/$defs/LaserCuttingInput",
+          "description": "Laser-cutting limits, required when process is laser_cutting."
+        },
+        "materials": {
+          "description": "Every material the setup can process.",
+          "items": {
+            "$ref": "#/$defs/MaterialInput"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "process": {
+          "description": "Manufacturing process; the block of the same name is required.",
+          "enum": [
+            "laser_cutting",
+            "bending",
+            "countersinking",
+            "tapping",
+            "hardware_insertion"
+          ],
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "3.0",
+          "description": "Version of the capability schema."
+        }
+      },
+      "required": [
+        "schema_version",
+        "process",
+        "materials"
+      ],
+      "type": "object"
+    },
+    "CheckRequest": {
+      "additionalProperties": false,
+      "description": "Asks whether a design can be manufactured with a capability and stock. The design file itself travels separately (e.g. as a multipart file); this carries everything else.",
+      "properties": {
+        "bends": {
+          "description": "Angle, direction and inside radius of the design's bend lines, for a bending check; a bend line not listed is bent 90 degrees up at the brake's inside radius.",
+          "items": {
+            "$ref": "#/$defs/BendAssignmentInput"
+          },
+          "type": "array"
+        },
+        "capability": {
+          "$ref": "#/$defs/CapabilityInput",
+          "description": "What the manufacturing setup can produce."
+        },
+        "design": {
+          "$ref": "#/$defs/DesignInput",
+          "description": "How to read the design file."
+        },
+        "hole_operations": {
+          "description": "Operations (taps, countersinks, press-in fasteners) assigned to round holes of the design, from the capability's hole_operations. Each hole takes at most one.",
+          "items": {
+            "$ref": "#/$defs/HoleAssignmentInput"
+          },
+          "type": "array"
+        },
+        "stock": {
+          "$ref": "#/$defs/StockInput",
+          "description": "The job's raw material."
+        }
+      },
+      "required": [
+        "design",
+        "stock",
+        "capability"
+      ],
+      "type": "object"
+    },
+    "ColorOperationInput": {
+      "additionalProperties": false,
+      "description": "Maps one color to an operation.",
+      "properties": {
+        "color": {
+          "description": "Color written #rrggbb.",
+          "minLength": 1,
+          "type": "string"
+        },
+        "operation": {
+          "description": "What shapes of the color are for.",
+          "enum": [
+            "cut",
+            "engrave",
+            "ignore"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "color",
+        "operation"
+      ],
+      "type": "object"
+    },
+    "CountersinkInput": {
+      "additionalProperties": false,
+      "description": "The cone a countersink cuts.",
+      "properties": {
+        "angle": {
+          "$ref": "#/$defs/AngleInput",
+          "description": "Included angle of the cone, e.g. 90 (metric) or 82 (imperial) degrees."
+        },
+        "major_diameter": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Diameter of the cone at the face."
+        },
+        "max_depth_ratio": {
+          "description": "Deepest the cone may go, as a share of the thickness, as a decimal string (e.g. \"0.6\").",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "angle",
+        "major_diameter",
+        "max_depth_ratio"
+      ],
+      "type": "object"
+    },
+    "DesignInput": {
+      "additionalProperties": false,
+      "description": "Describes the design file.",
+      "properties": {
+        "adjustments": {
+          "description": "Changes to how the drawing is read, accepted from the fix of a previous result's occurrences.",
+          "items": {
+            "$ref": "#/$defs/AdjustmentInput"
+          },
+          "type": "array"
+        },
+        "format": {
+          "description": "Format of the design file.",
+          "enum": [
+            "dxf",
+            "svg",
+            "step"
+          ],
+          "type": "string"
+        },
+        "units": {
+          "description": "Overrides the drawing units declared in the file; required for files that declare none.",
+          "enum": [
+            "um",
+            "mm",
+            "cm",
+            "m",
+            "in",
+            "ft"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "format"
+      ],
+      "type": "object"
+    },
+    "DieInput": {
+      "additionalProperties": false,
+      "description": "A V-die's cross-section and length.",
+      "properties": {
+        "angle": {
+          "$ref": "#/$defs/AngleInput",
+          "description": "Included angle of the V; matched to each bend (180 degrees less the bend angle) when omitted."
+        },
+        "height": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Depth of the die below its top face."
+        },
+        "length": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Length of the die along the bend, centered on it. Omitted for segmented tooling, assembled to each bend's length."
+        },
+        "opening": {
+          "$ref": "#/$defs/ThresholdInput",
+          "description": "Width of the V at the die's top face, as max(min, thickness_ratio x thickness) capped at max, since a shop picks the V for the stock (about 8 x thickness)."
+        },
+        "width": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Width of the die's top face beside the opening, on each side."
+        }
+      },
+      "required": [
+        "opening",
+        "width",
+        "height"
+      ],
+      "type": "object"
+    },
+    "ForceInput": {
+      "additionalProperties": false,
+      "description": "A force together with the unit it is expressed in.",
+      "properties": {
+        "unit": {
+          "description": "Unit the value is expressed in.",
+          "enum": [
+            "kN"
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "Decimal value, as a string to preserve precision.",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "type": "object"
+    },
+    "GooseneckInput": {
+      "additionalProperties": false,
+      "description": "The throat of a gooseneck punch.",
+      "properties": {
+        "nose_height": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Height of the straight nose above the tip, before the throat begins."
+        },
+        "throat_depth": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "How far the body is set back from the tip's face, on the side away from the flange being formed."
+        },
+        "throat_height": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Height of the set-back part of the body, above the nose."
+        }
+      },
+      "required": [
+        "nose_height",
+        "throat_depth",
+        "throat_height"
+      ],
+      "type": "object"
+    },
+    "HardwareInput": {
+      "additionalProperties": false,
+      "description": "A press-in fastener.",
+      "properties": {
+        "type": {
+          "description": "What the fastener is, e.g. nut, stud or standoff.",
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
+    "HoleAssignmentInput": {
+      "additionalProperties": false,
+      "description": "Assigns one operation to some of the design's round holes. The holes are resized to the operation's hole_diameter and checked at that size.",
+      "properties": {
+        "holes": {
+          "$ref": "#/$defs/HoleSelectorInput",
+          "description": "Which holes."
+        },
+        "operation": {
+          "description": "Code of an operation in the capability's hole_operations.",
+          "minLength": 1,
+          "type": "string"
+        },
+        "side": {
+          "description": "Face the countersink opens on or the fastener is pressed in from: top (toward the viewer of the drawing) or bottom. Required for countersinks and fasteners; ignored for taps.",
+          "enum": [
+            "top",
+            "bottom"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "operation",
+        "holes"
+      ],
+      "type": "object"
+    },
+    "HoleOperationInput": {
+      "additionalProperties": false,
+      "description": "One operation offered on round holes.",
+      "properties": {
+        "bend_distance": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Least distance from the hole's edge to a bend line, which would distort the thread, countersink or fastener; checked by the plan's step for this operation when the design has bend lines. Not checked when omitted."
+        },
+        "code": {
+          "description": "Identifies the operation in a check request's hole_operations (lowercase letters, digits, '_', '.', '-').",
+          "minLength": 1,
+          "type": "string"
+        },
+        "countersink": {
+          "$ref": "#/$defs/CountersinkInput",
+          "description": "The cone a countersink cuts; required for countersinks."
+        },
+        "edge_distance": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Least distance from the hole's center to any other cut (part edge, cut-out, other hole)."
+        },
+        "hardware": {
+          "$ref": "#/$defs/HardwareInput",
+          "description": "The fastener; required for hardware."
+        },
+        "hole_diameter": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Hole the operation needs (tap drill, countersink minor diameter, fastener mounting hole); assigned holes are resized to it."
+        },
+        "materials": {
+          "description": "Sheet materials the operation is offered for, each with a thickness range.",
+          "items": {
+            "$ref": "#/$defs/HoleOperationMaterialInput"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "name": {
+          "description": "Human-readable name, e.g. \"M4 x 0.7 tap\".",
+          "minLength": 1,
+          "type": "string"
+        },
+        "spacing": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Least distance between the centers of two holes with operations; the larger of the two operations' applies."
+        },
+        "thread": {
+          "$ref": "#/$defs/ThreadInput",
+          "description": "The thread a tap cuts or a fastener carries; required for taps."
+        },
+        "type": {
+          "description": "What the operation does to the hole; hardware is a press-in (self-clinching) fastener. It says which of thread, countersink and hardware apply.",
+          "enum": [
+            "tap",
+            "countersink",
+            "hardware"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "type",
+        "name",
+        "hole_diameter",
+        "materials"
+      ],
+      "type": "object"
+    },
+    "HoleOperationMaterialInput": {
+      "additionalProperties": false,
+      "description": "A sheet material an operation is offered for.",
+      "properties": {
+        "edge_distance": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Overrides the operation's edge_distance for this material."
+        },
+        "material_code": {
+          "description": "Code of a material listed in the capability.",
+          "minLength": 1,
+          "type": "string"
+        },
+        "max_thickness": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Thickest stock it is offered for; omit for no limit."
+        },
+        "min_thickness": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Thinnest stock the operation is offered for."
+        }
+      },
+      "required": [
+        "material_code",
+        "min_thickness"
+      ],
+      "type": "object"
+    },
+    "HoleSelectorInput": {
+      "additionalProperties": false,
+      "description": "Selects round holes by their entities or by drawn diameter (exactly one of the two), optionally within one part.",
+      "properties": {
+        "diameter": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Every round hole drawn at this diameter, as reported in the result's holes."
+        },
+        "entity_ids": {
+          "description": "Entities of the holes, as reported in the result's holes.",
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "part": {
+          "description": "Only holes in this part number.",
+          "type": "integer"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "LaserCuttingInput": {
+      "additionalProperties": false,
+      "description": "Holds the laser-cutting limits of a setup.",
+      "properties": {
+        "color_operations": {
+          "description": "What shapes of a color in an SVG drawing are for: cut, engrave or ignore (construction). A shape's color is its stroke, or its fill when it has no stroke. Colors not listed follow the defaults: stroked shapes are cut and filled_shapes decides the rest.",
+          "items": {
+            "$ref": "#/$defs/ColorOperationInput"
+          },
+          "type": "array"
+        },
+        "common_line": {
+          "description": "Whether parts may share a cut line (common-line cutting): rejected (the default; each part needs its own outline) or accepted (the shared line is cut once). Either way each shared line is reported as geometry_common_line.",
+          "enum": [
+            "rejected",
+            "accepted"
+          ],
+          "type": "string"
+        },
+        "contour_closure_tolerance": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Gaps between path ends up to this size (at most 1 mm) are closed before checking and reported as warnings. Omit it to close none."
+        },
+        "drawing_units": {
+          "description": "Units drawings may be in; omit to accept any. A drawing in other units is units_unsupported.",
+          "items": {
+            "enum": [
+              "um",
+              "mm",
+              "cm",
+              "m",
+              "in",
+              "ft"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "filled_shapes": {
+          "description": "What shapes filled but not stroked in an SVG drawing are for: engrave (area engraving; the default), cut (along their outline) or ignore.",
+          "enum": [
+            "cut",
+            "engrave",
+            "ignore"
+          ],
+          "type": "string"
+        },
+        "kerf_width": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Default width of material removed by the beam."
+        },
+        "limits": {
+          "$ref": "#/$defs/LaserCuttingLimitsInput",
+          "description": "Default feature limits."
+        },
+        "multiple_parts": {
+          "description": "How a drawing with more than one part is treated: rejected (one part per drawing), accepted (parts side by side are checked separately; the default), or accepted_in_cutouts (parts nested inside another part's cut-outs are too).",
+          "enum": [
+            "rejected",
+            "accepted",
+            "accepted_in_cutouts"
+          ],
+          "type": "string"
+        },
+        "outside_page": {
+          "description": "What SVG shapes lying wholly outside the page (the viewBox) are for: cut (the default, as services that ignore the artboard do) or ignore (as when a drawing is printed to the laser). Either way they are reported as geometry_outside_page.",
+          "enum": [
+            "cut",
+            "ignore"
+          ],
+          "type": "string"
+        },
+        "support_spacing": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Distance between the bed's supports (slats or pins). A part shorter than this can drop between them or tip into the beam, and is warned about; not checked when omitted."
+        },
+        "usable_area": {
+          "$ref": "#/$defs/AreaInput",
+          "description": "Area the head can cut in one setup (not the nominal sheet or bed size). Parts may rotate 90°."
+        }
+      },
+      "required": [
+        "usable_area",
+        "kerf_width",
+        "limits"
+      ],
+      "type": "object"
+    },
+    "LaserCuttingLimitsInput": {
+      "additionalProperties": false,
+      "description": "Holds the laser-cutting feature limits.",
+      "properties": {
+        "cutout_width": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum width of any passage within a cut-out or edge notch (slots and round holes use their own limits); not checked when omitted."
+        },
+        "edge_distance": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum material between a cut-out and the edge around it; not checked when omitted."
+        },
+        "feature_spacing": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum gap between two cut-outs, as a spacing rule; not checked when omitted."
+        },
+        "feature_width": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum width of any strip of material within one outline, such as a finger, tab or tongue; not checked when omitted."
+        },
+        "hole_diameter": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum diameter of circular holes."
+        },
+        "internal_corner_radius": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum radius of an inside corner of the material (a sharp corner is 0); not checked when omitted."
+        },
+        "max_removed_area_percent": {
+          "description": "Warn when cut-outs remove at least this percentage of a part's area (a whole number as a decimal string, above 0 and at most 100); not checked when omitted.",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        },
+        "min_tip_angle": {
+          "$ref": "#/$defs/AngleInput",
+          "description": "Warn about corners that come to a sharper point than this angle, on the material or the cut-out side (greater than 0° and less than 180°); not checked when omitted."
+        },
+        "part_area": {
+          "$ref": "#/$defs/AreaLimitInput",
+          "description": "Minimum area of the finished part: its outline less its cut-outs; not checked when omitted."
+        },
+        "part_length": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum length of the part at right angles to its narrowest width; with part_width it sets a minimum part size; not checked when omitted."
+        },
+        "part_width": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum width of the part in its narrowest direction; not checked when omitted."
+        },
+        "removed_area_window": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Also apply max_removed_area_percent in every square window this size across each part, to find a dense patch on a large part; needs max_removed_area_percent."
+        },
+        "slender_cutout": {
+          "description": "Minimum cut-out width that rises with the cut-out's length, as tiers by increasing min_length (long narrow cut-outs warp the part); round holes are not checked; not checked when omitted.",
+          "items": {
+            "$ref": "#/$defs/SlenderTierInput"
+          },
+          "type": "array"
+        },
+        "slender_part": {
+          "description": "Minimum part width that rises with the part's length, as tiers by increasing min_length (long narrow strips warp); not checked when omitted.",
+          "items": {
+            "$ref": "#/$defs/SlenderTierInput"
+          },
+          "type": "array"
+        },
+        "slot_fit_clearance": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum clearance of a slot that receives the stock, as in tab-and-slot parts: its width less the stock thickness, for slots within 25% of the thickness wide (a slot as wide as the stock has no clearance); not checked when omitted."
+        },
+        "slot_width": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum width of recognized slots."
+        },
+        "web_width": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum material between two cut-outs in the same region; not checked when omitted."
+        }
+      },
+      "required": [
+        "hole_diameter",
+        "slot_width"
+      ],
+      "type": "object"
+    },
+    "LimitInput": {
+      "additionalProperties": false,
+      "description": "A minimum dimension with an error tier and/or a warning tier.",
+      "properties": {
+        "error": {
+          "$ref": "#/$defs/ThresholdInput",
+          "description": "Below this the feature cannot be made."
+        },
+        "warning": {
+          "$ref": "#/$defs/ThresholdInput",
+          "description": "Below this the feature can be made with reduced quality."
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "MaterialBendingInput": {
+      "additionalProperties": false,
+      "description": "Says a material can be bent, and in what thicknesses. A material without it is not bent.",
+      "properties": {
+        "force_factor": {
+          "description": "Force to bend this material relative to mild steel, as a decimal string (about 1.5 for stainless, 0.55 for aluminum); 1 when omitted.",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        },
+        "inside_radius": {
+          "$ref": "#/$defs/ThresholdInput",
+          "description": "Overrides the brake's inside_radius for this material (e.g. a larger radius for alloys that crack)."
+        },
+        "k_factor": {
+          "description": "Overrides the brake's k_factor for this material.",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        },
+        "limits": {
+          "$ref": "#/$defs/BendingLimitsInput",
+          "description": "Overrides the brake's limits of the same name for this material."
+        },
+        "max_angle": {
+          "$ref": "#/$defs/AngleInput",
+          "description": "Overrides the brake's max_angle for this material."
+        },
+        "max_thickness": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Thickest stock bent in this material."
+        },
+        "min_angle": {
+          "$ref": "#/$defs/AngleInput",
+          "description": "Overrides the brake's min_angle for this material."
+        },
+        "min_thickness": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Thinnest stock bent in this material; no lower bound when omitted."
+        }
+      },
+      "required": [
+        "max_thickness"
+      ],
+      "type": "object"
+    },
+    "MaterialInput": {
+      "additionalProperties": false,
+      "description": "One material a setup can process.",
+      "properties": {
+        "bending": {
+          "$ref": "#/$defs/MaterialBendingInput",
+          "description": "Bending limits for this material, required when the process is bending."
+        },
+        "code": {
+          "description": "Identifies the material in a job's stock (lowercase letters, digits, '_', '.', '-').",
+          "minLength": 1,
+          "type": "string"
+        },
+        "laser_cutting": {
+          "$ref": "#/$defs/MaterialLaserCuttingInput",
+          "description": "Laser-cutting limits for this material, required when the process is laser_cutting."
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "type": "object"
+    },
+    "MaterialLaserCuttingInput": {
+      "additionalProperties": false,
+      "description": "Holds a material's laser-cutting limits.",
+      "properties": {
+        "kerf_width": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Overrides the default kerf width."
+        },
+        "limits": {
+          "$ref": "#/$defs/MaterialLaserCuttingLimitsInput",
+          "description": "Overrides individual default limits."
+        },
+        "max_thickness": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Thickest stock the setup can cut in this material."
+        },
+        "min_thickness": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Thinnest stock the setup can cut in this material; not checked when omitted."
+        },
+        "thickness_ranges": {
+          "description": "Limits, kerf and usable area that depend on the stock thickness, like a published table. Ranges are listed by increasing max_thickness; the first that the stock fits within overrides the material's kerf, usable area and limits.",
+          "items": {
+            "$ref": "#/$defs/ThicknessRangeInput"
+          },
+          "type": "array"
+        },
+        "thicknesses": {
+          "description": "The thicknesses stocked, increasing; a job's thickness must be one of them (within 0.001 mm). Any thickness in range is accepted when omitted.",
+          "items": {
+            "$ref": "#/$defs/QuantityInput"
+          },
+          "type": "array"
+        },
+        "usable_area": {
+          "$ref": "#/$defs/AreaInput",
+          "description": "Overrides the default usable area for this material."
+        }
+      },
+      "required": [
+        "max_thickness"
+      ],
+      "type": "object"
+    },
+    "MaterialLaserCuttingLimitsInput": {
+      "additionalProperties": false,
+      "description": "Overrides individual default limits; each replaces the default of the same name as a whole.",
+      "properties": {
+        "cutout_width": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum width of any passage within a cut-out or edge notch (slots and round holes use their own limits); not checked when omitted."
+        },
+        "edge_distance": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum material between a cut-out and the edge around it; not checked when omitted."
+        },
+        "feature_spacing": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum gap between two cut-outs, as a spacing rule; not checked when omitted."
+        },
+        "feature_width": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum width of any strip of material within one outline, such as a finger, tab or tongue; not checked when omitted."
+        },
+        "hole_diameter": {
+          "$ref": "#/$defs/LimitInput"
+        },
+        "internal_corner_radius": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum radius of an inside corner of the material (a sharp corner is 0); not checked when omitted."
+        },
+        "max_removed_area_percent": {
+          "description": "Warn when cut-outs remove at least this percentage of a part's area (a whole number as a decimal string, above 0 and at most 100); not checked when omitted.",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        },
+        "min_tip_angle": {
+          "$ref": "#/$defs/AngleInput",
+          "description": "Warn about corners that come to a sharper point than this angle, on the material or the cut-out side (greater than 0° and less than 180°); not checked when omitted."
+        },
+        "part_area": {
+          "$ref": "#/$defs/AreaLimitInput",
+          "description": "Minimum area of the finished part: its outline less its cut-outs; not checked when omitted."
+        },
+        "part_length": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum length of the part at right angles to its narrowest width; with part_width it sets a minimum part size; not checked when omitted."
+        },
+        "part_width": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum width of the part in its narrowest direction; not checked when omitted."
+        },
+        "removed_area_window": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Also apply max_removed_area_percent in every square window this size across each part, to find a dense patch on a large part; needs max_removed_area_percent."
+        },
+        "slender_cutout": {
+          "description": "Minimum cut-out width that rises with the cut-out's length, as tiers by increasing min_length (long narrow cut-outs warp the part); round holes are not checked; not checked when omitted.",
+          "items": {
+            "$ref": "#/$defs/SlenderTierInput"
+          },
+          "type": "array"
+        },
+        "slender_part": {
+          "description": "Minimum part width that rises with the part's length, as tiers by increasing min_length (long narrow strips warp); not checked when omitted.",
+          "items": {
+            "$ref": "#/$defs/SlenderTierInput"
+          },
+          "type": "array"
+        },
+        "slot_fit_clearance": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum clearance of a slot that receives the stock, as in tab-and-slot parts: its width less the stock thickness, for slots within 25% of the thickness wide (a slot as wide as the stock has no clearance); not checked when omitted."
+        },
+        "slot_width": {
+          "$ref": "#/$defs/LimitInput"
+        },
+        "web_width": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum material between two cut-outs in the same region; not checked when omitted."
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "PunchInput": {
+      "additionalProperties": false,
+      "description": "A punch's cross-section and length.",
+      "properties": {
+        "gooseneck": {
+          "$ref": "#/$defs/GooseneckInput",
+          "description": "A gooseneck punch's throat: the body set back behind the tip, which lets a return flange taller than the web beside it clear the punch. Omitted for a straight punch."
+        },
+        "height": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "How far the punch reaches above its tip, up to the ram (a gooseneck punch is modeled as straight)."
+        },
+        "length": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Length of the punch along the bend; the part may be slid to put the bend at its start, middle or end. Omitted for segmented tooling, assembled to each bend's length."
+        },
+        "tip_angle": {
+          "$ref": "#/$defs/AngleInput",
+          "description": "Included angle of the punch's tip."
+        },
+        "width": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Width of the punch's body."
+        }
+      },
+      "required": [
+        "tip_angle",
+        "width",
+        "height"
+      ],
+      "type": "object"
+    },
+    "QuantityInput": {
+      "additionalProperties": false,
+      "description": "An amount together with the unit it is expressed in.",
+      "properties": {
+        "unit": {
+          "description": "Unit the value is expressed in.",
+          "enum": [
+            "um",
+            "mm",
+            "cm",
+            "m",
+            "in",
+            "ft"
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "Decimal value, as a string to preserve precision.",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "type": "object"
+    },
+    "SlenderTierInput": {
+      "additionalProperties": false,
+      "description": "A minimum width for parts at least min_length long.",
+      "properties": {
+        "min_length": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Parts at least this long (and shorter than the next tier's) must meet width."
+        },
+        "width": {
+          "$ref": "#/$defs/LimitInput",
+          "description": "Minimum part width for them."
+        }
+      },
+      "required": [
+        "min_length",
+        "width"
+      ],
+      "type": "object"
+    },
+    "StockInput": {
+      "additionalProperties": false,
+      "description": "The material and size of the job's raw material.",
+      "properties": {
+        "form": {
+          "description": "Shape the material comes in; sheet when omitted. Processes to come add forms, each with its own fields.",
+          "enum": [
+            "sheet"
+          ],
+          "type": "string"
+        },
+        "material_code": {
+          "description": "Code of a material listed in the capability.",
+          "minLength": 1,
+          "type": "string"
+        },
+        "thickness": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Thickness of the sheet; required for sheet stock."
+        }
+      },
+      "required": [
+        "material_code"
+      ],
+      "type": "object"
+    },
+    "ThicknessRangeInput": {
+      "additionalProperties": false,
+      "description": "Holds a material's kerf and limits for stock up to a thickness.",
+      "properties": {
+        "kerf_width": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Overrides the kerf width."
+        },
+        "limits": {
+          "$ref": "#/$defs/MaterialLaserCuttingLimitsInput",
+          "description": "Overrides individual limits."
+        },
+        "max_thickness": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Thickest stock the range applies to (inclusive); thinner stock falls in the first range that fits."
+        },
+        "usable_area": {
+          "$ref": "#/$defs/AreaInput",
+          "description": "Overrides the usable area, e.g. a smaller area for thick plate."
+        }
+      },
+      "required": [
+        "max_thickness"
+      ],
+      "type": "object"
+    },
+    "ThreadInput": {
+      "additionalProperties": false,
+      "description": "A screw thread.",
+      "properties": {
+        "nominal_diameter": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Nominal (major) diameter."
+        },
+        "pitch": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Distance between threads."
+        }
+      },
+      "required": [
+        "nominal_diameter",
+        "pitch"
+      ],
+      "type": "object"
+    },
+    "ThresholdInput": {
+      "additionalProperties": false,
+      "description": "Requires max(min, thickness_ratio × stock thickness, kerf_ratio × kerf width), capped at max when it is given. Omitted terms are 0; at least one of min, thickness_ratio and kerf_ratio is required.",
+      "properties": {
+        "kerf_ratio": {
+          "description": "Multiple of kerf width, as a decimal string.",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        },
+        "max": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Upper cap on the requirement, e.g. the smaller of twice the thickness and 3.175 mm; at least min."
+        },
+        "min": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "Absolute minimum."
+        },
+        "thickness_ratio": {
+          "description": "Multiple of stock thickness, as a decimal string.",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "ToolingInput": {
+      "additionalProperties": false,
+      "description": "A press brake's punch and die.",
+      "properties": {
+        "die": {
+          "$ref": "#/$defs/DieInput",
+          "description": "The die (lower tool)."
+        },
+        "punch": {
+          "$ref": "#/$defs/PunchInput",
+          "description": "The punch (upper tool)."
+        }
+      },
+      "required": [
+        "punch",
+        "die"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/open-mrp/dfm/schema/check-request.schema.json",
+  "$ref": "#/$defs/CheckRequest",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DFM check request"
+}

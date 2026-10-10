@@ -1,0 +1,236 @@
+{
+  "object": "dfm_check",
+  "process": "laser_cutting",
+  "engine_version": "dev",
+  "verdict": "manufacturable",
+  "error_count": 0,
+  "review_count": 0,
+  "warning_count": 3,
+  "part_count": 1,
+  "parts": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": [
+      {
+        "object": "dfm_part",
+        "number": 1,
+        "copy_count": 1,
+        "instances": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null
+          },
+          "data": [
+            {
+              "object": "dfm_part_instance",
+              "number": 1,
+              "entity_ids": [
+                "2F"
+              ],
+              "rotation": {
+                "value": "0",
+                "unit": "deg"
+              },
+              "offset": {
+                "x": "0",
+                "y": "0",
+                "unit": "mm"
+              }
+            }
+          ]
+        },
+        "entity_ids": [
+          "2F"
+        ],
+        "sheet": {
+          "outline": "closed",
+          "width": {
+            "value": "100",
+            "unit": "mm"
+          },
+          "height": {
+            "value": "50",
+            "unit": "mm"
+          },
+          "area": {
+            "value": "5000",
+            "unit": "mm2"
+          },
+          "cut_length": {
+            "value": "300",
+            "unit": "mm"
+          },
+          "pierce_count": 1,
+          "holes": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": []
+          },
+          "bends": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": []
+          }
+        },
+        "verdict": "manufacturable",
+        "error_count": 0,
+        "review_count": 0,
+        "warning_count": 2,
+        "issues": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null
+          },
+          "data": [
+            {
+              "object": "dfm_issue",
+              "code": "text_not_outlined",
+              "severity": "warning",
+              "message": "Text is not cut; convert it to outlines if it should be",
+              "remediation": "If the text should be cut, convert it to outlines (and bridge letters with enclosed centers); otherwise delete it.",
+              "required": null,
+              "required_basis": null,
+              "occurrences": {
+                "object": "list",
+                "page_info": {
+                  "next_page_url": null,
+                  "previous_page_url": null
+                },
+                "data": [
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_cbb5a809ae49b2a1",
+                    "entity_ids": [
+                      "30"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "10",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_bbccc5ceb8f092e9",
+                    "entity_ids": [
+                      "31"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "10",
+                      "y": "40",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "drawing_issues": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": [
+      {
+        "object": "dfm_issue",
+        "code": "annotation_not_cut",
+        "severity": "warning",
+        "message": "Annotation is not cut",
+        "remediation": "No change is needed; delete annotation layers from cut files to remove the warning.",
+        "required": null,
+        "required_basis": null,
+        "occurrences": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null
+          },
+          "data": [
+            {
+              "object": "dfm_occurrence",
+              "id": "fnd_38f66f1731bbb0eb",
+              "entity_ids": [
+                "34"
+              ],
+              "actual": null,
+              "location": null,
+              "span": [],
+              "fix": null
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "skipped_checks": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": [
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_too_short",
+        "limit": "laser_cutting.limits.part_length"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_area_too_small",
+        "limit": "laser_cutting.limits.part_area"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_too_slender",
+        "limit": "laser_cutting.limits.slender_part"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_may_fall_through",
+        "limit": "laser_cutting.support_spacing"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "cutout_too_slender",
+        "limit": "laser_cutting.limits.slender_cutout"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "notch_too_slender",
+        "limit": "laser_cutting.limits.slender_cutout"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "slot_fit_too_tight",
+        "limit": "laser_cutting.limits.slot_fit_clearance"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "internal_corner_too_sharp",
+        "limit": "laser_cutting.limits.internal_corner_radius"
+      }
+    ]
+  }
+}

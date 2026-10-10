@@ -1,0 +1,89 @@
+{
+  "schema_version": "3.0",
+  "process": "bending",
+  "bending": {
+    "max_bend_length": {
+      "value": "1400",
+      "unit": "mm"
+    },
+    "max_force": {
+      "value": "600",
+      "unit": "kN"
+    },
+    "limits": {
+      "flange_length": {
+        "error": {
+          "thickness_ratio": "2"
+        },
+        "warning": {
+          "thickness_ratio": "3"
+        },
+        "offset": "inside_radius"
+      },
+      "feature_distance": {
+        "warning": {
+          "thickness_ratio": "2"
+        },
+        "offset": "inside_radius"
+      },
+      "relief_width": {
+        "error": {
+          "min": {
+            "value": "0.4",
+            "unit": "mm"
+          },
+          "thickness_ratio": "0.5"
+        },
+        "warning": {
+          "min": {
+            "value": "0.8",
+            "unit": "mm"
+          },
+          "thickness_ratio": "1"
+        }
+      },
+      "relief_depth": {
+        "warning": {
+          "thickness_ratio": "1"
+        },
+        "offset": "inside_radius"
+      },
+      "min_inside_radius": {
+        "error": {
+          "thickness_ratio": "0.25"
+        }
+      }
+    }
+  },
+  "materials": [
+    {
+      "code": "mild_steel",
+      "bending": {
+        "max_thickness": {
+          "value": "6.35",
+          "unit": "mm"
+        }
+      }
+    },
+    {
+      "code": "stainless_304",
+      "bending": {
+        "max_thickness": {
+          "value": "6.35",
+          "unit": "mm"
+        },
+        "force_factor": "1.5"
+      }
+    },
+    {
+      "code": "aluminum_5052",
+      "bending": {
+        "max_thickness": {
+          "value": "6.35",
+          "unit": "mm"
+        },
+        "force_factor": "0.55"
+      }
+    }
+  ]
+}

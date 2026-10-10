@@ -1,0 +1,11 @@
+{
+  // AGENTS.md: paragraphs, list items and Go comments are one line each; the editor wraps them, never the file.
+  "editor.wordWrap": "on",
+  "editor.wrappingIndent": "same",
+  "[go]": {
+    "editor.wordWrap": "on"
+  },
+  "[markdown]": {
+    "editor.wordWrap": "on"
+  }
+}

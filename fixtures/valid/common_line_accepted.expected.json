@@ -1,0 +1,425 @@
+{
+  "object": "dfm_check",
+  "process": "laser_cutting",
+  "engine_version": "dev",
+  "verdict": "manufacturable",
+  "error_count": 0,
+  "review_count": 0,
+  "warning_count": 3,
+  "part_count": 3,
+  "parts": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": [
+      {
+        "object": "dfm_part",
+        "number": 1,
+        "copy_count": 2,
+        "instances": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null
+          },
+          "data": [
+            {
+              "object": "dfm_part_instance",
+              "number": 1,
+              "entity_ids": [
+                "2F"
+              ],
+              "rotation": {
+                "value": "0",
+                "unit": "deg"
+              },
+              "offset": {
+                "x": "0",
+                "y": "0",
+                "unit": "mm"
+              }
+            },
+            {
+              "object": "dfm_part_instance",
+              "number": 3,
+              "entity_ids": [
+                "30",
+                "31"
+              ],
+              "rotation": {
+                "value": "0",
+                "unit": "deg"
+              },
+              "offset": {
+                "x": "80",
+                "y": "0",
+                "unit": "mm"
+              }
+            }
+          ]
+        },
+        "entity_ids": [
+          "2F"
+        ],
+        "sheet": {
+          "outline": "closed",
+          "width": {
+            "value": "40",
+            "unit": "mm"
+          },
+          "height": {
+            "value": "30",
+            "unit": "mm"
+          },
+          "area": {
+            "value": "1171.725666",
+            "unit": "mm2"
+          },
+          "cut_length": {
+            "value": "158.849556",
+            "unit": "mm"
+          },
+          "pierce_count": 2,
+          "holes": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": [
+              {
+                "object": "dfm_hole_group",
+                "diameter": {
+                  "value": "6",
+                  "unit": "mm"
+                },
+                "count": 1,
+                "entity_ids": [
+                  "32"
+                ],
+                "operation": null,
+                "available_operations": [
+                  "nut_m3_steel",
+                  "nut_m4_steel",
+                  "tap_m3",
+                  "tap_m4"
+                ]
+              }
+            ]
+          },
+          "bends": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": []
+          }
+        },
+        "verdict": "manufacturable",
+        "error_count": 0,
+        "review_count": 0,
+        "warning_count": 1,
+        "issues": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null
+          },
+          "data": [
+            {
+              "object": "dfm_issue",
+              "code": "geometry_common_line",
+              "severity": "warning",
+              "message": "Parts share a cut line",
+              "remediation": "Give each part its own outline with at least the kerf between them, or use a capability that accepts common-line cutting.",
+              "required": null,
+              "required_basis": null,
+              "occurrences": {
+                "object": "list",
+                "page_info": {
+                  "next_page_url": null,
+                  "previous_page_url": null
+                },
+                "data": [
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_9d23ad9b510044c3",
+                    "entity_ids": [
+                      "2F"
+                    ],
+                    "actual": {
+                      "value": "30",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "40",
+                      "y": "15",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "object": "dfm_part",
+        "number": 2,
+        "copy_count": 1,
+        "instances": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null
+          },
+          "data": [
+            {
+              "object": "dfm_part_instance",
+              "number": 2,
+              "entity_ids": [
+                "2F",
+                "30"
+              ],
+              "rotation": {
+                "value": "0",
+                "unit": "deg"
+              },
+              "offset": {
+                "x": "0",
+                "y": "0",
+                "unit": "mm"
+              }
+            }
+          ]
+        },
+        "entity_ids": [
+          "2F",
+          "30"
+        ],
+        "sheet": {
+          "outline": "closed",
+          "width": {
+            "value": "40",
+            "unit": "mm"
+          },
+          "height": {
+            "value": "30",
+            "unit": "mm"
+          },
+          "area": {
+            "value": "1171.725666",
+            "unit": "mm2"
+          },
+          "cut_length": {
+            "value": "158.849556",
+            "unit": "mm"
+          },
+          "pierce_count": 2,
+          "holes": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": [
+              {
+                "object": "dfm_hole_group",
+                "diameter": {
+                  "value": "6",
+                  "unit": "mm"
+                },
+                "count": 1,
+                "entity_ids": [
+                  "33"
+                ],
+                "operation": null,
+                "available_operations": [
+                  "nut_m3_steel",
+                  "nut_m4_steel",
+                  "tap_m3",
+                  "tap_m4"
+                ]
+              }
+            ]
+          },
+          "bends": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": []
+          }
+        },
+        "verdict": "manufacturable",
+        "error_count": 0,
+        "review_count": 0,
+        "warning_count": 2,
+        "issues": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null
+          },
+          "data": [
+            {
+              "object": "dfm_issue",
+              "code": "geometry_common_line",
+              "severity": "warning",
+              "message": "Parts share a cut line",
+              "remediation": "Give each part its own outline with at least the kerf between them, or use a capability that accepts common-line cutting.",
+              "required": null,
+              "required_basis": null,
+              "occurrences": {
+                "object": "list",
+                "page_info": {
+                  "next_page_url": null,
+                  "previous_page_url": null
+                },
+                "data": [
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_9d23ad9b510044c3",
+                    "entity_ids": [
+                      "2F"
+                    ],
+                    "actual": {
+                      "value": "30",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "40",
+                      "y": "15",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_1e55477faee33e65",
+                    "entity_ids": [
+                      "30"
+                    ],
+                    "actual": {
+                      "value": "30",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "80",
+                      "y": "15",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "drawing_issues": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": [
+      {
+        "object": "dfm_issue",
+        "code": "file_multiple_parts",
+        "severity": "warning",
+        "message": "Drawing contains more than one part",
+        "remediation": "Upload each part as its own drawing, or use a capability that accepts several parts per drawing.",
+        "required": null,
+        "required_basis": null,
+        "occurrences": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null
+          },
+          "data": [
+            {
+              "object": "dfm_occurrence",
+              "id": "fnd_871b28bb1e534421",
+              "entity_ids": [
+                "2F",
+                "2F",
+                "30",
+                "30",
+                "31"
+              ],
+              "actual": null,
+              "location": {
+                "x": "20",
+                "y": "15",
+                "unit": "mm"
+              },
+              "span": [],
+              "fix": null
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "skipped_checks": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": [
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_too_short",
+        "limit": "laser_cutting.limits.part_length"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_area_too_small",
+        "limit": "laser_cutting.limits.part_area"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_too_slender",
+        "limit": "laser_cutting.limits.slender_part"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_may_fall_through",
+        "limit": "laser_cutting.support_spacing"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "cutout_too_slender",
+        "limit": "laser_cutting.limits.slender_cutout"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "notch_too_slender",
+        "limit": "laser_cutting.limits.slender_cutout"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "slot_fit_too_tight",
+        "limit": "laser_cutting.limits.slot_fit_clearance"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "internal_corner_too_sharp",
+        "limit": "laser_cutting.limits.internal_corner_radius"
+      }
+    ]
+  }
+}

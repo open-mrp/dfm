@@ -1,0 +1,10 @@
+{
+  "error": {
+    "code": "design_invalid",
+    "type": "invalid_request_error",
+    "message": "invalid design: line 1: expected integer group code, got \"This is not a DXF file.\"",
+    "param": "design",
+    "is_transient": false,
+    "errors": []
+  }
+}

@@ -1,0 +1,3500 @@
+{
+  "object": "dfm_check",
+  "process": "laser_cutting",
+  "engine_version": "dev",
+  "verdict": "manufacturable",
+  "error_count": 0,
+  "review_count": 0,
+  "warning_count": 107,
+  "part_count": 1,
+  "parts": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": [
+      {
+        "object": "dfm_part",
+        "number": 1,
+        "copy_count": 1,
+        "instances": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null
+          },
+          "data": [
+            {
+              "object": "dfm_part_instance",
+              "number": 1,
+              "entity_ids": [
+                "2F"
+              ],
+              "rotation": {
+                "value": "0",
+                "unit": "deg"
+              },
+              "offset": {
+                "x": "0",
+                "y": "0",
+                "unit": "mm"
+              }
+            }
+          ]
+        },
+        "entity_ids": [
+          "2F"
+        ],
+        "sheet": {
+          "outline": "closed",
+          "width": {
+            "value": "300",
+            "unit": "mm"
+          },
+          "height": {
+            "value": "200",
+            "unit": "mm"
+          },
+          "area": {
+            "value": "56282.364917",
+            "unit": "mm2"
+          },
+          "cut_length": {
+            "value": "2729.132597",
+            "unit": "mm"
+          },
+          "pierce_count": 65,
+          "holes": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": [
+              {
+                "object": "dfm_hole_group",
+                "diameter": {
+                  "value": "8.6",
+                  "unit": "mm"
+                },
+                "count": 64,
+                "entity_ids": [
+                  "30",
+                  "31",
+                  "32",
+                  "33",
+                  "34",
+                  "35",
+                  "36",
+                  "37",
+                  "38",
+                  "39",
+                  "3A",
+                  "3B",
+                  "3C",
+                  "3D",
+                  "3E",
+                  "3F",
+                  "40",
+                  "41",
+                  "42",
+                  "43",
+                  "44",
+                  "45",
+                  "46",
+                  "47",
+                  "48",
+                  "49",
+                  "4A",
+                  "4B",
+                  "4C",
+                  "4D",
+                  "4E",
+                  "4F",
+                  "50",
+                  "51",
+                  "52",
+                  "53",
+                  "54",
+                  "55",
+                  "56",
+                  "57",
+                  "58",
+                  "59",
+                  "5A",
+                  "5B",
+                  "5C",
+                  "5D",
+                  "5E",
+                  "5F",
+                  "60",
+                  "61",
+                  "62",
+                  "63",
+                  "64",
+                  "65",
+                  "66",
+                  "67",
+                  "68",
+                  "69",
+                  "6A",
+                  "6B",
+                  "6C",
+                  "6D",
+                  "6E",
+                  "6F"
+                ],
+                "operation": null,
+                "available_operations": [
+                  "nut_m3_steel",
+                  "tap_m3",
+                  "tap_m4"
+                ]
+              }
+            ]
+          },
+          "bends": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": []
+          }
+        },
+        "verdict": "manufacturable",
+        "error_count": 0,
+        "review_count": 0,
+        "warning_count": 107,
+        "issues": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null
+          },
+          "data": [
+            {
+              "object": "dfm_issue",
+              "code": "web_too_thin",
+              "severity": "warning",
+              "message": "Material between cut-outs is below configured minimum",
+              "remediation": "Move the cut-outs apart, or shrink them, until the material between them is at least the required width.",
+              "required": {
+                "value": "1.5",
+                "unit": "mm"
+              },
+              "required_basis": "thickness_ratio",
+              "occurrences": {
+                "object": "list",
+                "page_info": {
+                  "next_page_url": null,
+                  "previous_page_url": null
+                },
+                "data": [
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_e430b0a3c73075cc",
+                    "entity_ids": [
+                      "30",
+                      "31"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "20",
+                      "y": "15",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "19.3",
+                        "y": "15",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "20.7",
+                        "y": "15",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_2fa12d3006b19778",
+                    "entity_ids": [
+                      "30",
+                      "38"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "15",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "15",
+                        "y": "19.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "15",
+                        "y": "20.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_7fb2c4f3bd4b40f1",
+                    "entity_ids": [
+                      "31",
+                      "32"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "30",
+                      "y": "15",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "29.3",
+                        "y": "15",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "30.7",
+                        "y": "15",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_ba55386d5bc262ca",
+                    "entity_ids": [
+                      "31",
+                      "39"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "25",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "25",
+                        "y": "19.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "25",
+                        "y": "20.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_c27e1e235570570a",
+                    "entity_ids": [
+                      "32",
+                      "3A"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "35",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "35",
+                        "y": "19.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "35",
+                        "y": "20.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_79b1008315d1c081",
+                    "entity_ids": [
+                      "33",
+                      "3B"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "45",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "45",
+                        "y": "19.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "45",
+                        "y": "20.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_993f0c2cd9621a85",
+                    "entity_ids": [
+                      "34",
+                      "3C"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "55",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "55",
+                        "y": "19.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "55",
+                        "y": "20.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_8d0cc98b6f9719e9",
+                    "entity_ids": [
+                      "35",
+                      "3D"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "65",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "65",
+                        "y": "19.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "65",
+                        "y": "20.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_8db27caedb24400c",
+                    "entity_ids": [
+                      "36",
+                      "3E"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "75",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "75",
+                        "y": "19.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "75",
+                        "y": "20.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_bc2316404fdcfad9",
+                    "entity_ids": [
+                      "37",
+                      "3F"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "85",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "85",
+                        "y": "19.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "85",
+                        "y": "20.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_785e220daa964ef7",
+                    "entity_ids": [
+                      "38",
+                      "40"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "15",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "15",
+                        "y": "29.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "15",
+                        "y": "30.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_d6b303b740f75b97",
+                    "entity_ids": [
+                      "39",
+                      "41"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "25",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "25",
+                        "y": "29.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "25",
+                        "y": "30.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_34d80be16be148b3",
+                    "entity_ids": [
+                      "3A",
+                      "42"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "35",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "35",
+                        "y": "29.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "35",
+                        "y": "30.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_fcd171d0fd763396",
+                    "entity_ids": [
+                      "3B",
+                      "43"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "45",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "45",
+                        "y": "29.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "45",
+                        "y": "30.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_740670a1cb92f542",
+                    "entity_ids": [
+                      "3C",
+                      "44"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "55",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "55",
+                        "y": "29.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "55",
+                        "y": "30.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_1e29419fffbc2bc1",
+                    "entity_ids": [
+                      "3D",
+                      "45"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "65",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "65",
+                        "y": "29.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "65",
+                        "y": "30.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_36dd48d3f4137fa8",
+                    "entity_ids": [
+                      "3E",
+                      "46"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "75",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "75",
+                        "y": "29.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "75",
+                        "y": "30.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_3b33424eb834b655",
+                    "entity_ids": [
+                      "3F",
+                      "47"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "85",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "85",
+                        "y": "29.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "85",
+                        "y": "30.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_8bba9ed861635a1e",
+                    "entity_ids": [
+                      "43",
+                      "4B"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "45",
+                      "y": "40",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "45",
+                        "y": "39.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "45",
+                        "y": "40.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_c57ea4bd5aeb1372",
+                    "entity_ids": [
+                      "44",
+                      "4C"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "55",
+                      "y": "40",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "55",
+                        "y": "39.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "55",
+                        "y": "40.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_a4ecb0c47117e994",
+                    "entity_ids": [
+                      "45",
+                      "4D"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "65",
+                      "y": "40",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "65",
+                        "y": "39.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "65",
+                        "y": "40.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_c7a723f14add36a5",
+                    "entity_ids": [
+                      "46",
+                      "4E"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "75",
+                      "y": "40",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "75",
+                        "y": "39.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "75",
+                        "y": "40.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_4c9882df90be930d",
+                    "entity_ids": [
+                      "47",
+                      "4F"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "85",
+                      "y": "40",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "85",
+                        "y": "39.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "85",
+                        "y": "40.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_2fdfaf1add1f6144",
+                    "entity_ids": [
+                      "48",
+                      "49"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "20",
+                      "y": "45",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "19.3",
+                        "y": "45",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "20.7",
+                        "y": "45",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_7d4a96cc5f86f245",
+                    "entity_ids": [
+                      "49",
+                      "4A"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "30",
+                      "y": "45",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "29.3",
+                        "y": "45",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "30.7",
+                        "y": "45",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_b376432d36b2c721",
+                    "entity_ids": [
+                      "4B",
+                      "53"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "45",
+                      "y": "50",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "45",
+                        "y": "49.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "45",
+                        "y": "50.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_66e9621f8889d159",
+                    "entity_ids": [
+                      "4C",
+                      "54"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "55",
+                      "y": "50",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "55",
+                        "y": "49.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "55",
+                        "y": "50.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_534d9d2d442cd489",
+                    "entity_ids": [
+                      "4D",
+                      "55"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "65",
+                      "y": "50",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "65",
+                        "y": "49.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "65",
+                        "y": "50.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_d0b8990e3a6d07f6",
+                    "entity_ids": [
+                      "4E",
+                      "56"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "75",
+                      "y": "50",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "75",
+                        "y": "49.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "75",
+                        "y": "50.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_680a3355b6083f3b",
+                    "entity_ids": [
+                      "4F",
+                      "57"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "85",
+                      "y": "50",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "85",
+                        "y": "49.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "85",
+                        "y": "50.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_a50058985a39a748",
+                    "entity_ids": [
+                      "50",
+                      "51"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "20",
+                      "y": "55",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "19.3",
+                        "y": "55",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "20.7",
+                        "y": "55",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_1155a57f8072733e",
+                    "entity_ids": [
+                      "51",
+                      "52"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "30",
+                      "y": "55",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "29.3",
+                        "y": "55",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "30.7",
+                        "y": "55",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_19423d88c3bcbfe7",
+                    "entity_ids": [
+                      "53",
+                      "5B"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "45",
+                      "y": "60",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "45",
+                        "y": "59.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "45",
+                        "y": "60.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_2da00537b50e7259",
+                    "entity_ids": [
+                      "54",
+                      "5C"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "55",
+                      "y": "60",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "55",
+                        "y": "59.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "55",
+                        "y": "60.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_72e8abc6fc4018cb",
+                    "entity_ids": [
+                      "55",
+                      "5D"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "65",
+                      "y": "60",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "65",
+                        "y": "59.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "65",
+                        "y": "60.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_3d88e073ccf47b75",
+                    "entity_ids": [
+                      "56",
+                      "5E"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "75",
+                      "y": "60",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "75",
+                        "y": "59.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "75",
+                        "y": "60.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_44a41693cd8a66f2",
+                    "entity_ids": [
+                      "57",
+                      "5F"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "85",
+                      "y": "60",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "85",
+                        "y": "59.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "85",
+                        "y": "60.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_8b1bd42ffd6fe637",
+                    "entity_ids": [
+                      "58",
+                      "59"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "20",
+                      "y": "65",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "19.3",
+                        "y": "65",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "20.7",
+                        "y": "65",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_124221c11bc826f5",
+                    "entity_ids": [
+                      "59",
+                      "5A"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "30",
+                      "y": "65",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "29.3",
+                        "y": "65",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "30.7",
+                        "y": "65",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_36f2a3b1f7194a25",
+                    "entity_ids": [
+                      "5B",
+                      "63"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "45",
+                      "y": "70",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "45",
+                        "y": "69.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "45",
+                        "y": "70.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_17cca461118b5fba",
+                    "entity_ids": [
+                      "5C",
+                      "64"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "55",
+                      "y": "70",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "55",
+                        "y": "69.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "55",
+                        "y": "70.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_e507bbbb75ee3fc3",
+                    "entity_ids": [
+                      "5D",
+                      "65"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "65",
+                      "y": "70",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "65",
+                        "y": "69.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "65",
+                        "y": "70.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_0dc11fcc1b315797",
+                    "entity_ids": [
+                      "5E",
+                      "66"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "75",
+                      "y": "70",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "75",
+                        "y": "69.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "75",
+                        "y": "70.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_ad12f5b5dadd3350",
+                    "entity_ids": [
+                      "5F",
+                      "67"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "85",
+                      "y": "70",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "85",
+                        "y": "69.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "85",
+                        "y": "70.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_5164b72544889e62",
+                    "entity_ids": [
+                      "60",
+                      "61"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "20",
+                      "y": "75",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "19.3",
+                        "y": "75",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "20.7",
+                        "y": "75",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_e4b32296b0b22108",
+                    "entity_ids": [
+                      "61",
+                      "62"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "30",
+                      "y": "75",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "29.3",
+                        "y": "75",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "30.7",
+                        "y": "75",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_c1ec984d98865596",
+                    "entity_ids": [
+                      "63",
+                      "6B"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "45",
+                      "y": "80",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "45",
+                        "y": "79.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "45",
+                        "y": "80.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_e6e0dc6d6c4f356a",
+                    "entity_ids": [
+                      "64",
+                      "6C"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "55",
+                      "y": "80",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "55",
+                        "y": "79.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "55",
+                        "y": "80.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_1d24295831f02971",
+                    "entity_ids": [
+                      "65",
+                      "6D"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "65",
+                      "y": "80",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "65",
+                        "y": "79.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "65",
+                        "y": "80.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_c517fa48e703cdf8",
+                    "entity_ids": [
+                      "66",
+                      "6E"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "75",
+                      "y": "80",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "75",
+                        "y": "79.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "75",
+                        "y": "80.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_9891f7018abdd873",
+                    "entity_ids": [
+                      "67",
+                      "6F"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "85",
+                      "y": "80",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "85",
+                        "y": "79.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "85",
+                        "y": "80.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_b67c46e2e25f3003",
+                    "entity_ids": [
+                      "68",
+                      "69"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "20",
+                      "y": "85",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "19.3",
+                        "y": "85",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "20.7",
+                        "y": "85",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_4d7c1716f12bb1a6",
+                    "entity_ids": [
+                      "69",
+                      "6A"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "30",
+                      "y": "85",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "29.3",
+                        "y": "85",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "30.7",
+                        "y": "85",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  }
+                ]
+              }
+            },
+            {
+              "object": "dfm_issue",
+              "code": "features_too_close",
+              "severity": "warning",
+              "message": "Cut-outs are closer than configured minimum spacing",
+              "remediation": "Move the cut-outs apart to at least the required spacing.",
+              "required": {
+                "value": "3",
+                "unit": "mm"
+              },
+              "required_basis": "thickness_ratio",
+              "occurrences": {
+                "object": "list",
+                "page_info": {
+                  "next_page_url": null,
+                  "previous_page_url": null
+                },
+                "data": [
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_e7460c9c628f3431",
+                    "entity_ids": [
+                      "30",
+                      "31"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "20",
+                      "y": "15",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "19.3",
+                        "y": "15",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "20.7",
+                        "y": "15",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_887215d23d1b8e46",
+                    "entity_ids": [
+                      "30",
+                      "38"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "15",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "15",
+                        "y": "19.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "15",
+                        "y": "20.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_4b70aebfd00ec570",
+                    "entity_ids": [
+                      "31",
+                      "32"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "30",
+                      "y": "15",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "29.3",
+                        "y": "15",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "30.7",
+                        "y": "15",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_904ce1d04099cc8e",
+                    "entity_ids": [
+                      "31",
+                      "39"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "25",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "25",
+                        "y": "19.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "25",
+                        "y": "20.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_a4407f1cd4ddb88c",
+                    "entity_ids": [
+                      "32",
+                      "3A"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "35",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "35",
+                        "y": "19.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "35",
+                        "y": "20.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_24dc4bfcfc1cbcc1",
+                    "entity_ids": [
+                      "33",
+                      "3B"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "45",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "45",
+                        "y": "19.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "45",
+                        "y": "20.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_64c7943ea0c3ab3d",
+                    "entity_ids": [
+                      "34",
+                      "3C"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "55",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "55",
+                        "y": "19.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "55",
+                        "y": "20.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_194611f8361cbc07",
+                    "entity_ids": [
+                      "35",
+                      "3D"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "65",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "65",
+                        "y": "19.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "65",
+                        "y": "20.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_a2a4ccd007960efa",
+                    "entity_ids": [
+                      "36",
+                      "3E"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "75",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "75",
+                        "y": "19.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "75",
+                        "y": "20.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_3809cfa9f870de59",
+                    "entity_ids": [
+                      "37",
+                      "3F"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "85",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "85",
+                        "y": "19.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "85",
+                        "y": "20.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_7e2270777a58aa69",
+                    "entity_ids": [
+                      "38",
+                      "40"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "15",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "15",
+                        "y": "29.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "15",
+                        "y": "30.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_036eb1078a0777ad",
+                    "entity_ids": [
+                      "39",
+                      "41"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "25",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "25",
+                        "y": "29.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "25",
+                        "y": "30.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_8f25dd83ce772250",
+                    "entity_ids": [
+                      "3A",
+                      "42"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "35",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "35",
+                        "y": "29.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "35",
+                        "y": "30.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_2f50edf6aeedfb8b",
+                    "entity_ids": [
+                      "3B",
+                      "43"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "45",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "45",
+                        "y": "29.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "45",
+                        "y": "30.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_c6c33d281f8c2de8",
+                    "entity_ids": [
+                      "3C",
+                      "44"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "55",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "55",
+                        "y": "29.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "55",
+                        "y": "30.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_3a492dd48d696c76",
+                    "entity_ids": [
+                      "3D",
+                      "45"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "65",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "65",
+                        "y": "29.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "65",
+                        "y": "30.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_de814fb39a744bfb",
+                    "entity_ids": [
+                      "3E",
+                      "46"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "75",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "75",
+                        "y": "29.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "75",
+                        "y": "30.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_11be75e803e93cb9",
+                    "entity_ids": [
+                      "3F",
+                      "47"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "85",
+                      "y": "30",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "85",
+                        "y": "29.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "85",
+                        "y": "30.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_b56be7d646522ccf",
+                    "entity_ids": [
+                      "43",
+                      "4B"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "45",
+                      "y": "40",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "45",
+                        "y": "39.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "45",
+                        "y": "40.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_fc311f2cfaf5f203",
+                    "entity_ids": [
+                      "44",
+                      "4C"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "55",
+                      "y": "40",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "55",
+                        "y": "39.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "55",
+                        "y": "40.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_fb322d79273904c4",
+                    "entity_ids": [
+                      "45",
+                      "4D"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "65",
+                      "y": "40",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "65",
+                        "y": "39.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "65",
+                        "y": "40.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_8e35ed2173b80303",
+                    "entity_ids": [
+                      "46",
+                      "4E"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "75",
+                      "y": "40",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "75",
+                        "y": "39.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "75",
+                        "y": "40.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_a289d2b45b4d58bc",
+                    "entity_ids": [
+                      "47",
+                      "4F"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "85",
+                      "y": "40",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "85",
+                        "y": "39.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "85",
+                        "y": "40.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_0d415b1cd8af3e25",
+                    "entity_ids": [
+                      "48",
+                      "49"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "20",
+                      "y": "45",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "19.3",
+                        "y": "45",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "20.7",
+                        "y": "45",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_15cfbc40adcee556",
+                    "entity_ids": [
+                      "49",
+                      "4A"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "30",
+                      "y": "45",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "29.3",
+                        "y": "45",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "30.7",
+                        "y": "45",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_f2844969997e9ea2",
+                    "entity_ids": [
+                      "4B",
+                      "53"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "45",
+                      "y": "50",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "45",
+                        "y": "49.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "45",
+                        "y": "50.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_89daf99c7d83148e",
+                    "entity_ids": [
+                      "4C",
+                      "54"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "55",
+                      "y": "50",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "55",
+                        "y": "49.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "55",
+                        "y": "50.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_42e4b9efbcbbf59f",
+                    "entity_ids": [
+                      "4D",
+                      "55"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "65",
+                      "y": "50",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "65",
+                        "y": "49.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "65",
+                        "y": "50.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_c0ba8cc3d033870c",
+                    "entity_ids": [
+                      "4E",
+                      "56"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "75",
+                      "y": "50",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "75",
+                        "y": "49.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "75",
+                        "y": "50.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_a5034ce7582bf032",
+                    "entity_ids": [
+                      "4F",
+                      "57"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "85",
+                      "y": "50",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "85",
+                        "y": "49.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "85",
+                        "y": "50.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_a788502ce8135429",
+                    "entity_ids": [
+                      "50",
+                      "51"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "20",
+                      "y": "55",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "19.3",
+                        "y": "55",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "20.7",
+                        "y": "55",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_722a0c85691ab1c5",
+                    "entity_ids": [
+                      "51",
+                      "52"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "30",
+                      "y": "55",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "29.3",
+                        "y": "55",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "30.7",
+                        "y": "55",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_179adec60de77db1",
+                    "entity_ids": [
+                      "53",
+                      "5B"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "45",
+                      "y": "60",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "45",
+                        "y": "59.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "45",
+                        "y": "60.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_99d5b0d524dbbada",
+                    "entity_ids": [
+                      "54",
+                      "5C"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "55",
+                      "y": "60",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "55",
+                        "y": "59.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "55",
+                        "y": "60.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_8b41b927feedfd10",
+                    "entity_ids": [
+                      "55",
+                      "5D"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "65",
+                      "y": "60",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "65",
+                        "y": "59.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "65",
+                        "y": "60.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_34371cab12fd7c9b",
+                    "entity_ids": [
+                      "56",
+                      "5E"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "75",
+                      "y": "60",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "75",
+                        "y": "59.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "75",
+                        "y": "60.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_82c1355406696845",
+                    "entity_ids": [
+                      "57",
+                      "5F"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "85",
+                      "y": "60",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "85",
+                        "y": "59.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "85",
+                        "y": "60.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_83ed3b516c3443a4",
+                    "entity_ids": [
+                      "58",
+                      "59"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "20",
+                      "y": "65",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "19.3",
+                        "y": "65",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "20.7",
+                        "y": "65",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_fdd6f99e4760b285",
+                    "entity_ids": [
+                      "59",
+                      "5A"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "30",
+                      "y": "65",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "29.3",
+                        "y": "65",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "30.7",
+                        "y": "65",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_4eefd5a2e34bcd9b",
+                    "entity_ids": [
+                      "5B",
+                      "63"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "45",
+                      "y": "70",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "45",
+                        "y": "69.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "45",
+                        "y": "70.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_a416378fea71f5d4",
+                    "entity_ids": [
+                      "5C",
+                      "64"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "55",
+                      "y": "70",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "55",
+                        "y": "69.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "55",
+                        "y": "70.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_d6fb48f5e6276b53",
+                    "entity_ids": [
+                      "5D",
+                      "65"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "65",
+                      "y": "70",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "65",
+                        "y": "69.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "65",
+                        "y": "70.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_ecf15a222bb1f71e",
+                    "entity_ids": [
+                      "5E",
+                      "66"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "75",
+                      "y": "70",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "75",
+                        "y": "69.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "75",
+                        "y": "70.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_62a6a7073db65a08",
+                    "entity_ids": [
+                      "5F",
+                      "67"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "85",
+                      "y": "70",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "85",
+                        "y": "69.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "85",
+                        "y": "70.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_0f95e30f3f18c30f",
+                    "entity_ids": [
+                      "60",
+                      "61"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "20",
+                      "y": "75",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "19.3",
+                        "y": "75",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "20.7",
+                        "y": "75",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_9cf020192c8ebf63",
+                    "entity_ids": [
+                      "61",
+                      "62"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "30",
+                      "y": "75",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "29.3",
+                        "y": "75",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "30.7",
+                        "y": "75",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_be7130986ae9f417",
+                    "entity_ids": [
+                      "63",
+                      "6B"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "45",
+                      "y": "80",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "45",
+                        "y": "79.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "45",
+                        "y": "80.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_da4661c285bb2982",
+                    "entity_ids": [
+                      "64",
+                      "6C"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "55",
+                      "y": "80",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "55",
+                        "y": "79.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "55",
+                        "y": "80.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_1c1e674071519ca2",
+                    "entity_ids": [
+                      "65",
+                      "6D"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "65",
+                      "y": "80",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "65",
+                        "y": "79.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "65",
+                        "y": "80.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_4ad70615f57d0e64",
+                    "entity_ids": [
+                      "66",
+                      "6E"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "75",
+                      "y": "80",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "75",
+                        "y": "79.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "75",
+                        "y": "80.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_2749e37a3d1a2a65",
+                    "entity_ids": [
+                      "67",
+                      "6F"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "85",
+                      "y": "80",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "85",
+                        "y": "79.3",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "85",
+                        "y": "80.7",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_8236c54633d1e2f9",
+                    "entity_ids": [
+                      "68",
+                      "69"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "20",
+                      "y": "85",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "19.3",
+                        "y": "85",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "20.7",
+                        "y": "85",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_2f3e842463d2085e",
+                    "entity_ids": [
+                      "69",
+                      "6A"
+                    ],
+                    "actual": {
+                      "value": "1.4",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "30",
+                      "y": "85",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "29.3",
+                        "y": "85",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "30.7",
+                        "y": "85",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  }
+                ]
+              }
+            },
+            {
+              "object": "dfm_issue",
+              "code": "dense_pattern_heat_risk",
+              "severity": "warning",
+              "message": "Cut-outs remove a large share of one area of the part, which may distort it",
+              "remediation": "Reduce the cut-out area, or accept a risk of warping.",
+              "required": {
+                "value": "50",
+                "unit": "percent"
+              },
+              "required_basis": null,
+              "occurrences": {
+                "object": "list",
+                "page_info": {
+                  "next_page_url": null,
+                  "previous_page_url": null
+                },
+                "data": [
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_c17413fbb44925fc",
+                    "entity_ids": [
+                      "2F"
+                    ],
+                    "actual": {
+                      "value": "57.793586",
+                      "unit": "percent"
+                    },
+                    "location": {
+                      "x": "45",
+                      "y": "60",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "drawing_issues": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": []
+  },
+  "skipped_checks": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": [
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_too_short",
+        "limit": "laser_cutting.limits.part_length"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_area_too_small",
+        "limit": "laser_cutting.limits.part_area"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_too_slender",
+        "limit": "laser_cutting.limits.slender_part"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_may_fall_through",
+        "limit": "laser_cutting.support_spacing"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "cutout_too_slender",
+        "limit": "laser_cutting.limits.slender_cutout"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "notch_too_slender",
+        "limit": "laser_cutting.limits.slender_cutout"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "slot_fit_too_tight",
+        "limit": "laser_cutting.limits.slot_fit_clearance"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "internal_corner_too_sharp",
+        "limit": "laser_cutting.limits.internal_corner_radius"
+      }
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+#!/bin/sh
+# Fails if any file added or changed in the given commits is compiled code.
+# Arguments are passed to git rev-list, e.g. "origin/main..HEAD" or "HEAD".
+set -eu
+
+if [ $# -eq 0 ]; then
+	echo "usage: $0 <rev-list args>" >&2
+	exit 2
+fi
+
+found=0
+for commit in $(git rev-list "$@"); do
+	git diff-tree --root --no-commit-id -r --no-abbrev --diff-filter=AM "$commit" |
+		while IFS="$(printf '\t')" read -r meta path; do
+			blob=$(echo "$meta" | cut -d' ' -f4)
+			case "$path" in
+			*.exe | *.dll | *.so | *.dylib | *.o | *.a | *.test | *.wasm | *.class)
+				echo "$path"
+				continue
+				;;
+			esac
+			magic=$(git cat-file blob "$blob" 2>/dev/null | head -c 4 | od -An -tx1 | tr -d ' \n')
+			case "$magic" in
+			7f454c46 | feedface | feedfacf | cefaedfe | cffaedfe | cafebabe | 4d5a* | 0061736d | 213c6172)
+				echo "$path"
+				;;
+			esac
+		done
+done | sort -u >"${TMPDIR:-/tmp}/check-no-binaries.$$"
+
+if [ -s "${TMPDIR:-/tmp}/check-no-binaries.$$" ]; then
+	echo "compiled files must not be committed:" >&2
+	sed 's/^/  /' "${TMPDIR:-/tmp}/check-no-binaries.$$" >&2
+	found=1
+fi
+rm -f "${TMPDIR:-/tmp}/check-no-binaries.$$"
+exit $found

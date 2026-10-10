@@ -1,0 +1,2 @@
+go test fuzz v1
+[]byte("0\nSECTION\n2\nHEADER\n9\n$INSUNITS\n70\n2\n0\nENDSEC\n0\nSECTION\n2\nENTITIES\n0\nELLIPSE\n10\n0\n20\n0\n11\n2\n21\n8\n40\n.5\n0\nENDSEC")

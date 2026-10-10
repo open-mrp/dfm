@@ -1,0 +1,542 @@
+{
+  "object": "dfm_plan",
+  "engine_version": "dev",
+  "verdict": "not_manufacturable",
+  "operations": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": [
+      {
+        "object": "dfm_operation",
+        "sequence": 1,
+        "process": "laser_cutting",
+        "reason": "the part is cut from flat stock",
+        "verdict": "not_manufacturable",
+        "result": {
+          "object": "dfm_check",
+          "process": "laser_cutting",
+          "engine_version": "dev",
+          "verdict": "not_manufacturable",
+          "error_count": 1,
+          "review_count": 0,
+          "warning_count": 0,
+          "part_count": 1,
+          "parts": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": [
+              {
+                "object": "dfm_part",
+                "number": 1,
+                "copy_count": 1,
+                "instances": {
+                  "object": "list",
+                  "page_info": {
+                    "next_page_url": null,
+                    "previous_page_url": null
+                  },
+                  "data": [
+                    {
+                      "object": "dfm_part_instance",
+                      "number": 1,
+                      "entity_ids": [
+                        "#27",
+                        "#1019",
+                        "#311",
+                        "#1195",
+                        "#787",
+                        "#682",
+                        "#730",
+                        "#1215",
+                        "#377",
+                        "#206",
+                        "#254",
+                        "#1039",
+                        "#93",
+                        "#141",
+                        "#1107",
+                        "#615",
+                        "#444",
+                        "#492",
+                        "#1283",
+                        "#955",
+                        "#850",
+                        "#898",
+                        "#1303",
+                        "#549",
+                        "#1127"
+                      ],
+                      "rotation": {
+                        "value": "0",
+                        "unit": "deg"
+                      },
+                      "offset": {
+                        "x": "0",
+                        "y": "0",
+                        "unit": "mm"
+                      }
+                    }
+                  ]
+                },
+                "entity_ids": [
+                  "#27",
+                  "#1019",
+                  "#311",
+                  "#1195",
+                  "#787",
+                  "#682",
+                  "#730",
+                  "#1215",
+                  "#377",
+                  "#206",
+                  "#254",
+                  "#1039",
+                  "#93",
+                  "#141",
+                  "#1107",
+                  "#615",
+                  "#444",
+                  "#492",
+                  "#1283",
+                  "#955",
+                  "#850",
+                  "#898",
+                  "#1303",
+                  "#549",
+                  "#1127"
+                ],
+                "sheet": {
+                  "outline": "closed",
+                  "width": {
+                    "value": "113.39292",
+                    "unit": "mm"
+                  },
+                  "height": {
+                    "value": "93.39292",
+                    "unit": "mm"
+                  },
+                  "area": {
+                    "value": "9842.867211",
+                    "unit": "mm2"
+                  },
+                  "cut_length": {
+                    "value": "517.143361",
+                    "unit": "mm"
+                  },
+                  "pierce_count": 1,
+                  "holes": {
+                    "object": "list",
+                    "page_info": {
+                      "next_page_url": null,
+                      "previous_page_url": null
+                    },
+                    "data": []
+                  },
+                  "bends": {
+                    "object": "list",
+                    "page_info": {
+                      "next_page_url": null,
+                      "previous_page_url": null
+                    },
+                    "data": []
+                  }
+                },
+                "verdict": "not_manufacturable",
+                "error_count": 1,
+                "review_count": 0,
+                "warning_count": 0,
+                "issues": {
+                  "object": "list",
+                  "page_info": {
+                    "next_page_url": null,
+                    "previous_page_url": null
+                  },
+                  "data": [
+                    {
+                      "object": "dfm_issue",
+                      "code": "flat_pattern_overlaps",
+                      "severity": "error",
+                      "message": "Unfolded, the part overlaps itself: it cannot be cut from one flat sheet",
+                      "remediation": "Shorten or narrow the flanges that overlap when unfolded, add a relief or gap between them, or make the part from more than one piece.",
+                      "required": null,
+                      "required_basis": null,
+                      "occurrences": {
+                        "object": "list",
+                        "page_info": {
+                          "next_page_url": null,
+                          "previous_page_url": null
+                        },
+                        "data": [
+                          {
+                            "object": "dfm_occurrence",
+                            "id": "fnd_fc8d8cb877d7180c",
+                            "entity_ids": [
+                              "#787",
+                              "#898"
+                            ],
+                            "actual": null,
+                            "location": {
+                              "x": "88.39292",
+                              "y": "-68.39292",
+                              "unit": "mm"
+                            },
+                            "span": [],
+                            "fix": null
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "drawing_issues": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": []
+          },
+          "skipped_checks": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": [
+              {
+                "object": "dfm_skipped_check",
+                "code": "part_too_short",
+                "limit": "laser_cutting.limits.part_length"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "part_area_too_small",
+                "limit": "laser_cutting.limits.part_area"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "part_too_slender",
+                "limit": "laser_cutting.limits.slender_part"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "part_may_fall_through",
+                "limit": "laser_cutting.support_spacing"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "cutout_too_slender",
+                "limit": "laser_cutting.limits.slender_cutout"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "notch_too_slender",
+                "limit": "laser_cutting.limits.slender_cutout"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "slot_fit_too_tight",
+                "limit": "laser_cutting.limits.slot_fit_clearance"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "internal_corner_too_sharp",
+                "limit": "laser_cutting.limits.internal_corner_radius"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "object": "dfm_operation",
+        "sequence": 2,
+        "process": "bending",
+        "reason": "the model has 4 bends",
+        "verdict": "manufacturable",
+        "result": {
+          "object": "dfm_check",
+          "process": "bending",
+          "engine_version": "dev",
+          "verdict": "manufacturable",
+          "error_count": 0,
+          "review_count": 0,
+          "warning_count": 0,
+          "part_count": 1,
+          "parts": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": [
+              {
+                "object": "dfm_part",
+                "number": 1,
+                "copy_count": 1,
+                "instances": {
+                  "object": "list",
+                  "page_info": {
+                    "next_page_url": null,
+                    "previous_page_url": null
+                  },
+                  "data": [
+                    {
+                      "object": "dfm_part_instance",
+                      "number": 1,
+                      "entity_ids": [
+                        "#27",
+                        "#1019",
+                        "#311",
+                        "#1195",
+                        "#787",
+                        "#682",
+                        "#730",
+                        "#1215",
+                        "#377",
+                        "#206",
+                        "#254",
+                        "#1039",
+                        "#93",
+                        "#141",
+                        "#1107",
+                        "#615",
+                        "#444",
+                        "#492",
+                        "#1283",
+                        "#955",
+                        "#850",
+                        "#898",
+                        "#1303",
+                        "#549",
+                        "#1127"
+                      ],
+                      "rotation": {
+                        "value": "0",
+                        "unit": "deg"
+                      },
+                      "offset": {
+                        "x": "0",
+                        "y": "0",
+                        "unit": "mm"
+                      }
+                    }
+                  ]
+                },
+                "entity_ids": [
+                  "#27",
+                  "#1019",
+                  "#311",
+                  "#1195",
+                  "#787",
+                  "#682",
+                  "#730",
+                  "#1215",
+                  "#377",
+                  "#206",
+                  "#254",
+                  "#1039",
+                  "#93",
+                  "#141",
+                  "#1107",
+                  "#615",
+                  "#444",
+                  "#492",
+                  "#1283",
+                  "#955",
+                  "#850",
+                  "#898",
+                  "#1303",
+                  "#549",
+                  "#1127"
+                ],
+                "sheet": {
+                  "outline": "closed",
+                  "width": {
+                    "value": "113.39292",
+                    "unit": "mm"
+                  },
+                  "height": {
+                    "value": "93.39292",
+                    "unit": "mm"
+                  },
+                  "area": {
+                    "value": "9842.867211",
+                    "unit": "mm2"
+                  },
+                  "cut_length": {
+                    "value": "517.143361",
+                    "unit": "mm"
+                  },
+                  "pierce_count": 1,
+                  "holes": {
+                    "object": "list",
+                    "page_info": {
+                      "next_page_url": null,
+                      "previous_page_url": null
+                    },
+                    "data": []
+                  },
+                  "bends": {
+                    "object": "list",
+                    "page_info": {
+                      "next_page_url": null,
+                      "previous_page_url": null
+                    },
+                    "data": [
+                      {
+                        "object": "dfm_bend",
+                        "entity_id": "#1149",
+                        "length": {
+                          "value": "60",
+                          "unit": "mm"
+                        },
+                        "angle": {
+                          "value": "90",
+                          "unit": "deg"
+                        },
+                        "direction": "down",
+                        "inside_radius": {
+                          "value": "1.5",
+                          "unit": "mm"
+                        },
+                        "bend_allowance": {
+                          "value": "3.39292",
+                          "unit": "mm"
+                        },
+                        "assumed": []
+                      },
+                      {
+                        "object": "dfm_bend",
+                        "entity_id": "#1061",
+                        "length": {
+                          "value": "60",
+                          "unit": "mm"
+                        },
+                        "angle": {
+                          "value": "90",
+                          "unit": "deg"
+                        },
+                        "direction": "down",
+                        "inside_radius": {
+                          "value": "1.5",
+                          "unit": "mm"
+                        },
+                        "bend_allowance": {
+                          "value": "3.39292",
+                          "unit": "mm"
+                        },
+                        "assumed": []
+                      },
+                      {
+                        "object": "dfm_bend",
+                        "entity_id": "#1325",
+                        "length": {
+                          "value": "20",
+                          "unit": "mm"
+                        },
+                        "angle": {
+                          "value": "90",
+                          "unit": "deg"
+                        },
+                        "direction": "down",
+                        "inside_radius": {
+                          "value": "1.5",
+                          "unit": "mm"
+                        },
+                        "bend_allowance": {
+                          "value": "3.39292",
+                          "unit": "mm"
+                        },
+                        "assumed": []
+                      },
+                      {
+                        "object": "dfm_bend",
+                        "entity_id": "#1237",
+                        "length": {
+                          "value": "20",
+                          "unit": "mm"
+                        },
+                        "angle": {
+                          "value": "90",
+                          "unit": "deg"
+                        },
+                        "direction": "down",
+                        "inside_radius": {
+                          "value": "1.5",
+                          "unit": "mm"
+                        },
+                        "bend_allowance": {
+                          "value": "3.39292",
+                          "unit": "mm"
+                        },
+                        "assumed": []
+                      }
+                    ]
+                  }
+                },
+                "verdict": "manufacturable",
+                "error_count": 0,
+                "review_count": 0,
+                "warning_count": 0,
+                "issues": {
+                  "object": "list",
+                  "page_info": {
+                    "next_page_url": null,
+                    "previous_page_url": null
+                  },
+                  "data": []
+                }
+              }
+            ]
+          },
+          "drawing_issues": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": []
+          },
+          "skipped_checks": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": [
+              {
+                "object": "dfm_skipped_check",
+                "code": "bend_too_short",
+                "limit": "bending.min_bend_length"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "bend_angle_too_large",
+                "limit": "bending.max_angle"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "bend_angle_too_small",
+                "limit": "bending.min_angle"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "bend_tool_collision",
+                "limit": "bending.tooling"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

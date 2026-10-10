@@ -1,0 +1,10 @@
+{
+  "error": {
+    "code": "design_invalid",
+    "type": "invalid_request_error",
+    "message": "invalid design: INSERT 30 (line 645) refers to undefined block \"MISSING\"",
+    "param": "design",
+    "is_transient": false,
+    "errors": []
+  }
+}

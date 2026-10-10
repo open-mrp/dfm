@@ -1,0 +1,9 @@
+[
+  { "operation": "tap_m4", "holes": { "diameter": { "value": "3.3", "unit": "mm" } } },
+  { "operation": "nut_m4_steel", "holes": { "diameter": { "value": "5.41", "unit": "mm" } }, "side": "top" },
+  { "operation": "csk_m4", "holes": { "diameter": { "value": "4.04", "unit": "mm" } }, "side": "top" },
+  { "operation": "tap_m6", "holes": { "diameter": { "value": "6", "unit": "mm" } } },
+  { "operation": "tap_m8", "holes": { "diameter": { "value": "6", "unit": "mm" } } },
+  { "operation": "tap_m5", "holes": { "diameter": { "value": "7", "unit": "mm" } } },
+  { "operation": "tap_m5", "holes": { "entity_ids": ["2F"] } }
+]

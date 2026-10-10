@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="60mm" height="40mm" viewBox="0 0 60 40">
+<g fill="none" stroke="black">
+  <rect id="outline" x="0" y="0" width="60" height="40"/>
+  <path id="cutout" d="M 20 15 H 40 C 40.2 15 40 14.8 40 15 V 25 C 40 25.2 40.2 25 40 25 H 20 C 19.8 25 20 25.2 20 25 V 15 C 20 14.8 19.8 15 20 15 Z"/>
+</g>
+</svg>

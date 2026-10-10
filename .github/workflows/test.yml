@@ -1,0 +1,30 @@
+name: test
+
+# Runs the tests on amd64 and arm64. Results must be identical on both: Go
+# fuses a*b + c on arm64 but not on amd64, and a fused line can change a
+# result (see AGENTS.md). The golden files are shared, so either job fails
+# when the two differ.
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-latest, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Vet
+        run: go vet ./...
+
+      - name: Test
+        run: go test ./... -count=1

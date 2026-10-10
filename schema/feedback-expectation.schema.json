@@ -1,0 +1,217 @@
+{
+  "$defs": {
+    "ExpectedFinding": {
+      "additionalProperties": false,
+      "description": "Describes a finding a result should (or, in a feedback fixture, should not) contain. Only the fields given are compared.",
+      "properties": {
+        "actual": {
+          "$ref": "#/$defs/QuantityInput",
+          "description": "The occurrence's actual value, exactly."
+        },
+        "code": {
+          "description": "Finding code.",
+          "enum": [
+            "geometry_open_contour",
+            "geometry_zero_length",
+            "geometry_overlapping_segments",
+            "geometry_self_intersection",
+            "geometry_contours_touch_or_cross",
+            "file_multiple_parts",
+            "floating_island",
+            "material_unsupported",
+            "material_too_thick",
+            "part_exceeds_envelope",
+            "hole_too_small",
+            "slot_too_narrow",
+            "part_too_small",
+            "web_too_thin",
+            "features_too_close",
+            "feature_too_close_to_edge",
+            "dense_pattern_heat_risk",
+            "cutout_too_narrow",
+            "feature_too_thin",
+            "internal_corner_too_sharp",
+            "tip_too_sharp",
+            "text_not_outlined",
+            "file_noncut_geometry",
+            "geometry_duplicate",
+            "bend_line_not_cut",
+            "engraving_not_cut",
+            "geometry_gap_closed",
+            "part_nested_in_cutout",
+            "part_too_short",
+            "part_too_slender",
+            "units_suspect",
+            "geometry_not_flat",
+            "units_assumed",
+            "geometry_overcut",
+            "geometry_corner_loop",
+            "geometry_faceted_curve",
+            "hole_operation_not_a_hole",
+            "hole_operation_conflict",
+            "hole_operation_unavailable",
+            "hole_resized",
+            "hole_operation_too_close_to_edge",
+            "hole_operations_too_close",
+            "countersink_too_deep",
+            "geometry_outside_page",
+            "geometry_common_line",
+            "annotation_not_cut",
+            "units_unsupported",
+            "part_area_too_small",
+            "bend_line_suspected",
+            "border_not_cut",
+            "material_too_thin",
+            "material_thickness_not_stocked",
+            "cutout_too_slender",
+            "bend_too_long",
+            "flange_too_short",
+            "feature_too_close_to_bend",
+            "bend_force_too_high",
+            "bend_relief_missing",
+            "bend_relief_too_narrow",
+            "bend_relief_too_shallow",
+            "bend_angle_too_large",
+            "bend_radius_not_formed",
+            "bend_zones_overlap",
+            "model_thickness_mismatch",
+            "bend_radius_too_small",
+            "part_may_fall_through",
+            "slot_fit_too_tight",
+            "hole_operation_too_close_to_bend",
+            "bend_tooling_unchecked",
+            "bend_angle_too_small",
+            "flat_pattern_overlaps",
+            "bend_too_short",
+            "bend_corner_relief_missing",
+            "bend_lines_cross",
+            "notch_too_slender",
+            "bend_tool_collision",
+            "bend_flanges_collide"
+          ],
+          "type": "string"
+        },
+        "entity_ids": {
+          "description": "Entities the occurrence involves (all of these, and possibly more).",
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "location": {
+          "$ref": "#/$defs/PointInput",
+          "description": "A point within 0.01 mm of the occurrence's location, in millimeters."
+        },
+        "severity": {
+          "description": "Severity of the finding.",
+          "enum": [
+            "error",
+            "review",
+            "warning"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "type": "object"
+    },
+    "FeedbackExpectation": {
+      "additionalProperties": false,
+      "description": "A feedback fixture's expect.json: what the check of its design must and must not report, so a fixed problem cannot come back. It is partial: unrelated findings are not compared. The platform's feedback report, which a user files about a stored check, is the platform's resource; a maintainer turns one into this.",
+      "properties": {
+        "absent": {
+          "description": "Findings that must not be present.",
+          "items": {
+            "$ref": "#/$defs/ExpectedFinding"
+          },
+          "type": "array"
+        },
+        "note": {
+          "description": "What was wrong, and why the expectation holds.",
+          "minLength": 1,
+          "type": "string"
+        },
+        "present": {
+          "description": "Findings that must be present.",
+          "items": {
+            "$ref": "#/$defs/ExpectedFinding"
+          },
+          "type": "array"
+        },
+        "report": {
+          "description": "The report the fixture came from (an id or link).",
+          "minLength": 1,
+          "type": "string"
+        },
+        "verdict": {
+          "description": "The verdict, when it matters.",
+          "enum": [
+            "manufacturable",
+            "needs_review",
+            "not_manufacturable"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "report",
+        "note"
+      ],
+      "type": "object"
+    },
+    "PointInput": {
+      "additionalProperties": false,
+      "description": "A point in the drawing, in millimeters, as decimal strings.",
+      "properties": {
+        "x": {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        },
+        "y": {
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ],
+      "type": "object"
+    },
+    "QuantityInput": {
+      "additionalProperties": false,
+      "description": "An amount together with the unit it is expressed in.",
+      "properties": {
+        "unit": {
+          "description": "Unit the value is expressed in.",
+          "enum": [
+            "um",
+            "mm",
+            "cm",
+            "m",
+            "in",
+            "ft"
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "Decimal value, as a string to preserve precision.",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/open-mrp/dfm/schema/feedback-expectation.schema.json",
+  "$ref": "#/$defs/FeedbackExpectation",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DFM feedback fixture expectation"
+}

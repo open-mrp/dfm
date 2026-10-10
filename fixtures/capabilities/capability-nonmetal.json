@@ -1,0 +1,180 @@
+{
+  "schema_version": "3.0",
+  "process": "laser_cutting",
+  "laser_cutting": {
+    "usable_area": {
+      "width": {
+        "value": "1300",
+        "unit": "mm"
+      },
+      "height": {
+        "value": "900",
+        "unit": "mm"
+      }
+    },
+    "kerf_width": {
+      "value": "0.2",
+      "unit": "mm"
+    },
+    "contour_closure_tolerance": {
+      "value": "0.05",
+      "unit": "mm"
+    },
+    "multiple_parts": "accepted",
+    "drawing_units": [
+      "mm",
+      "in"
+    ],
+    "limits": {
+      "hole_diameter": {
+        "error": {
+          "min": {
+            "value": "0.5",
+            "unit": "mm"
+          }
+        },
+        "warning": {
+          "min": {
+            "value": "1",
+            "unit": "mm"
+          }
+        }
+      },
+      "slot_width": {
+        "error": {
+          "min": {
+            "value": "0.5",
+            "unit": "mm"
+          }
+        },
+        "warning": {
+          "min": {
+            "value": "1",
+            "unit": "mm"
+          }
+        }
+      },
+      "cutout_width": {
+        "error": {
+          "min": {
+            "value": "0.25",
+            "unit": "mm"
+          }
+        },
+        "warning": {
+          "min": {
+            "value": "1",
+            "unit": "mm"
+          }
+        }
+      },
+      "web_width": {
+        "error": {
+          "min": {
+            "value": "0.25",
+            "unit": "mm"
+          }
+        },
+        "warning": {
+          "min": {
+            "value": "1",
+            "unit": "mm"
+          }
+        }
+      },
+      "feature_width": {
+        "error": {
+          "min": {
+            "value": "0.5",
+            "unit": "mm"
+          }
+        },
+        "warning": {
+          "min": {
+            "value": "1",
+            "unit": "mm"
+          }
+        }
+      },
+      "feature_spacing": {
+        "warning": {
+          "min": {
+            "value": "1",
+            "unit": "mm"
+          }
+        }
+      },
+      "edge_distance": {
+        "error": {
+          "min": {
+            "value": "0.25",
+            "unit": "mm"
+          }
+        },
+        "warning": {
+          "min": {
+            "value": "1",
+            "unit": "mm"
+          }
+        }
+      },
+      "part_width": {
+        "error": {
+          "min": {
+            "value": "3",
+            "unit": "mm"
+          }
+        },
+        "warning": {
+          "min": {
+            "value": "6",
+            "unit": "mm"
+          }
+        }
+      },
+      "max_removed_area_percent": "60",
+      "min_tip_angle": {
+        "value": "30",
+        "unit": "deg"
+      }
+    }
+  },
+  "materials": [
+    {
+      "code": "acrylic",
+      "laser_cutting": {
+        "max_thickness": {
+          "value": "12",
+          "unit": "mm"
+        }
+      }
+    },
+    {
+      "code": "acetal",
+      "laser_cutting": {
+        "max_thickness": {
+          "value": "6",
+          "unit": "mm"
+        }
+      }
+    },
+    {
+      "code": "plywood",
+      "laser_cutting": {
+        "max_thickness": {
+          "value": "9",
+          "unit": "mm"
+        }
+      }
+    },
+    {
+      "code": "mdf",
+      "laser_cutting": {
+        "max_thickness": {
+          "value": "9",
+          "unit": "mm"
+        }
+      }
+    }
+  ]
+}

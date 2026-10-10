@@ -1,0 +1,10 @@
+{
+  "error": {
+    "code": "design_content_unsupported",
+    "type": "invalid_request_error",
+    "message": "unsupported design content: SPLINE 30 (line 645) has fit points but no control points; export it with control points",
+    "param": "design",
+    "is_transient": false,
+    "errors": []
+  }
+}

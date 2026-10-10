@@ -1,0 +1,23 @@
+{
+  "schema_version": "3.0",
+  "process": "bending",
+  "bending": {
+    "max_bend_length": { "value": "3060", "unit": "mm" },
+    "min_bend_length": { "value": "10", "unit": "mm" },
+    "max_force": { "value": "1000", "unit": "kN" },
+    "inside_radius": { "thickness_ratio": "1" },
+    "max_angle": { "value": "135", "unit": "deg" },
+    "min_angle": { "value": "10", "unit": "deg" },
+    "limits": {
+      "flange_length": { "error": { "thickness_ratio": "2" }, "warning": { "thickness_ratio": "3" }, "offset": "inside_radius" },
+      "feature_distance": { "error": { "thickness_ratio": "1" }, "warning": { "thickness_ratio": "2" }, "offset": "inside_radius" }
+    }
+  },
+  "materials": [
+    { "code": "mild_steel", "bending": { "max_thickness": { "value": "6.35", "unit": "mm" } } },
+    {
+      "code": "aluminum_5052",
+      "bending": { "max_thickness": { "value": "6.35", "unit": "mm" }, "force_factor": "0.55", "inside_radius": { "thickness_ratio": "2" } }
+    }
+  ]
+}

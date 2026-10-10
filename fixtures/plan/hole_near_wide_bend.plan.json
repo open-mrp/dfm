@@ -1,0 +1,1 @@
+{ "stock": { "material_code": "aluminum_5052", "thickness": { "value": "2", "unit": "mm" } }, "capabilities": ["examples/laser.json", "fixtures/plan/press_brake_tooling.json"] }

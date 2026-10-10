@@ -1,0 +1,152 @@
+#!/bin/sh
+# Manages the private corpus of proprietary drawings (docs/private-corpus.md).
+#
+#   scripts/private-corpus session <mfa-code>   print exports for a maintainer session (eval them)
+#   scripts/private-corpus fetch                download the corpus into fixtures/private/
+#   scripts/private-corpus push <case-id>       upload one case and the manifest (maintainers)
+#   scripts/private-corpus push-all             upload every case, the manifest, licenses and rates (maintainers)
+#   scripts/private-corpus remove <case-id>     delete one case, every version (maintainers)
+#   scripts/private-corpus fetch-external [id]  download the outside datasets (all, or the given IDs) into fixtures/private/external/
+#   scripts/private-corpus push-external [id]   upload the outside datasets, their manifest and records (maintainers)
+#
+# fetch and fetch-external work with the CI reader role or a maintainer session; push, push-all,
+# push-external and remove need a maintainer session. The bucket refuses everyone else.
+#
+# The bucket and the maintainer role are not in the repository: set DFM_PRIVATE_CORPUS_BUCKET, and DFM_PRIVATE_CORPUS_MAINTAINER_ROLE for a session.
+set -eu
+
+bucket=${DFM_PRIVATE_CORPUS_BUCKET:?set DFM_PRIVATE_CORPUS_BUCKET to the corpus bucket}
+dir=fixtures/private
+
+usage() {
+	sed -n '2,15p' "$0" | sed 's/^# \{0,1\}//' >&2
+	exit 2
+}
+
+# check_external refuses anything but an opaque outside-source ID such as x01.
+check_external() {
+	case "$1" in
+	x[0-9][0-9]) ;;
+	*)
+		echo "source ID must look like x01, got '$1'" >&2
+		exit 2
+		;;
+	esac
+}
+
+# external_excludes are the files of the outside data that the tests never read: the bend dataset's members the import tool leaves packed (and the archive itself), and the test suites' git metadata. Kept out of the bucket so a fetch stays small.
+external_excludes="--exclude archive.tar.gz --exclude *_unfolded.stp --exclude *.npy --exclude *.bin --exclude */.git/*"
+
+# check_case refuses anything but an opaque case ID such as p0001.
+check_case() {
+	case "$1" in
+	p[0-9][0-9][0-9][0-9]) ;;
+	*)
+		echo "case ID must look like p0001, got '$1'" >&2
+		exit 2
+		;;
+	esac
+}
+
+cd "$(dirname "$0")/.."
+[ $# -ge 1 ] || usage
+cmd=$1
+shift
+
+case "$cmd" in
+session)
+	[ $# -eq 1 ] || usage
+	serial=$(aws iam list-mfa-devices --query 'MFADevices[0].SerialNumber' --output text)
+	aws sts assume-role \
+		--role-arn "${DFM_PRIVATE_CORPUS_MAINTAINER_ROLE:?set DFM_PRIVATE_CORPUS_MAINTAINER_ROLE to the maintainer role ARN}" \
+		--role-session-name "$(id -un)-corpus" \
+		--serial-number "$serial" \
+		--token-code "$1" \
+		--query 'Credentials.[AccessKeyId,SecretAccessKey,SessionToken]' \
+		--output text |
+		awk '{ printf "export AWS_ACCESS_KEY_ID=%s AWS_SECRET_ACCESS_KEY=%s AWS_SESSION_TOKEN=%s\n", $1, $2, $3 }'
+	;;
+fetch)
+	[ $# -eq 0 ] || usage
+	mkdir -p "$dir"
+	chmod 700 "$dir"
+	# The outside data (external/) is fetched separately; it is large and only the weekly and on-demand runs read it.
+	aws s3 sync "s3://$bucket" "$dir" --delete --only-show-errors --exclude "external/*"
+	echo "fetched $(find "$dir" -name '*.dxf' -not -path "$dir/external/*" | wc -l | tr -d ' ') drawings into $dir" >&2
+	;;
+fetch-external)
+	mkdir -p "$dir/external"
+	chmod 700 "$dir" "$dir/external"
+	aws s3 cp "s3://$bucket/external/manifest.json" "$dir/external/manifest.json" --only-show-errors
+	aws s3 sync "s3://$bucket/external/records" "$dir/external/records" --delete --only-show-errors
+	if [ $# -eq 0 ]; then
+		aws s3 sync "s3://$bucket/external" "$dir/external" --delete --only-show-errors --exclude "manifest.json" --exclude "records/*"
+	else
+		for id in "$@"; do
+			check_external "$id"
+			aws s3 sync "s3://$bucket/external/$id" "$dir/external/$id" --delete --only-show-errors
+		done
+	fi
+	echo "fetched the outside data${1:+ ($*)} into $dir/external" >&2
+	;;
+push-external)
+	[ -f "$dir/external/manifest.json" ] || {
+		echo "$dir/external/manifest.json not found" >&2
+		exit 1
+	}
+	aws s3 cp "$dir/external/manifest.json" "s3://$bucket/external/manifest.json" --only-show-errors
+	aws s3 sync "$dir/external/records" "s3://$bucket/external/records" --only-show-errors
+	if [ $# -eq 0 ]; then
+		set -- $(cd "$dir/external" && ls -d x[0-9][0-9] 2>/dev/null)
+	fi
+	for id in "$@"; do
+		check_external "$id"
+		# shellcheck disable=SC2086
+		aws s3 sync "$dir/external/$id" "s3://$bucket/external/$id" --only-show-errors $external_excludes
+	done
+	echo "pushed the outside data's manifest, records and sources: $*" >&2
+	;;
+push)
+	[ $# -eq 1 ] || usage
+	check_case "$1"
+	[ -d "$dir/$1" ] || {
+		echo "$dir/$1 not found" >&2
+		exit 1
+	}
+	# No encryption options: uploads take the bucket's key, and naming any other is refused.
+	aws s3 cp "$dir/$1" "s3://$bucket/$1" --recursive --only-show-errors
+	aws s3 cp "$dir/manifest.json" "s3://$bucket/manifest.json" --only-show-errors
+	echo "pushed $1 and the manifest" >&2
+	;;
+push-all)
+	[ $# -eq 0 ] || usage
+	# Everything the corpus test reads: cases, licenses, the manifest and the rates. Case directories only; nothing else in fixtures/private goes up.
+	for case in "$dir"/p[0-9][0-9][0-9][0-9]; do
+		aws s3 cp "$case" "s3://$bucket/$(basename "$case")" --recursive --only-show-errors
+	done
+	[ -d "$dir/licenses" ] && aws s3 cp "$dir/licenses" "s3://$bucket/licenses" --recursive --only-show-errors
+	aws s3 cp "$dir/manifest.json" "s3://$bucket/manifest.json" --only-show-errors
+	[ -f "$dir/rates.json" ] && aws s3 cp "$dir/rates.json" "s3://$bucket/rates.json" --only-show-errors
+	for cap in "$dir"/capability-*.json; do
+		[ -f "$cap" ] && aws s3 cp "$cap" "s3://$bucket/$(basename "$cap")" --only-show-errors
+	done
+	echo "pushed every case, the licenses, the capabilities, the manifest and the rates" >&2
+	;;
+remove)
+	[ $# -eq 1 ] || usage
+	check_case "$1"
+	versions=$(mktemp)
+	trap 'rm -f "$versions"' EXIT
+	aws s3api list-object-versions --bucket "$bucket" --prefix "$1/" \
+		--query '{Objects: [Versions, DeleteMarkers][][].{Key: Key, VersionId: VersionId}, Quiet: `true`}' \
+		--output json >"$versions"
+	if grep -q '"Key"' "$versions"; then
+		aws s3api delete-objects --bucket "$bucket" --delete "file://$versions" >/dev/null
+	fi
+	rm -rf "${dir:?}/$1"
+	echo "removed every version of $1; now remove its manifest entry and push the manifest" >&2
+	;;
+*)
+	usage
+	;;
+esac

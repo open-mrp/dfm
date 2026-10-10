@@ -1,0 +1,1212 @@
+{
+  "$defs": {
+    "Bend": {
+      "additionalProperties": false,
+      "description": "A bend line as the bending check bent it.",
+      "properties": {
+        "angle": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Quantity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Bend angle from flat."
+        },
+        "assumed": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "What the request did not give and was assumed: angle (90), direction (up), inside_radius (the tooling's)."
+        },
+        "bend_allowance": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Quantity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Length of flat material the bend takes up at the radius the tooling forms: angle x (radius + k_factor x thickness). The bend zone is this wide, centered on the bend line."
+        },
+        "direction": {
+          "description": "Way the flange turns: up (toward the viewer of the drawing) or down.",
+          "enum": [
+            "up",
+            "down"
+          ],
+          "type": "string"
+        },
+        "entity_id": {
+          "description": "Entity of the bend line; a request's bends name it.",
+          "type": "string"
+        },
+        "inside_radius": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Quantity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Inside radius the design is drawn for."
+        },
+        "length": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Quantity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Length of the bend line."
+        },
+        "object": {
+          "const": "dfm_bend",
+          "description": "Resource type identifier."
+        }
+      },
+      "required": [
+        "object",
+        "entity_id",
+        "length",
+        "angle",
+        "direction",
+        "inside_radius",
+        "bend_allowance",
+        "assumed"
+      ],
+      "type": "object"
+    },
+    "Check": {
+      "additionalProperties": false,
+      "description": "The result of checking a design against a capability and stock.",
+      "properties": {
+        "drawing_issues": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/List_Issue"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Problems that are in no part: the stock, the drawing as a whole, or paths outside every part."
+        },
+        "engine_version": {
+          "description": "Version of the engine that produced the result; results can change between versions.",
+          "type": "string"
+        },
+        "error_count": {
+          "description": "Number of error occurrences in the whole result, each counted once, including those on every copy of a part.",
+          "type": "integer"
+        },
+        "object": {
+          "const": "dfm_check",
+          "description": "Resource type identifier."
+        },
+        "part_count": {
+          "description": "Number of parts in the drawing, counting every copy.",
+          "type": "integer"
+        },
+        "parts": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/List_Part"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Distinct parts of the drawing, one per outer boundary with identical copies listed together, each checked separately, each with every problem it has."
+        },
+        "process": {
+          "description": "Process the design was checked for.",
+          "type": "string"
+        },
+        "review_count": {
+          "description": "Number of review occurrences: problems a person must judge before the part is made.",
+          "type": "integer"
+        },
+        "skipped_checks": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/List_SkippedCheck"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Checks that did not run because the capability does not set their limit: a manufacturable result covers only the checks that ran."
+        },
+        "verdict": {
+          "description": "manufacturable, needs_review (review findings and no errors: send the design to a person rather than rejecting it) or not_manufacturable (an error).",
+          "enum": [
+            "manufacturable",
+            "needs_review",
+            "not_manufacturable"
+          ],
+          "type": "string"
+        },
+        "warning_count": {
+          "description": "Number of warning occurrences in the whole result, each counted once, including those on every copy of a part.",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "object",
+        "process",
+        "engine_version",
+        "verdict",
+        "error_count",
+        "review_count",
+        "warning_count",
+        "part_count",
+        "parts",
+        "drawing_issues",
+        "skipped_checks"
+      ],
+      "type": "object"
+    },
+    "Fix": {
+      "additionalProperties": false,
+      "description": "A suggested change to how the drawing is read: a section of its occurrence, with no object. Accept it by sending its action, entity_ids and units back as one of the check request's design.adjustments.",
+      "properties": {
+        "action": {
+          "description": "mark_bend_line (read the entities as bend lines, not cut), remove (leave the entities out of the drawing) or set_units (read the drawing in units).",
+          "enum": [
+            "mark_bend_line",
+            "remove",
+            "set_units"
+          ],
+          "type": "string"
+        },
+        "entity_ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Entities the fix applies to; empty for set_units."
+        },
+        "units": {
+          "anyOf": [
+            {
+              "enum": [
+                "um",
+                "mm",
+                "cm",
+                "m",
+                "in",
+                "ft"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Units to read the drawing in, for set_units; null otherwise."
+        }
+      },
+      "required": [
+        "action",
+        "entity_ids",
+        "units"
+      ],
+      "type": "object"
+    },
+    "HoleGroup": {
+      "additionalProperties": false,
+      "description": "A part's round holes of one drawn diameter and operation.",
+      "properties": {
+        "available_operations": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Codes of the capability's hole operations offered for the stock whose edge_distance every hole of the group meets."
+        },
+        "count": {
+          "description": "Number of holes.",
+          "type": "integer"
+        },
+        "diameter": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Quantity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Diameter the holes are drawn at; a hole_operations selector can use it."
+        },
+        "entity_ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Entities of the holes."
+        },
+        "object": {
+          "const": "dfm_hole_group",
+          "description": "Resource type identifier."
+        },
+        "operation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Code of the hole operation assigned to them, or null."
+        }
+      },
+      "required": [
+        "object",
+        "diameter",
+        "count",
+        "entity_ids",
+        "operation",
+        "available_operations"
+      ],
+      "type": "object"
+    },
+    "Issue": {
+      "additionalProperties": false,
+      "description": "One kind of problem (a finding code at one severity) with every place it occurs. What is the same for every occurrence is stated once.",
+      "properties": {
+        "code": {
+          "description": "What was found.",
+          "type": "string"
+        },
+        "message": {
+          "description": "A short sentence for the problem; some codes vary it by case (what a bend ends at, which tool a bend runs into). Values are in the occurrences.",
+          "type": "string"
+        },
+        "object": {
+          "const": "dfm_issue",
+          "description": "Resource type identifier."
+        },
+        "occurrences": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/List_Occurrence"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Every place the problem occurs."
+        },
+        "remediation": {
+          "description": "How to fix the design, fixed per code; the values it refers to (actual, required, location) are in this issue and its occurrences.",
+          "type": "string"
+        },
+        "required": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Quantity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Limit that was not met, exactly as computed from the capability; null for issues without a limit."
+        },
+        "required_basis": {
+          "anyOf": [
+            {
+              "enum": [
+                "min",
+                "thickness_ratio",
+                "kerf_ratio",
+                "max"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Term of the limit that set required."
+        },
+        "severity": {
+          "description": "Whether it prevents manufacture (error), needs a person's judgment before the part is made (review) or only reduces quality (warning).",
+          "enum": [
+            "error",
+            "review",
+            "warning"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "object",
+        "code",
+        "severity",
+        "message",
+        "remediation",
+        "required",
+        "required_basis",
+        "occurrences"
+      ],
+      "type": "object"
+    },
+    "List_Bend": {
+      "additionalProperties": false,
+      "description": "An array of resources.",
+      "properties": {
+        "data": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Bend"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The resources."
+        },
+        "object": {
+          "const": "list",
+          "description": "Resource type identifier."
+        },
+        "page_info": {
+          "$ref": "#/$defs/PageInfo",
+          "description": "Position of this page; empty for embedded lists."
+        }
+      },
+      "required": [
+        "object",
+        "page_info",
+        "data"
+      ],
+      "type": "object"
+    },
+    "List_HoleGroup": {
+      "additionalProperties": false,
+      "description": "An array of resources.",
+      "properties": {
+        "data": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/HoleGroup"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The resources."
+        },
+        "object": {
+          "const": "list",
+          "description": "Resource type identifier."
+        },
+        "page_info": {
+          "$ref": "#/$defs/PageInfo",
+          "description": "Position of this page; empty for embedded lists."
+        }
+      },
+      "required": [
+        "object",
+        "page_info",
+        "data"
+      ],
+      "type": "object"
+    },
+    "List_Issue": {
+      "additionalProperties": false,
+      "description": "An array of resources.",
+      "properties": {
+        "data": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Issue"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The resources."
+        },
+        "object": {
+          "const": "list",
+          "description": "Resource type identifier."
+        },
+        "page_info": {
+          "$ref": "#/$defs/PageInfo",
+          "description": "Position of this page; empty for embedded lists."
+        }
+      },
+      "required": [
+        "object",
+        "page_info",
+        "data"
+      ],
+      "type": "object"
+    },
+    "List_Occurrence": {
+      "additionalProperties": false,
+      "description": "An array of resources.",
+      "properties": {
+        "data": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Occurrence"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The resources."
+        },
+        "object": {
+          "const": "list",
+          "description": "Resource type identifier."
+        },
+        "page_info": {
+          "$ref": "#/$defs/PageInfo",
+          "description": "Position of this page; empty for embedded lists."
+        }
+      },
+      "required": [
+        "object",
+        "page_info",
+        "data"
+      ],
+      "type": "object"
+    },
+    "List_Operation": {
+      "additionalProperties": false,
+      "description": "An array of resources.",
+      "properties": {
+        "data": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Operation"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The resources."
+        },
+        "object": {
+          "const": "list",
+          "description": "Resource type identifier."
+        },
+        "page_info": {
+          "$ref": "#/$defs/PageInfo",
+          "description": "Position of this page; empty for embedded lists."
+        }
+      },
+      "required": [
+        "object",
+        "page_info",
+        "data"
+      ],
+      "type": "object"
+    },
+    "List_Part": {
+      "additionalProperties": false,
+      "description": "An array of resources.",
+      "properties": {
+        "data": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Part"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The resources."
+        },
+        "object": {
+          "const": "list",
+          "description": "Resource type identifier."
+        },
+        "page_info": {
+          "$ref": "#/$defs/PageInfo",
+          "description": "Position of this page; empty for embedded lists."
+        }
+      },
+      "required": [
+        "object",
+        "page_info",
+        "data"
+      ],
+      "type": "object"
+    },
+    "List_PartInstance": {
+      "additionalProperties": false,
+      "description": "An array of resources.",
+      "properties": {
+        "data": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/PartInstance"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The resources."
+        },
+        "object": {
+          "const": "list",
+          "description": "Resource type identifier."
+        },
+        "page_info": {
+          "$ref": "#/$defs/PageInfo",
+          "description": "Position of this page; empty for embedded lists."
+        }
+      },
+      "required": [
+        "object",
+        "page_info",
+        "data"
+      ],
+      "type": "object"
+    },
+    "List_SkippedCheck": {
+      "additionalProperties": false,
+      "description": "An array of resources.",
+      "properties": {
+        "data": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/SkippedCheck"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The resources."
+        },
+        "object": {
+          "const": "list",
+          "description": "Resource type identifier."
+        },
+        "page_info": {
+          "$ref": "#/$defs/PageInfo",
+          "description": "Position of this page; empty for embedded lists."
+        }
+      },
+      "required": [
+        "object",
+        "page_info",
+        "data"
+      ],
+      "type": "object"
+    },
+    "Occurrence": {
+      "additionalProperties": false,
+      "description": "One place a problem occurs.",
+      "properties": {
+        "actual": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Quantity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Measured value, rounded to the nearest nanometer; null where nothing is measured."
+        },
+        "entity_ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Source entities involved, e.g. DXF handles (or \"#n\" for the n-th entity of a file without handles; \"insert/entity\" inside a block reference)."
+        },
+        "fix": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Fix"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "A change to how the drawing is read that resolves this occurrence, for the customer to accept: send it back as one of design.adjustments. Null when there is none."
+        },
+        "id": {
+          "description": "Identifies the occurrence. Derived from its content, so it is the same whenever the same design is checked, including on a newer engine that reports it unchanged; an occurrence between two parts (such as a shared edge) is listed under both with the same ID.",
+          "type": "string"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Point"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Representative point of the problem in the drawing."
+        },
+        "object": {
+          "const": "dfm_occurrence",
+          "description": "Resource type identifier."
+        },
+        "span": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Point"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The two ends of a measured width or gap (a web, a spacing, a narrow passage or strip), for findings that measure one; empty otherwise."
+        }
+      },
+      "required": [
+        "object",
+        "id",
+        "entity_ids",
+        "actual",
+        "location",
+        "span",
+        "fix"
+      ],
+      "type": "object"
+    },
+    "Operation": {
+      "additionalProperties": false,
+      "description": "One step of a plan.",
+      "properties": {
+        "object": {
+          "const": "dfm_operation",
+          "description": "Resource type identifier."
+        },
+        "process": {
+          "description": "The step's process.",
+          "type": "string"
+        },
+        "reason": {
+          "description": "Why the design needs the step.",
+          "type": "string"
+        },
+        "result": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Check"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The step's check; null when it was not checked."
+        },
+        "sequence": {
+          "description": "1-based place in the plan.",
+          "type": "integer"
+        },
+        "verdict": {
+          "description": "The step's verdict: not_checked when no capability for its process was given, otherwise its result's.",
+          "enum": [
+            "manufacturable",
+            "needs_review",
+            "not_manufacturable",
+            "not_checked"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "object",
+        "sequence",
+        "process",
+        "reason",
+        "verdict",
+        "result"
+      ],
+      "type": "object"
+    },
+    "PageInfo": {
+      "additionalProperties": false,
+      "description": "Describes the position of a list page: the URLs of its neighbors, null where there is none.",
+      "properties": {
+        "next_page_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Relative URL that fetches the next page of results."
+        },
+        "previous_page_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Relative URL that fetches the previous page of results."
+        }
+      },
+      "required": [
+        "next_page_url",
+        "previous_page_url"
+      ],
+      "type": "object"
+    },
+    "Part": {
+      "additionalProperties": false,
+      "description": "One part of the drawing: an outer boundary and everything inside it.",
+      "properties": {
+        "copy_count": {
+          "description": "How many identical copies of the part the drawing holds: the same cut shape, moved or rotated but not mirrored, with the same problems.",
+          "type": "integer"
+        },
+        "entity_ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Entities of the part's outer boundary (the open paths, when it is not closed); empty when the drawing has none."
+        },
+        "error_count": {
+          "description": "Number of error occurrences in this part's issues, for one copy.",
+          "type": "integer"
+        },
+        "instances": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/List_PartInstance"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Every copy, the first being this part as described. Issues are located on the first copy; a copy's placement maps a location onto it."
+        },
+        "issues": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/List_Issue"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Every problem with this part, in check order. A problem between this part and another (such as a shared edge) is listed under both."
+        },
+        "number": {
+          "description": "1-based number, in drawing order, of the part's first instance.",
+          "type": "integer"
+        },
+        "object": {
+          "const": "dfm_part",
+          "description": "Resource type identifier."
+        },
+        "review_count": {
+          "description": "Number of review occurrences: problems a person must judge before the part is made.",
+          "type": "integer"
+        },
+        "sheet": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SheetPart"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The part as a cut sheet: its outline, size, cut length, holes and bends. Null for a process whose parts are not sheets."
+        },
+        "verdict": {
+          "description": "manufacturable, needs_review (review findings and no errors: send the part to a person) or not_manufacturable (an error), from the findings about this part; findings about the drawing as a whole are not counted.",
+          "enum": [
+            "manufacturable",
+            "needs_review",
+            "not_manufacturable"
+          ],
+          "type": "string"
+        },
+        "warning_count": {
+          "description": "Number of warning occurrences in this part's issues, for one copy.",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "object",
+        "number",
+        "copy_count",
+        "instances",
+        "entity_ids",
+        "sheet",
+        "verdict",
+        "error_count",
+        "review_count",
+        "warning_count",
+        "issues"
+      ],
+      "type": "object"
+    },
+    "PartInstance": {
+      "additionalProperties": false,
+      "description": "One copy of a part in the drawing.",
+      "properties": {
+        "entity_ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Entities of this copy's outer boundary."
+        },
+        "number": {
+          "description": "1-based part number, in drawing order; findings about this copy carry it.",
+          "type": "integer"
+        },
+        "object": {
+          "const": "dfm_part_instance",
+          "description": "Resource type identifier."
+        },
+        "offset": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Point"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Offset from the first copy, after the rotation."
+        },
+        "rotation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Quantity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Counterclockwise rotation from the first copy, in [0, 360) degrees: a point p of the first copy is at rotation(p) + offset in this one, rotating about the drawing's origin."
+        }
+      },
+      "required": [
+        "object",
+        "number",
+        "entity_ids",
+        "rotation",
+        "offset"
+      ],
+      "type": "object"
+    },
+    "Plan": {
+      "additionalProperties": false,
+      "description": "The operations that make a design, in the order they must happen, each checked against the capability for its process.",
+      "properties": {
+        "engine_version": {
+          "description": "Version of the engine that produced the result.",
+          "type": "string"
+        },
+        "object": {
+          "const": "dfm_plan",
+          "description": "Resource type identifier."
+        },
+        "operations": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/List_Operation"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The operations, in order."
+        },
+        "verdict": {
+          "description": "not_manufacturable when an operation is, incomplete when an operation was not checked (no capability for its process), needs_review when review findings keep any from passing (send the design to a person), manufacturable when every operation is.",
+          "enum": [
+            "manufacturable",
+            "needs_review",
+            "not_manufacturable",
+            "incomplete"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "object",
+        "engine_version",
+        "verdict",
+        "operations"
+      ],
+      "type": "object"
+    },
+    "Point": {
+      "additionalProperties": false,
+      "description": "A location in the drawing: a value shape, part of its parent, with no object.",
+      "properties": {
+        "unit": {
+          "description": "Unit of both coordinates.",
+          "enum": [
+            "um",
+            "mm",
+            "cm",
+            "m",
+            "in",
+            "ft"
+          ],
+          "type": "string"
+        },
+        "x": {
+          "description": "X coordinate, as a decimal string.",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        },
+        "y": {
+          "description": "Y coordinate, as a decimal string.",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "unit"
+      ],
+      "type": "object"
+    },
+    "Quantity": {
+      "additionalProperties": false,
+      "description": "A measured amount: a value together with its unit. It is a value shape, part of its parent, so it has no object; formatting it is the client's job.",
+      "properties": {
+        "unit": {
+          "description": "Unit the value is expressed in.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Exact decimal value, as a string to preserve precision.",
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "type": "object"
+    },
+    "SheetPart": {
+      "additionalProperties": false,
+      "description": "A part as a shape cut from sheet, what the laser-cutting and bending processes see: a section of its part, with no object.",
+      "properties": {
+        "area": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Quantity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Area of the part: its outline less its cut-outs (0 when the outline is not closed)."
+        },
+        "bends": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/List_Bend"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The part's bend lines as the bending check bent them, in drawing order; empty for other processes."
+        },
+        "cut_length": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Quantity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Length cut to make one copy: every path and circle, measured along arcs."
+        },
+        "height": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Quantity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Height of the part's bounding box in the drawing."
+        },
+        "holes": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/List_HoleGroup"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The part's round holes (circles, and polygons with their corners on a circle), grouped by drawn diameter and assigned operation, with the operations each group can take; for one copy."
+        },
+        "outline": {
+          "description": "Whether the outline closes; the part's own checks (holes, widths, ...) run once it does.",
+          "enum": [
+            "closed",
+            "open"
+          ],
+          "type": "string"
+        },
+        "pierce_count": {
+          "description": "Times the beam pierces the sheet to cut one copy: once per path and circle.",
+          "type": "integer"
+        },
+        "width": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Quantity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Width of the part's bounding box in the drawing."
+        }
+      },
+      "required": [
+        "outline",
+        "width",
+        "height",
+        "area",
+        "cut_length",
+        "pierce_count",
+        "holes",
+        "bends"
+      ],
+      "type": "object"
+    },
+    "SkippedCheck": {
+      "additionalProperties": false,
+      "description": "A check that did not run because the capability does not set its limit.",
+      "properties": {
+        "code": {
+          "description": "Finding code the check would report.",
+          "type": "string"
+        },
+        "limit": {
+          "description": "Capability setting that is not set, as a path from the capability's root.",
+          "type": "string"
+        },
+        "object": {
+          "const": "dfm_skipped_check",
+          "description": "Resource type identifier."
+        }
+      },
+      "required": [
+        "object",
+        "code",
+        "limit"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/open-mrp/dfm/schema/plan.schema.json",
+  "$ref": "#/$defs/Plan",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DFM plan result"
+}

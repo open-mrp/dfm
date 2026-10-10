@@ -1,0 +1,124 @@
+{
+  "$defs": {
+    "Error": {
+      "additionalProperties": false,
+      "description": "A structured, client-safe error.",
+      "properties": {
+        "code": {
+          "description": "Code is the machine-readable error code.",
+          "enum": [
+            "invalid_format",
+            "parameter_missing",
+            "parameter_unknown",
+            "parameter_invalid",
+            "design_invalid",
+            "design_format_unsupported",
+            "design_content_unsupported",
+            "design_units_unknown",
+            "internal_error"
+          ],
+          "type": "string"
+        },
+        "errors": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/FieldError"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Errors lists every failing parameter when the request fails validation, so a caller fixes them all at once; empty for other errors."
+        },
+        "is_transient": {
+          "description": "IsTransient is true when retrying the same request may succeed.",
+          "type": "boolean"
+        },
+        "message": {
+          "description": "Message is the human-readable message returned to the client.",
+          "type": "string"
+        },
+        "param": {
+          "description": "Param is the request parameter that caused the error, as a dotted path (e.g. \"stock.thickness.value\"); null when the error is not about one. When several parameters fail, it is the first of Errors.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type is the broad error category.",
+          "enum": [
+            "invalid_request_error",
+            "api_error"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "type",
+        "message",
+        "param",
+        "is_transient",
+        "errors"
+      ],
+      "type": "object"
+    },
+    "ErrorResponse": {
+      "additionalProperties": false,
+      "description": "The body of every error response.",
+      "properties": {
+        "error": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Error"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "error"
+      ],
+      "type": "object"
+    },
+    "FieldError": {
+      "additionalProperties": false,
+      "description": "One failing request parameter.",
+      "properties": {
+        "code": {
+          "enum": [
+            "invalid_format",
+            "parameter_missing",
+            "parameter_unknown",
+            "parameter_invalid",
+            "design_invalid",
+            "design_format_unsupported",
+            "design_content_unsupported",
+            "design_units_unknown",
+            "internal_error"
+          ],
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "param": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "param",
+        "code",
+        "message"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/open-mrp/dfm/schema/error.schema.json",
+  "$ref": "#/$defs/ErrorResponse",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DFM error response"
+}

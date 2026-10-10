@@ -1,0 +1,22 @@
+# Compiled output. Never commit binaries; see scripts/check-no-binaries.
+/bin/
+/dist/
+/dfm
+/cmd/dfm/dfm
+/cmd/dfm-server/gen
+/fixtures/gen/gen
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.a
+*.test
+*.wasm
+*.out
+*.prof
+
+# Proprietary drawings fetched from the private corpus; never commit. See docs/private-corpus.md.
+/fixtures/private/
+
+**/.DS_Store

@@ -1,0 +1,72 @@
+goos: darwin
+goarch: arm64
+pkg: github.com/open-mrp/dfm
+cpu: Apple M2 Ultra
+BenchmarkPlan/step_bent-24         	      74	  16043669 ns/op	20784412 B/op	  173898 allocs/op
+BenchmarkPlan/step_bent-24         	      76	  17221456 ns/op	20784921 B/op	  173899 allocs/op
+BenchmarkPlan/step_bent-24         	      79	  15994713 ns/op	20784620 B/op	  173898 allocs/op
+BenchmarkPlan/step_bent-24         	      72	  15928285 ns/op	20784855 B/op	  173899 allocs/op
+BenchmarkPlan/step_bent-24         	      73	  15845225 ns/op	20784345 B/op	  173898 allocs/op
+BenchmarkPlan/step_bent-24         	      75	  16618397 ns/op	20784744 B/op	  173899 allocs/op
+BenchmarkPlan/step_bent_tooling-24 	      60	  18542676 ns/op	21670125 B/op	  175516 allocs/op
+BenchmarkPlan/step_bent_tooling-24 	      67	  18216574 ns/op	21670967 B/op	  175517 allocs/op
+BenchmarkPlan/step_bent_tooling-24 	      67	  18300440 ns/op	21670371 B/op	  175517 allocs/op
+BenchmarkPlan/step_bent_tooling-24 	      66	  19379059 ns/op	21670585 B/op	  175517 allocs/op
+BenchmarkPlan/step_bent_tooling-24 	      64	  18921200 ns/op	21670068 B/op	  175516 allocs/op
+BenchmarkPlan/step_bent_tooling-24 	      64	  18277433 ns/op	21669898 B/op	  175516 allocs/op
+BenchmarkCheck/typical-24          	    8685	    136563 ns/op	  197326 B/op	    1990 allocs/op
+BenchmarkCheck/typical-24          	    9141	    139619 ns/op	  197333 B/op	    1990 allocs/op
+BenchmarkCheck/typical-24          	    9026	    138971 ns/op	  197330 B/op	    1990 allocs/op
+BenchmarkCheck/typical-24          	    8150	    139501 ns/op	  197329 B/op	    1990 allocs/op
+BenchmarkCheck/typical-24          	    8035	    137993 ns/op	  197332 B/op	    1990 allocs/op
+BenchmarkCheck/typical-24          	    8772	    142776 ns/op	  197330 B/op	    1990 allocs/op
+BenchmarkCheck/many_narrow_places-24         	     292	   3922956 ns/op	 6332559 B/op	   21847 allocs/op
+BenchmarkCheck/many_narrow_places-24         	     304	   4065843 ns/op	 6332341 B/op	   21847 allocs/op
+BenchmarkCheck/many_narrow_places-24         	     307	   3878492 ns/op	 6332208 B/op	   21846 allocs/op
+BenchmarkCheck/many_narrow_places-24         	     308	   3997802 ns/op	 6332072 B/op	   21846 allocs/op
+BenchmarkCheck/many_narrow_places-24         	     278	   4117384 ns/op	 6332690 B/op	   21846 allocs/op
+BenchmarkCheck/many_narrow_places-24         	     307	   3912227 ns/op	 6331806 B/op	   21846 allocs/op
+BenchmarkCheck/hole_grid-24                  	     247	   4817274 ns/op	 4581770 B/op	   52911 allocs/op
+BenchmarkCheck/hole_grid-24                  	     254	   4745595 ns/op	 4580938 B/op	   52911 allocs/op
+BenchmarkCheck/hole_grid-24                  	     241	   4851405 ns/op	 4584509 B/op	   52911 allocs/op
+BenchmarkCheck/hole_grid-24                  	     254	   4717565 ns/op	 4584844 B/op	   52911 allocs/op
+BenchmarkCheck/hole_grid-24                  	     254	   4790011 ns/op	 4582340 B/op	   52911 allocs/op
+BenchmarkCheck/hole_grid-24                  	     249	   4744668 ns/op	 4585791 B/op	   52911 allocs/op
+BenchmarkCheck/nested_sheet-24               	       1	1478683833 ns/op	855707224 B/op	 1120088 allocs/op
+BenchmarkCheck/nested_sheet-24               	       1	1477943625 ns/op	855728104 B/op	 1120071 allocs/op
+BenchmarkCheck/nested_sheet-24               	       1	1497355041 ns/op	855722432 B/op	 1120062 allocs/op
+BenchmarkCheck/nested_sheet-24               	       1	1485879334 ns/op	855722320 B/op	 1120060 allocs/op
+BenchmarkCheck/nested_sheet-24               	       1	1482777834 ns/op	855722808 B/op	 1120067 allocs/op
+BenchmarkCheck/nested_sheet-24               	       1	1474288459 ns/op	855727768 B/op	 1120068 allocs/op
+BenchmarkCheck/bracket-24                    	     192	   6321535 ns/op	 4893675 B/op	   48080 allocs/op
+BenchmarkCheck/bracket-24                    	     190	   6248945 ns/op	 4894476 B/op	   48079 allocs/op
+BenchmarkCheck/bracket-24                    	     192	   6233102 ns/op	 4896617 B/op	   48080 allocs/op
+BenchmarkCheck/bracket-24                    	     193	   6169870 ns/op	 4895695 B/op	   48080 allocs/op
+BenchmarkCheck/bracket-24                    	     192	   6264562 ns/op	 4892647 B/op	   48079 allocs/op
+BenchmarkCheck/bracket-24                    	     180	   6591349 ns/op	 4890929 B/op	   48079 allocs/op
+BenchmarkCheck/frame-24                      	      26	  43941192 ns/op	47703756 B/op	   90958 allocs/op
+BenchmarkCheck/frame-24                      	      26	  43680854 ns/op	47705226 B/op	   90958 allocs/op
+BenchmarkCheck/frame-24                      	      26	  43661720 ns/op	47705224 B/op	   90958 allocs/op
+BenchmarkCheck/frame-24                      	      27	  44651140 ns/op	47705192 B/op	   90958 allocs/op
+BenchmarkCheck/frame-24                      	      24	  45031156 ns/op	47705265 B/op	   90959 allocs/op
+BenchmarkCheck/frame-24                      	      26	  43747149 ns/op	47705248 B/op	   90959 allocs/op
+BenchmarkCheck/bent_step_model-24            	     219	   5330566 ns/op	 6845475 B/op	   64638 allocs/op
+BenchmarkCheck/bent_step_model-24            	     226	   5353946 ns/op	 6845477 B/op	   64638 allocs/op
+BenchmarkCheck/bent_step_model-24            	     207	   5663599 ns/op	 6845529 B/op	   64638 allocs/op
+BenchmarkCheck/bent_step_model-24            	     219	   5363335 ns/op	 6845340 B/op	   64638 allocs/op
+BenchmarkCheck/bent_step_model-24            	     228	   5273564 ns/op	 6845602 B/op	   64638 allocs/op
+BenchmarkCheck/bent_step_model-24            	     225	   5292097 ns/op	 6845430 B/op	   64638 allocs/op
+PASS
+ok  	github.com/open-mrp/dfm	66.397s
+goos: darwin
+goarch: arm64
+pkg: github.com/open-mrp/dfm/brake
+cpu: Apple M2 Ultra
+BenchmarkSequence-24    	      18	  62441505 ns/op	   68125 B/op	     632 allocs/op
+BenchmarkSequence-24    	      19	  61154537 ns/op	   67600 B/op	     632 allocs/op
+BenchmarkSequence-24    	      19	  60535956 ns/op	   67601 B/op	     632 allocs/op
+BenchmarkSequence-24    	      19	  60946864 ns/op	   67600 B/op	     632 allocs/op
+BenchmarkSequence-24    	      19	  61682844 ns/op	   67601 B/op	     632 allocs/op
+BenchmarkSequence-24    	      19	  60753638 ns/op	   67600 B/op	     632 allocs/op
+PASS
+ok  	github.com/open-mrp/dfm/brake	7.211s

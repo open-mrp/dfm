@@ -1,0 +1,507 @@
+{
+  "object": "dfm_plan",
+  "engine_version": "dev",
+  "verdict": "not_manufacturable",
+  "operations": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": [
+      {
+        "object": "dfm_operation",
+        "sequence": 1,
+        "process": "laser_cutting",
+        "reason": "the part is cut from flat stock",
+        "verdict": "manufacturable",
+        "result": {
+          "object": "dfm_check",
+          "process": "laser_cutting",
+          "engine_version": "dev",
+          "verdict": "manufacturable",
+          "error_count": 0,
+          "review_count": 0,
+          "warning_count": 0,
+          "part_count": 1,
+          "parts": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": [
+              {
+                "object": "dfm_part",
+                "number": 1,
+                "copy_count": 1,
+                "instances": {
+                  "object": "list",
+                  "page_info": {
+                    "next_page_url": null,
+                    "previous_page_url": null
+                  },
+                  "data": [
+                    {
+                      "object": "dfm_part_instance",
+                      "number": 1,
+                      "entity_ids": [
+                        "#9",
+                        "#37",
+                        "#56",
+                        "#281",
+                        "#130",
+                        "#111",
+                        "#83",
+                        "#157"
+                      ],
+                      "rotation": {
+                        "value": "0",
+                        "unit": "deg"
+                      },
+                      "offset": {
+                        "x": "0",
+                        "y": "0",
+                        "unit": "mm"
+                      }
+                    }
+                  ]
+                },
+                "entity_ids": [
+                  "#9",
+                  "#37",
+                  "#56",
+                  "#281",
+                  "#130",
+                  "#111",
+                  "#83",
+                  "#157"
+                ],
+                "sheet": {
+                  "outline": "closed",
+                  "width": {
+                    "value": "60",
+                    "unit": "mm"
+                  },
+                  "height": {
+                    "value": "71.350885",
+                    "unit": "mm"
+                  },
+                  "area": {
+                    "value": "4252.778757",
+                    "unit": "mm2"
+                  },
+                  "cut_length": {
+                    "value": "281.551326",
+                    "unit": "mm"
+                  },
+                  "pierce_count": 2,
+                  "holes": {
+                    "object": "list",
+                    "page_info": {
+                      "next_page_url": null,
+                      "previous_page_url": null
+                    },
+                    "data": [
+                      {
+                        "object": "dfm_hole_group",
+                        "diameter": {
+                          "value": "6",
+                          "unit": "mm"
+                        },
+                        "count": 1,
+                        "entity_ids": [
+                          "#200"
+                        ],
+                        "operation": null,
+                        "available_operations": [
+                          "nut_m3_steel",
+                          "nut_m4_steel",
+                          "tap_m3",
+                          "tap_m4"
+                        ]
+                      }
+                    ]
+                  },
+                  "bends": {
+                    "object": "list",
+                    "page_info": {
+                      "next_page_url": null,
+                      "previous_page_url": null
+                    },
+                    "data": []
+                  }
+                },
+                "verdict": "manufacturable",
+                "error_count": 0,
+                "review_count": 0,
+                "warning_count": 0,
+                "issues": {
+                  "object": "list",
+                  "page_info": {
+                    "next_page_url": null,
+                    "previous_page_url": null
+                  },
+                  "data": []
+                }
+              }
+            ]
+          },
+          "drawing_issues": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": []
+          },
+          "skipped_checks": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": [
+              {
+                "object": "dfm_skipped_check",
+                "code": "part_too_short",
+                "limit": "laser_cutting.limits.part_length"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "part_area_too_small",
+                "limit": "laser_cutting.limits.part_area"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "part_too_slender",
+                "limit": "laser_cutting.limits.slender_part"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "part_may_fall_through",
+                "limit": "laser_cutting.support_spacing"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "cutout_too_slender",
+                "limit": "laser_cutting.limits.slender_cutout"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "notch_too_slender",
+                "limit": "laser_cutting.limits.slender_cutout"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "slot_fit_too_tight",
+                "limit": "laser_cutting.limits.slot_fit_clearance"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "internal_corner_too_sharp",
+                "limit": "laser_cutting.limits.internal_corner_radius"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "object": "dfm_operation",
+        "sequence": 2,
+        "process": "bending",
+        "reason": "the model has 1 bend",
+        "verdict": "not_manufacturable",
+        "result": {
+          "object": "dfm_check",
+          "process": "bending",
+          "engine_version": "dev",
+          "verdict": "not_manufacturable",
+          "error_count": 1,
+          "review_count": 0,
+          "warning_count": 1,
+          "part_count": 1,
+          "parts": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": [
+              {
+                "object": "dfm_part",
+                "number": 1,
+                "copy_count": 1,
+                "instances": {
+                  "object": "list",
+                  "page_info": {
+                    "next_page_url": null,
+                    "previous_page_url": null
+                  },
+                  "data": [
+                    {
+                      "object": "dfm_part_instance",
+                      "number": 1,
+                      "entity_ids": [
+                        "#9",
+                        "#37",
+                        "#56",
+                        "#281",
+                        "#130",
+                        "#111",
+                        "#83",
+                        "#157"
+                      ],
+                      "rotation": {
+                        "value": "0",
+                        "unit": "deg"
+                      },
+                      "offset": {
+                        "x": "0",
+                        "y": "0",
+                        "unit": "mm"
+                      }
+                    }
+                  ]
+                },
+                "entity_ids": [
+                  "#9",
+                  "#37",
+                  "#56",
+                  "#281",
+                  "#130",
+                  "#111",
+                  "#83",
+                  "#157"
+                ],
+                "sheet": {
+                  "outline": "closed",
+                  "width": {
+                    "value": "60",
+                    "unit": "mm"
+                  },
+                  "height": {
+                    "value": "71.350885",
+                    "unit": "mm"
+                  },
+                  "area": {
+                    "value": "4252.778757",
+                    "unit": "mm2"
+                  },
+                  "cut_length": {
+                    "value": "281.551326",
+                    "unit": "mm"
+                  },
+                  "pierce_count": 2,
+                  "holes": {
+                    "object": "list",
+                    "page_info": {
+                      "next_page_url": null,
+                      "previous_page_url": null
+                    },
+                    "data": [
+                      {
+                        "object": "dfm_hole_group",
+                        "diameter": {
+                          "value": "6",
+                          "unit": "mm"
+                        },
+                        "count": 1,
+                        "entity_ids": [
+                          "#200"
+                        ],
+                        "operation": null,
+                        "available_operations": []
+                      }
+                    ]
+                  },
+                  "bends": {
+                    "object": "list",
+                    "page_info": {
+                      "next_page_url": null,
+                      "previous_page_url": null
+                    },
+                    "data": [
+                      {
+                        "object": "dfm_bend",
+                        "entity_id": "#302",
+                        "length": {
+                          "value": "60",
+                          "unit": "mm"
+                        },
+                        "angle": {
+                          "value": "90",
+                          "unit": "deg"
+                        },
+                        "direction": "down",
+                        "inside_radius": {
+                          "value": "0.2",
+                          "unit": "mm"
+                        },
+                        "bend_allowance": {
+                          "value": "3.39292",
+                          "unit": "mm"
+                        },
+                        "assumed": []
+                      }
+                    ]
+                  }
+                },
+                "verdict": "not_manufacturable",
+                "error_count": 1,
+                "review_count": 0,
+                "warning_count": 1,
+                "issues": {
+                  "object": "list",
+                  "page_info": {
+                    "next_page_url": null,
+                    "previous_page_url": null
+                  },
+                  "data": [
+                    {
+                      "object": "dfm_issue",
+                      "code": "bend_radius_not_formed",
+                      "severity": "warning",
+                      "message": "Bend is drawn for an inside radius the tooling does not form; it is made at the tooling's radius",
+                      "remediation": "Redo the flat pattern for the required inside radius, or choose a press brake whose tooling forms the design's radius.",
+                      "required": {
+                        "value": "1.5",
+                        "unit": "mm"
+                      },
+                      "required_basis": null,
+                      "occurrences": {
+                        "object": "list",
+                        "page_info": {
+                          "next_page_url": null,
+                          "previous_page_url": null
+                        },
+                        "data": [
+                          {
+                            "object": "dfm_occurrence",
+                            "id": "fnd_e2c89c75d0d627da",
+                            "entity_ids": [
+                              "#302"
+                            ],
+                            "actual": {
+                              "value": "0.2",
+                              "unit": "mm"
+                            },
+                            "location": {
+                              "x": "30",
+                              "y": "-40.675442",
+                              "unit": "mm"
+                            },
+                            "span": [
+                              {
+                                "x": "0",
+                                "y": "-40.675442",
+                                "unit": "mm"
+                              },
+                              {
+                                "x": "60",
+                                "y": "-40.675442",
+                                "unit": "mm"
+                              }
+                            ],
+                            "fix": null
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "object": "dfm_issue",
+                      "code": "bend_radius_too_small",
+                      "severity": "error",
+                      "message": "Bend is drawn tighter than configured minimum inside radius",
+                      "remediation": "Draw the bend at least at the required inside radius (the tooling's radius is best), and redo the flat pattern.",
+                      "required": {
+                        "value": "0.375",
+                        "unit": "mm"
+                      },
+                      "required_basis": "thickness_ratio",
+                      "occurrences": {
+                        "object": "list",
+                        "page_info": {
+                          "next_page_url": null,
+                          "previous_page_url": null
+                        },
+                        "data": [
+                          {
+                            "object": "dfm_occurrence",
+                            "id": "fnd_013fa9f1a7223b7f",
+                            "entity_ids": [
+                              "#302"
+                            ],
+                            "actual": {
+                              "value": "0.2",
+                              "unit": "mm"
+                            },
+                            "location": {
+                              "x": "30",
+                              "y": "-40.675442",
+                              "unit": "mm"
+                            },
+                            "span": [
+                              {
+                                "x": "0",
+                                "y": "-40.675442",
+                                "unit": "mm"
+                              },
+                              {
+                                "x": "60",
+                                "y": "-40.675442",
+                                "unit": "mm"
+                              }
+                            ],
+                            "fix": null
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "drawing_issues": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": []
+          },
+          "skipped_checks": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": [
+              {
+                "object": "dfm_skipped_check",
+                "code": "bend_too_short",
+                "limit": "bending.min_bend_length"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "bend_angle_too_large",
+                "limit": "bending.max_angle"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "bend_angle_too_small",
+                "limit": "bending.min_angle"
+              },
+              {
+                "object": "dfm_skipped_check",
+                "code": "bend_tool_collision",
+                "limit": "bending.tooling"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

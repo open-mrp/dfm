@@ -1,0 +1,95 @@
+name: private-corpus
+
+# Checks the engine against the private corpus: every real drawing, published or proprietary
+# (docs/private-corpus.md). Only this file, in the private-corpus environment, can read the corpus.
+# The quick job runs the corpus of drawings on every push to main and weekly; it takes a minute or two.
+# The external job runs the outside data (the bend dataset in full and the format test suites), about
+# an hour, weekly and when a dispatch asks for it. Pull requests do not run either: the reader role
+# trusts only this file on main in the private-corpus environment, so a change is reviewed and merged
+# before it can read a drawing, and maintainers run the corpus locally before merging. The tests print
+# case IDs, source IDs and counts only. Do not add steps that print, upload or cache fixtures/private.
+# The bucket, region and reader role are variables of the private-corpus environment, not in the repository.
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      external:
+        description: "Also run the outside data: the whole bend dataset and the format test suites (about an hour)"
+        type: boolean
+        default: false
+
+env:
+  DFM_PRIVATE_CORPUS_BUCKET: ${{ vars.DFM_PRIVATE_CORPUS_BUCKET }}
+
+concurrency:
+  group: private-corpus
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    environment: private-corpus
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Read access to the corpus
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: ${{ vars.DFM_PRIVATE_CORPUS_READER_ROLE }}
+          aws-region: ${{ vars.DFM_PRIVATE_CORPUS_REGION }}
+          role-duration-seconds: 900
+
+      - name: Fetch
+        run: scripts/private-corpus fetch
+
+      - name: Check
+        run: go test . -run TestPrivateCorpus -count=1 -v
+
+      - name: Delete the corpus
+        if: always()
+        run: rm -rf fixtures/private
+
+  external:
+    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.external)
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    environment: private-corpus
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Read access to the corpus
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: ${{ vars.DFM_PRIVATE_CORPUS_READER_ROLE }}
+          aws-region: ${{ vars.DFM_PRIVATE_CORPUS_REGION }}
+          role-duration-seconds: 3600
+
+      - name: Fetch the outside data
+        run: scripts/private-corpus fetch-external
+
+      - name: Check
+        env:
+          DFM_BENDS_FULL: "1"
+        run: go test . -run 'TestExternalBends|TestExternalSuites' -count=1 -timeout 2h -v
+
+      - name: Delete the outside data
+        if: always()
+        run: rm -rf fixtures/private

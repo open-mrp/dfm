@@ -1,0 +1,1 @@
+{ "stock": { "material_code": "mild_steel", "thickness": { "value": "1.5", "unit": "mm" } }, "capabilities": ["examples/laser.json", "fixtures/plan/press_brake_tooling.json"] }

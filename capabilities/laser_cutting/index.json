@@ -1,0 +1,138 @@
+{
+  "presets": [
+    {
+      "id": "fiber-2kw-3015",
+      "version": 1,
+      "title": "Fiber laser, 2 kW, 3015 bed",
+      "limits_from": "fixtures/capabilities/capability-metal.json",
+      "sources": [
+        "AMADA FOL 3015 AJ specification (2 kW maximum thicknesses)"
+      ],
+      "notes": "Maker data for a machine of this class (see sources)."
+    },
+    {
+      "id": "fiber-3kw-3015",
+      "version": 1,
+      "title": "Fiber laser, 3 kW, 3015 bed",
+      "limits_from": "fixtures/capabilities/capability-metal.json",
+      "sources": [
+        "Bystronic ByCut Fiber 3000 technical data, January 2026 (maximum thicknesses)"
+      ],
+      "notes": "Maker data for a machine of this class (see sources)."
+    },
+    {
+      "id": "fiber-6kw-3015",
+      "version": 1,
+      "title": "Fiber laser, 6 kW, 3015 bed",
+      "limits_from": "fixtures/capabilities/capability-metal.json",
+      "sources": [
+        "Bystronic ByCut Fiber 6000 technical data, January 2026 (standard maximum thicknesses, without BeamShaper)"
+      ],
+      "notes": "Maker data for a machine of this class (see sources)."
+    },
+    {
+      "id": "fiber-12kw-4020",
+      "version": 1,
+      "title": "Fiber laser, 12 kW, 4020 bed",
+      "limits_from": "fixtures/capabilities/capability-metal.json",
+      "sources": [
+        "Bystronic ByCut Fiber 12000 technical data, January 2026 (standard maximum thicknesses, without BeamShaper)"
+      ],
+      "notes": "Maker data for a machine of this class (see sources)."
+    },
+    {
+      "id": "co2-desktop",
+      "version": 1,
+      "title": "Desktop CO2 laser (Glowforge Pro class)",
+      "limits_from": "fixtures/capabilities/capability-nonmetal.json",
+      "sources": [
+        "Glowforge Pro tech specs: 495 x 279 mm cutting area; materials up to 1/2 in, 1/4 in through the pass-through slot (6.35 mm used here)",
+        "Published CO2 guidance: 0.2 mm kerf"
+      ],
+      "notes": "Machine-class data from published specs; CO2 cutting depth varies widely with tube, lens and air assist, so treat the maximum thicknesses as typical, not guaranteed."
+    },
+    {
+      "id": "co2-100w-1300x900",
+      "version": 1,
+      "title": "CO2 laser, 100 W, 1300 x 900 bed",
+      "limits_from": "fixtures/capabilities/capability-nonmetal.json",
+      "sources": [
+        "A 100 W laser cutting service's published limits: MDF and plywood to 9 mm, acrylic to 12 mm",
+        "Published CO2 guidance: 0.2 mm kerf"
+      ],
+      "notes": "Machine-class data from published specs; CO2 cutting depth varies widely with tube, lens and air assist, so treat the maximum thicknesses as typical, not guaranteed."
+    },
+    {
+      "id": "co2-150w-4x8",
+      "version": 1,
+      "title": "CO2 laser, 150 W, 4 x 8 ft bed",
+      "limits_from": "fixtures/capabilities/capability-nonmetal.json",
+      "sources": [
+        "Full Spectrum Laser Atlas 4 x 8 ft 150 W specification: acrylic to 1 in, plywood to 1/2 in",
+        "Published CO2 guidance: 0.2 mm kerf"
+      ],
+      "notes": "Machine-class data from published specs; CO2 cutting depth varies widely with tube, lens and air assist, so treat the maximum thicknesses as typical, not guaranteed."
+    },
+    {
+      "id": "trumpf-trulaser-1030-fiber-3kw",
+      "version": 1,
+      "title": "TRUMPF TruLaser 1030 fiber, 3 kW",
+      "limits_from": "fixtures/capabilities/capability-metal.json",
+      "sources": [
+        "TRUMPF technical data sheet, TruLaser 1030 fiber (3000 W maximum sheet thicknesses)"
+      ],
+      "notes": "Maker data."
+    },
+    {
+      "id": "trumpf-trulaser-1030-fiber-6kw",
+      "version": 1,
+      "title": "TRUMPF TruLaser 1030 fiber, 6 kW",
+      "limits_from": "fixtures/capabilities/capability-metal.json",
+      "sources": [
+        "TRUMPF technical data sheet, TruLaser 1030 fiber (6000 W maximum sheet thicknesses, without the thick-sheet cutting package)"
+      ],
+      "notes": "Maker data."
+    },
+    {
+      "id": "trumpf-trulaser-3030-fiber-10kw",
+      "version": 1,
+      "title": "TRUMPF TruLaser 3030 fiber, 10 kW",
+      "limits_from": "fixtures/capabilities/capability-metal.json",
+      "sources": [
+        "TRUMPF technical data sheet, TruLaser 3030/3040/3060 fiber (TruDisk 10001 maximum sheet thicknesses)"
+      ],
+      "notes": "Maker data."
+    },
+    {
+      "id": "amada-ventis-3015aje-4kw",
+      "version": 1,
+      "title": "AMADA VENTIS-3015AJe, 4 kW",
+      "limits_from": "fixtures/capabilities/capability-metal.json",
+      "sources": [
+        "AMADA VENTIS-AJe brochure and product page (4 kW maximum thicknesses; depend on material quality and conditions)"
+      ],
+      "notes": "Maker data."
+    },
+    {
+      "id": "amada-ensis-3015-12kw",
+      "version": 1,
+      "title": "AMADA ENSIS 3015, 12 kW",
+      "limits_from": "fixtures/capabilities/capability-metal.json",
+      "sources": [
+        "AMADA ENSIS-3015AJe product page (maximum processing size 3070 x 1550 mm)",
+        "AMADA ENSIS-RI brochure, 2022 (12 kW maximum processing thicknesses)"
+      ],
+      "notes": "Indicative: AMADA publishes no thickness table for the AJe at 12 kW; the ENSIS-3015RI's is used."
+    },
+    {
+      "id": "mazak-optiplex-3015-nexus-fiber",
+      "version": 1,
+      "title": "Mazak OPTIPLEX 3015 NEXUS fiber, 6 to 8 kW",
+      "limits_from": "fixtures/capabilities/capability-metal.json",
+      "sources": [
+        "Dealer listings for OPTIPLEX NEXUS 3015 fiber 6 kW (2020) and S7 7 kW: mild steel 1 in, stainless 1 in, aluminum 0.75 in"
+      ],
+      "notes": "Weak evidence: Mazak publishes no thickness table found; copper and brass are left out for want of data."
+    }
+  ]
+}

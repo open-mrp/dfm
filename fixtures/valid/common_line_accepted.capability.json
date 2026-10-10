@@ -1,0 +1,860 @@
+{
+  "hole_operations": [
+    {
+      "code": "tap_m3",
+      "edge_distance": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "2.25"
+          }
+        }
+      },
+      "hole_diameter": {
+        "unit": "mm",
+        "value": "2.5"
+      },
+      "materials": [
+        {
+          "material_code": "mild_steel",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "12.7"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "1"
+          }
+        },
+        {
+          "material_code": "stainless_304",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "12.7"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "1"
+          }
+        },
+        {
+          "material_code": "aluminum_5052",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "12.7"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "1"
+          }
+        }
+      ],
+      "name": "M3 x 0.5 tap",
+      "thread": {
+        "nominal_diameter": {
+          "unit": "mm",
+          "value": "3"
+        },
+        "pitch": {
+          "unit": "mm",
+          "value": "0.5"
+        }
+      },
+      "type": "tap"
+    },
+    {
+      "code": "tap_m4",
+      "edge_distance": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "2.65"
+          }
+        }
+      },
+      "hole_diameter": {
+        "unit": "mm",
+        "value": "3.3"
+      },
+      "materials": [
+        {
+          "material_code": "mild_steel",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "12.7"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "1.5"
+          }
+        },
+        {
+          "material_code": "stainless_304",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "12.7"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "1.5"
+          }
+        },
+        {
+          "material_code": "aluminum_5052",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "12.7"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "1.5"
+          }
+        }
+      ],
+      "name": "M4 x 0.7 tap",
+      "thread": {
+        "nominal_diameter": {
+          "unit": "mm",
+          "value": "4"
+        },
+        "pitch": {
+          "unit": "mm",
+          "value": "0.7"
+        }
+      },
+      "type": "tap"
+    },
+    {
+      "code": "tap_m5",
+      "edge_distance": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "3.1"
+          }
+        }
+      },
+      "hole_diameter": {
+        "unit": "mm",
+        "value": "4.2"
+      },
+      "materials": [
+        {
+          "material_code": "mild_steel",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "12.7"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "2"
+          }
+        },
+        {
+          "material_code": "stainless_304",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "12.7"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "2"
+          }
+        },
+        {
+          "material_code": "aluminum_5052",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "12.7"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "2"
+          }
+        }
+      ],
+      "name": "M5 x 0.8 tap",
+      "thread": {
+        "nominal_diameter": {
+          "unit": "mm",
+          "value": "5"
+        },
+        "pitch": {
+          "unit": "mm",
+          "value": "0.8"
+        }
+      },
+      "type": "tap"
+    },
+    {
+      "code": "tap_m6",
+      "edge_distance": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "3.5"
+          }
+        }
+      },
+      "hole_diameter": {
+        "unit": "mm",
+        "value": "5"
+      },
+      "materials": [
+        {
+          "material_code": "mild_steel",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "12.7"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "2.5"
+          }
+        },
+        {
+          "material_code": "stainless_304",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "12.7"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "2.5"
+          }
+        },
+        {
+          "material_code": "aluminum_5052",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "12.7"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "2.5"
+          }
+        }
+      ],
+      "name": "M6 x 1 tap",
+      "thread": {
+        "nominal_diameter": {
+          "unit": "mm",
+          "value": "6"
+        },
+        "pitch": {
+          "unit": "mm",
+          "value": "1"
+        }
+      },
+      "type": "tap"
+    },
+    {
+      "code": "tap_m8",
+      "edge_distance": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "4.4"
+          }
+        }
+      },
+      "hole_diameter": {
+        "unit": "mm",
+        "value": "6.8"
+      },
+      "materials": [
+        {
+          "material_code": "mild_steel",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "12.7"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "3"
+          }
+        },
+        {
+          "material_code": "stainless_304",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "12.7"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "3"
+          }
+        },
+        {
+          "material_code": "aluminum_5052",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "12.7"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "3"
+          }
+        }
+      ],
+      "name": "M8 x 1.25 tap",
+      "thread": {
+        "nominal_diameter": {
+          "unit": "mm",
+          "value": "8"
+        },
+        "pitch": {
+          "unit": "mm",
+          "value": "1.25"
+        }
+      },
+      "type": "tap"
+    },
+    {
+      "code": "csk_m3",
+      "countersink": {
+        "angle": {
+          "unit": "deg",
+          "value": "90"
+        },
+        "major_diameter": {
+          "unit": "mm",
+          "value": "6"
+        },
+        "max_depth_ratio": "0.6"
+      },
+      "edge_distance": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "4"
+          }
+        }
+      },
+      "hole_diameter": {
+        "unit": "mm",
+        "value": "3.18"
+      },
+      "materials": [
+        {
+          "material_code": "aluminum_5052",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "11.94"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "3.175"
+          }
+        }
+      ],
+      "name": "M3 flat head countersink, 90°",
+      "type": "countersink"
+    },
+    {
+      "code": "csk_m4",
+      "countersink": {
+        "angle": {
+          "unit": "deg",
+          "value": "90"
+        },
+        "major_diameter": {
+          "unit": "mm",
+          "value": "8"
+        },
+        "max_depth_ratio": "0.6"
+      },
+      "edge_distance": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "5"
+          }
+        }
+      },
+      "hole_diameter": {
+        "unit": "mm",
+        "value": "4.04"
+      },
+      "materials": [
+        {
+          "material_code": "aluminum_5052",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "11.94"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "3.175"
+          }
+        }
+      ],
+      "name": "M4 flat head countersink, 90°",
+      "type": "countersink"
+    },
+    {
+      "code": "csk_m5",
+      "countersink": {
+        "angle": {
+          "unit": "deg",
+          "value": "90"
+        },
+        "major_diameter": {
+          "unit": "mm",
+          "value": "10"
+        },
+        "max_depth_ratio": "0.6"
+      },
+      "edge_distance": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "6"
+          }
+        }
+      },
+      "hole_diameter": {
+        "unit": "mm",
+        "value": "5"
+      },
+      "materials": [
+        {
+          "material_code": "aluminum_5052",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "11.94"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "3.175"
+          }
+        }
+      ],
+      "name": "M5 flat head countersink, 90°",
+      "type": "countersink"
+    },
+    {
+      "code": "csk_m6",
+      "countersink": {
+        "angle": {
+          "unit": "deg",
+          "value": "90"
+        },
+        "major_diameter": {
+          "unit": "mm",
+          "value": "12"
+        },
+        "max_depth_ratio": "0.6"
+      },
+      "edge_distance": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "7"
+          }
+        }
+      },
+      "hole_diameter": {
+        "unit": "mm",
+        "value": "6.35"
+      },
+      "materials": [
+        {
+          "material_code": "aluminum_5052",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "11.94"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "3.175"
+          }
+        }
+      ],
+      "name": "M6 flat head countersink, 90°",
+      "type": "countersink"
+    },
+    {
+      "code": "csk_m8",
+      "countersink": {
+        "angle": {
+          "unit": "deg",
+          "value": "90"
+        },
+        "major_diameter": {
+          "unit": "mm",
+          "value": "16"
+        },
+        "max_depth_ratio": "0.6"
+      },
+      "edge_distance": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "9"
+          }
+        }
+      },
+      "hole_diameter": {
+        "unit": "mm",
+        "value": "8"
+      },
+      "materials": [
+        {
+          "material_code": "aluminum_5052",
+          "max_thickness": {
+            "unit": "mm",
+            "value": "11.94"
+          },
+          "min_thickness": {
+            "unit": "mm",
+            "value": "3.175"
+          }
+        }
+      ],
+      "name": "M8 flat head countersink, 90°",
+      "type": "countersink"
+    },
+    {
+      "code": "nut_m3_steel",
+      "edge_distance": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "4.8"
+          }
+        }
+      },
+      "hardware": {
+        "type": "nut"
+      },
+      "hole_diameter": {
+        "unit": "mm",
+        "value": "4.22"
+      },
+      "materials": [
+        {
+          "material_code": "aluminum_5052",
+          "min_thickness": {
+            "unit": "mm",
+            "value": "0.8"
+          }
+        },
+        {
+          "material_code": "mild_steel",
+          "min_thickness": {
+            "unit": "mm",
+            "value": "0.8"
+          }
+        }
+      ],
+      "name": "Self-clinching nut M3, steel",
+      "spacing": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "7"
+          }
+        }
+      },
+      "type": "hardware"
+    },
+    {
+      "code": "nut_m4_steel",
+      "edge_distance": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "6.9"
+          }
+        }
+      },
+      "hardware": {
+        "type": "nut"
+      },
+      "hole_diameter": {
+        "unit": "mm",
+        "value": "5.41"
+      },
+      "materials": [
+        {
+          "material_code": "aluminum_5052",
+          "min_thickness": {
+            "unit": "mm",
+            "value": "1"
+          }
+        },
+        {
+          "material_code": "mild_steel",
+          "min_thickness": {
+            "unit": "mm",
+            "value": "1"
+          }
+        }
+      ],
+      "name": "Self-clinching nut M4, steel",
+      "spacing": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "9"
+          }
+        }
+      },
+      "type": "hardware"
+    },
+    {
+      "code": "nut_m4_stainless",
+      "edge_distance": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "6.9"
+          }
+        }
+      },
+      "hardware": {
+        "type": "nut"
+      },
+      "hole_diameter": {
+        "unit": "mm",
+        "value": "5.41"
+      },
+      "materials": [
+        {
+          "material_code": "stainless_304",
+          "min_thickness": {
+            "unit": "mm",
+            "value": "1"
+          }
+        }
+      ],
+      "name": "Self-clinching nut M4, hardened stainless",
+      "spacing": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "9"
+          }
+        }
+      },
+      "type": "hardware"
+    }
+  ],
+  "laser_cutting": {
+    "common_line": "accepted",
+    "contour_closure_tolerance": {
+      "unit": "mm",
+      "value": "0.05"
+    },
+    "kerf_width": {
+      "unit": "mm",
+      "value": "0.15"
+    },
+    "limits": {
+      "cutout_width": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "1"
+          },
+          "thickness_ratio": "0.5"
+        },
+        "warning": {
+          "thickness_ratio": "1"
+        }
+      },
+      "edge_distance": {
+        "error": {
+          "thickness_ratio": "0.5"
+        },
+        "warning": {
+          "thickness_ratio": "1"
+        }
+      },
+      "feature_spacing": {
+        "warning": {
+          "thickness_ratio": "2"
+        }
+      },
+      "feature_width": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "1"
+          },
+          "thickness_ratio": "1"
+        },
+        "warning": {
+          "thickness_ratio": "2"
+        }
+      },
+      "hole_diameter": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "1.5"
+          },
+          "thickness_ratio": "0.5"
+        },
+        "warning": {
+          "thickness_ratio": "1"
+        }
+      },
+      "max_removed_area_percent": "50",
+      "min_tip_angle": {
+        "unit": "deg",
+        "value": "30"
+      },
+      "part_width": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "2.54"
+          }
+        },
+        "warning": {
+          "min": {
+            "unit": "mm",
+            "value": "6"
+          }
+        }
+      },
+      "slot_width": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "1"
+          },
+          "thickness_ratio": "0.5"
+        },
+        "warning": {
+          "thickness_ratio": "1"
+        }
+      },
+      "web_width": {
+        "error": {
+          "min": {
+            "unit": "mm",
+            "value": "0.5"
+          },
+          "thickness_ratio": "0.5"
+        },
+        "warning": {
+          "thickness_ratio": "1"
+        }
+      }
+    },
+    "multiple_parts": "accepted",
+    "usable_area": {
+      "height": {
+        "unit": "mm",
+        "value": "3000"
+      },
+      "width": {
+        "unit": "mm",
+        "value": "1500"
+      }
+    }
+  },
+  "materials": [
+    {
+      "code": "mild_steel",
+      "laser_cutting": {
+        "max_thickness": {
+          "unit": "mm",
+          "value": "19.05"
+        },
+        "thickness_ranges": [
+          {
+            "max_thickness": {
+              "unit": "mm",
+              "value": "12.7"
+            }
+          },
+          {
+            "max_thickness": {
+              "unit": "mm",
+              "value": "19.05"
+            },
+            "usable_area": {
+              "height": {
+                "unit": "mm",
+                "value": "2000"
+              },
+              "width": {
+                "unit": "mm",
+                "value": "1000"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "code": "stainless_304",
+      "laser_cutting": {
+        "max_thickness": {
+          "unit": "mm",
+          "value": "11.94"
+        },
+        "min_thickness": {
+          "unit": "mm",
+          "value": "0.5"
+        },
+        "thicknesses": [
+          {
+            "unit": "mm",
+            "value": "0.8"
+          },
+          {
+            "unit": "mm",
+            "value": "1"
+          },
+          {
+            "unit": "mm",
+            "value": "1.5"
+          },
+          {
+            "unit": "mm",
+            "value": "2"
+          },
+          {
+            "unit": "mm",
+            "value": "3"
+          },
+          {
+            "unit": "mm",
+            "value": "6"
+          },
+          {
+            "unit": "in",
+            "value": "0.375"
+          }
+        ]
+      }
+    },
+    {
+      "code": "aluminum_5052",
+      "laser_cutting": {
+        "limits": {
+          "hole_diameter": {
+            "error": {
+              "min": {
+                "unit": "mm",
+                "value": "1.5"
+              },
+              "thickness_ratio": "1"
+            }
+          }
+        },
+        "max_thickness": {
+          "unit": "mm",
+          "value": "11.94"
+        }
+      }
+    }
+  ],
+  "process": "laser_cutting",
+  "schema_version": "3.0"
+}

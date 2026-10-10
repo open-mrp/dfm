@@ -1,0 +1,10 @@
+{
+  "error": {
+    "code": "design_content_unsupported",
+    "type": "invalid_request_error",
+    "message": "not sheet metal: face #145 lies inside the sheet, 1 mm from its face: the thickness varies there (a pocket, counterbore or step), which a part cut from flat sheet cannot have",
+    "param": "design",
+    "is_transient": false,
+    "errors": []
+  }
+}

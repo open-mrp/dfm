@@ -1,0 +1,278 @@
+{
+  "object": "dfm_check",
+  "process": "laser_cutting",
+  "engine_version": "dev",
+  "verdict": "not_manufacturable",
+  "error_count": 1,
+  "review_count": 0,
+  "warning_count": 1,
+  "part_count": 1,
+  "parts": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": [
+      {
+        "object": "dfm_part",
+        "number": 1,
+        "copy_count": 1,
+        "instances": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null
+          },
+          "data": [
+            {
+              "object": "dfm_part_instance",
+              "number": 1,
+              "entity_ids": [
+                "2F"
+              ],
+              "rotation": {
+                "value": "0",
+                "unit": "deg"
+              },
+              "offset": {
+                "x": "0",
+                "y": "0",
+                "unit": "mm"
+              }
+            }
+          ]
+        },
+        "entity_ids": [
+          "2F"
+        ],
+        "sheet": {
+          "outline": "closed",
+          "width": {
+            "value": "100",
+            "unit": "mm"
+          },
+          "height": {
+            "value": "50",
+            "unit": "mm"
+          },
+          "area": {
+            "value": "4943.451332",
+            "unit": "mm2"
+          },
+          "cut_length": {
+            "value": "337.699112",
+            "unit": "mm"
+          },
+          "pierce_count": 3,
+          "holes": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": [
+              {
+                "object": "dfm_hole_group",
+                "diameter": {
+                  "value": "6",
+                  "unit": "mm"
+                },
+                "count": 2,
+                "entity_ids": [
+                  "30",
+                  "31"
+                ],
+                "operation": null,
+                "available_operations": [
+                  "tap_m3",
+                  "tap_m4"
+                ]
+              }
+            ]
+          },
+          "bends": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": []
+          }
+        },
+        "verdict": "not_manufacturable",
+        "error_count": 1,
+        "review_count": 0,
+        "warning_count": 1,
+        "issues": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null
+          },
+          "data": [
+            {
+              "object": "dfm_issue",
+              "code": "web_too_thin",
+              "severity": "error",
+              "message": "Material between cut-outs is below configured minimum",
+              "remediation": "Move the cut-outs apart, or shrink them, until the material between them is at least the required width.",
+              "required": {
+                "value": "0.75",
+                "unit": "mm"
+              },
+              "required_basis": "thickness_ratio",
+              "occurrences": {
+                "object": "list",
+                "page_info": {
+                  "next_page_url": null,
+                  "previous_page_url": null
+                },
+                "data": [
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_4011a6c83f80a17e",
+                    "entity_ids": [
+                      "30",
+                      "31"
+                    ],
+                    "actual": {
+                      "value": "0.5",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "43.25",
+                      "y": "25",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "43",
+                        "y": "25",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "43.5",
+                        "y": "25",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  }
+                ]
+              }
+            },
+            {
+              "object": "dfm_issue",
+              "code": "features_too_close",
+              "severity": "warning",
+              "message": "Cut-outs are closer than configured minimum spacing",
+              "remediation": "Move the cut-outs apart to at least the required spacing.",
+              "required": {
+                "value": "3",
+                "unit": "mm"
+              },
+              "required_basis": "thickness_ratio",
+              "occurrences": {
+                "object": "list",
+                "page_info": {
+                  "next_page_url": null,
+                  "previous_page_url": null
+                },
+                "data": [
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_29a3fe0056f7edbb",
+                    "entity_ids": [
+                      "30",
+                      "31"
+                    ],
+                    "actual": {
+                      "value": "0.5",
+                      "unit": "mm"
+                    },
+                    "location": {
+                      "x": "43.25",
+                      "y": "25",
+                      "unit": "mm"
+                    },
+                    "span": [
+                      {
+                        "x": "43",
+                        "y": "25",
+                        "unit": "mm"
+                      },
+                      {
+                        "x": "43.5",
+                        "y": "25",
+                        "unit": "mm"
+                      }
+                    ],
+                    "fix": null
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "drawing_issues": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": []
+  },
+  "skipped_checks": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": [
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_too_short",
+        "limit": "laser_cutting.limits.part_length"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_area_too_small",
+        "limit": "laser_cutting.limits.part_area"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_too_slender",
+        "limit": "laser_cutting.limits.slender_part"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_may_fall_through",
+        "limit": "laser_cutting.support_spacing"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "cutout_too_slender",
+        "limit": "laser_cutting.limits.slender_cutout"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "notch_too_slender",
+        "limit": "laser_cutting.limits.slender_cutout"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "slot_fit_too_tight",
+        "limit": "laser_cutting.limits.slot_fit_clearance"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "internal_corner_too_sharp",
+        "limit": "laser_cutting.limits.internal_corner_radius"
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="100mm" height="60mm" viewBox="0 0 100 60">
+<g fill="none" stroke="#0000ff" stroke-width="0.1">
+  <rect id="outline" x="0" y="0" width="100" height="60"/>
+  <circle id="hole" cx="15" cy="15" r="4"/>
+  <rect id="cutout" x="30" y="10" width="30" height="10" rx="5"/>
+  <path id="curved" d="M70 40 A8 8 0 0 1 86 40 C86 50 70 50 70 40 Z"/>
+</g>
+<path id="logo" d="M10 40 h10 v10 h-10 z" fill="#808080"/>
+<text id="note" x="30" y="55">PART-7</text>
+</svg>

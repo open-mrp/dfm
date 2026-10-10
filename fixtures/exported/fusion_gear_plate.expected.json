@@ -1,0 +1,697 @@
+{
+  "object": "dfm_check",
+  "process": "laser_cutting",
+  "engine_version": "dev",
+  "verdict": "manufacturable",
+  "error_count": 0,
+  "review_count": 0,
+  "warning_count": 24,
+  "part_count": 1,
+  "parts": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": [
+      {
+        "object": "dfm_part",
+        "number": 1,
+        "copy_count": 1,
+        "instances": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null
+          },
+          "data": [
+            {
+              "object": "dfm_part_instance",
+              "number": 1,
+              "entity_ids": [
+                "100",
+                "101",
+                "102",
+                "104",
+                "105",
+                "106",
+                "108",
+                "109",
+                "110",
+                "112",
+                "113",
+                "114",
+                "116",
+                "117",
+                "118",
+                "120",
+                "121",
+                "122",
+                "124",
+                "125",
+                "126",
+                "128",
+                "129",
+                "130",
+                "132",
+                "133",
+                "134",
+                "136",
+                "137",
+                "138",
+                "140",
+                "141",
+                "142",
+                "144",
+                "145",
+                "146",
+                "148",
+                "149",
+                "150",
+                "152",
+                "153",
+                "154",
+                "156",
+                "157",
+                "158",
+                "160",
+                "161",
+                "162",
+                "164",
+                "165",
+                "166",
+                "168",
+                "169",
+                "170",
+                "172",
+                "173",
+                "174",
+                "176",
+                "177",
+                "178",
+                "180",
+                "181",
+                "182",
+                "184",
+                "185",
+                "186",
+                "188",
+                "189",
+                "190",
+                "192",
+                "193",
+                "194"
+              ],
+              "rotation": {
+                "value": "0",
+                "unit": "deg"
+              },
+              "offset": {
+                "x": "0",
+                "y": "0",
+                "unit": "mm"
+              }
+            }
+          ]
+        },
+        "entity_ids": [
+          "100",
+          "101",
+          "102",
+          "104",
+          "105",
+          "106",
+          "108",
+          "109",
+          "110",
+          "112",
+          "113",
+          "114",
+          "116",
+          "117",
+          "118",
+          "120",
+          "121",
+          "122",
+          "124",
+          "125",
+          "126",
+          "128",
+          "129",
+          "130",
+          "132",
+          "133",
+          "134",
+          "136",
+          "137",
+          "138",
+          "140",
+          "141",
+          "142",
+          "144",
+          "145",
+          "146",
+          "148",
+          "149",
+          "150",
+          "152",
+          "153",
+          "154",
+          "156",
+          "157",
+          "158",
+          "160",
+          "161",
+          "162",
+          "164",
+          "165",
+          "166",
+          "168",
+          "169",
+          "170",
+          "172",
+          "173",
+          "174",
+          "176",
+          "177",
+          "178",
+          "180",
+          "181",
+          "182",
+          "184",
+          "185",
+          "186",
+          "188",
+          "189",
+          "190",
+          "192",
+          "193",
+          "194"
+        ],
+        "sheet": {
+          "outline": "closed",
+          "width": {
+            "value": "91.828401",
+            "unit": "mm"
+          },
+          "height": {
+            "value": "91.828401",
+            "unit": "mm"
+          },
+          "area": {
+            "value": "5915.62762",
+            "unit": "mm2"
+          },
+          "cut_length": {
+            "value": "531.112833",
+            "unit": "mm"
+          },
+          "pierce_count": 2,
+          "holes": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": [
+              {
+                "object": "dfm_hole_group",
+                "diameter": {
+                  "value": "20",
+                  "unit": "mm"
+                },
+                "count": 1,
+                "entity_ids": [
+                  "196"
+                ],
+                "operation": null,
+                "available_operations": [
+                  "nut_m3_steel",
+                  "nut_m4_steel",
+                  "tap_m3",
+                  "tap_m4"
+                ]
+              }
+            ]
+          },
+          "bends": {
+            "object": "list",
+            "page_info": {
+              "next_page_url": null,
+              "previous_page_url": null
+            },
+            "data": []
+          }
+        },
+        "verdict": "manufacturable",
+        "error_count": 0,
+        "review_count": 0,
+        "warning_count": 24,
+        "issues": {
+          "object": "list",
+          "page_info": {
+            "next_page_url": null,
+            "previous_page_url": null
+          },
+          "data": [
+            {
+              "object": "dfm_issue",
+              "code": "geometry_zero_length",
+              "severity": "warning",
+              "message": "Entity has a piece shorter than 0.001 mm; it is ignored",
+              "remediation": "Delete the entity or the repeated vertex.",
+              "required": null,
+              "required_basis": null,
+              "occurrences": {
+                "object": "list",
+                "page_info": {
+                  "next_page_url": null,
+                  "previous_page_url": null
+                },
+                "data": [
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_b90a25ea5a472701",
+                    "entity_ids": [
+                      "103"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "38.637033",
+                      "y": "10.352762",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_6182cdad294dfc0c",
+                    "entity_ids": [
+                      "107"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "34.641016",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_64a549bcd014e117",
+                    "entity_ids": [
+                      "111"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "28.284271",
+                      "y": "28.284271",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_bbb6f8653e6f9ba7",
+                    "entity_ids": [
+                      "115"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "20",
+                      "y": "34.641016",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_a3062bddf53f2dc2",
+                    "entity_ids": [
+                      "119"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "10.352762",
+                      "y": "38.637033",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_85a134348de171a3",
+                    "entity_ids": [
+                      "123"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "0",
+                      "y": "40",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_7c5d4533c54dc8a6",
+                    "entity_ids": [
+                      "127"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "-10.352762",
+                      "y": "38.637033",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_25dc37e18e1584e1",
+                    "entity_ids": [
+                      "131"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "-20",
+                      "y": "34.641016",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_952f66029015c089",
+                    "entity_ids": [
+                      "135"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "-28.284271",
+                      "y": "28.284271",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_85433bdcc00c74af",
+                    "entity_ids": [
+                      "139"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "-34.641016",
+                      "y": "20",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_e681b3b52ca71a7a",
+                    "entity_ids": [
+                      "143"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "-38.637033",
+                      "y": "10.352762",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_40579ec908e79afc",
+                    "entity_ids": [
+                      "147"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "-40",
+                      "y": "0",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_7e5d7cf656b1c3fd",
+                    "entity_ids": [
+                      "151"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "-38.637033",
+                      "y": "-10.352762",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_5644e051061d0a9d",
+                    "entity_ids": [
+                      "155"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "-34.641016",
+                      "y": "-20",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_1d0eb74e82f2d106",
+                    "entity_ids": [
+                      "159"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "-28.284271",
+                      "y": "-28.284271",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_390cf1cf55202776",
+                    "entity_ids": [
+                      "163"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "-20",
+                      "y": "-34.641016",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_b4f18ff5f6a074ab",
+                    "entity_ids": [
+                      "167"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "-10.352762",
+                      "y": "-38.637033",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_b56ae2340b9f2af7",
+                    "entity_ids": [
+                      "171"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "0",
+                      "y": "-40",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_3b3db0150af85a99",
+                    "entity_ids": [
+                      "175"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "10.352762",
+                      "y": "-38.637033",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_8c23180cc974d53b",
+                    "entity_ids": [
+                      "179"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "20",
+                      "y": "-34.641016",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_275615bb584745e8",
+                    "entity_ids": [
+                      "183"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "28.284271",
+                      "y": "-28.284271",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_6d265759565450fb",
+                    "entity_ids": [
+                      "187"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "34.641016",
+                      "y": "-20",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_bb43243ea166ee90",
+                    "entity_ids": [
+                      "191"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "38.637033",
+                      "y": "-10.352762",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  },
+                  {
+                    "object": "dfm_occurrence",
+                    "id": "fnd_aaba4051015c868e",
+                    "entity_ids": [
+                      "195"
+                    ],
+                    "actual": null,
+                    "location": {
+                      "x": "40",
+                      "y": "0",
+                      "unit": "mm"
+                    },
+                    "span": [],
+                    "fix": null
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "drawing_issues": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": []
+  },
+  "skipped_checks": {
+    "object": "list",
+    "page_info": {
+      "next_page_url": null,
+      "previous_page_url": null
+    },
+    "data": [
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_too_short",
+        "limit": "laser_cutting.limits.part_length"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_area_too_small",
+        "limit": "laser_cutting.limits.part_area"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_too_slender",
+        "limit": "laser_cutting.limits.slender_part"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "part_may_fall_through",
+        "limit": "laser_cutting.support_spacing"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "cutout_too_slender",
+        "limit": "laser_cutting.limits.slender_cutout"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "notch_too_slender",
+        "limit": "laser_cutting.limits.slender_cutout"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "slot_fit_too_tight",
+        "limit": "laser_cutting.limits.slot_fit_clearance"
+      },
+      {
+        "object": "dfm_skipped_check",
+        "code": "internal_corner_too_sharp",
+        "limit": "laser_cutting.limits.internal_corner_radius"
+      }
+    ]
+  }
+}
