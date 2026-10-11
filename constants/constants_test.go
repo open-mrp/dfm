@@ -22,9 +22,9 @@ var enums = map[string]enum{
 	"AngleUnit": AngleUnit(""), "AreaUnit": AreaUnit(""), "BendDirection": BendDirection(""), "BendLimitOffset": BendLimitOffset(""), "CommonLine": CommonLine(""),
 	"DesignFormat": DesignFormat(""), "ErrorCode": ErrorCode(""), "ErrorType": ErrorType(""),
 	"FindingCode": FindingCode(""), "FindingScope": FindingScope(""), "FixAction": FixAction(""),
-	"ForceUnit": ForceUnit(""), "HoleOperationType": HoleOperationType(""), "HoleSide": HoleSide(""), "LengthUnit": LengthUnit(""),
+	"ForceUnit": ForceUnit(""), "HoleOperationType": HoleOperationType(""), "HoleSide": HoleSide(""), "LengthUnit": LengthUnit(""), "LineSide": LineSide(""),
 	"MultipleParts": MultipleParts(""), "ObjectType": ObjectType(""), "OperationVerdict": OperationVerdict(""), "Outline": Outline(""), "OutsidePage": OutsidePage(""), "PlanVerdict": PlanVerdict(""),
-	"Process": Process(""), "Severity": Severity(""), "ShapeOperation": ShapeOperation(""), "StockForm": StockForm(""),
+	"Process": Process(""), "PunchPosition": PunchPosition(""), "Severity": Severity(""), "ShapeOperation": ShapeOperation(""), "StockForm": StockForm(""),
 	"ThresholdBasis": ThresholdBasis(""), "Unit": Unit(""), "Verdict": Verdict(""),
 }
 

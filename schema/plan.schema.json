@@ -48,6 +48,17 @@
           ],
           "type": "string"
         },
+        "end": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Point"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Where the bend line ends in the drawing."
+        },
         "entity_id": {
           "description": "Entity of the bend line; a request's bends name it.",
           "type": "string"
@@ -77,6 +88,59 @@
         "object": {
           "const": "dfm_bend",
           "description": "Resource type identifier."
+        },
+        "punch_position": {
+          "anyOf": [
+            {
+              "enum": [
+                "start",
+                "middle",
+                "end"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Where along the bend line the punch stood when it formed the bend in that order: start (the punch's end at the line's start), middle (centered) or end. Null when sequence is null."
+        },
+        "sequence": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Position of this bend, from 1, in the order the bending check found that forms every bend clear of the press brake's tooling: the bends before it are formed when it is, the ones after it are flat. Null when the capability gives no tooling or no order was found."
+        },
+        "start": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Point"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Where the bend line starts in the drawing; throat_side and punch_position are measured from it toward end."
+        },
+        "throat_side": {
+          "anyOf": [
+            {
+              "enum": [
+                "left",
+                "right"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "For a gooseneck punch, the side of the bend line, looking from start to end with the drawing seen from its viewer, that the punch's throat opened toward when it formed the bend. Null for a straight punch, or when sequence is null."
         }
       },
       "required": [
@@ -87,7 +151,12 @@
         "direction",
         "inside_radius",
         "bend_allowance",
-        "assumed"
+        "assumed",
+        "start",
+        "end",
+        "sequence",
+        "punch_position",
+        "throat_side"
       ],
       "type": "object"
     },

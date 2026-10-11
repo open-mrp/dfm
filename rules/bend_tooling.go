@@ -3,6 +3,7 @@ package rules
 import (
 	"math"
 	"slices"
+	"strings"
 
 	"github.com/open-mrp/dfm/brake"
 	"github.com/open-mrp/dfm/capability"
@@ -55,7 +56,7 @@ func (BendToolingRule) Check(part *geometry.Part, p *capability.Profile) []Findi
 	return out
 }
 
-// BendCollisionRule simulates forming the bends on the press brake's tooling and fails a part no bend order forms without running it into the punch or the die (see package brake).
+// BendCollisionRule simulates forming the bends on the press brake's tooling and fails a part no bend order forms without running it into the punch, the die or the ram above the punch (see package brake). It reports from the part's BendPlan when the check has set one.
 type BendCollisionRule struct{}
 
 func (BendCollisionRule) Code() constants.FindingCode { return constants.FindingCodeBendToolCollision }
@@ -64,13 +65,16 @@ func (BendCollisionRule) Code() constants.FindingCode { return constants.Finding
 const collisionBudget = 1500
 
 func (BendCollisionRule) Check(part *geometry.Part, p *capability.Profile) []Finding {
-	m, lines := foldModel(part, p)
-	if m == nil {
+	plan := part.BendPlan
+	if plan == nil {
+		plan = PlanBends(part, p)
+	}
+	if plan == nil || plan.Found {
 		return nil
 	}
-	plan := m.Sequence(toolingMM(p.Bending.Tooling), collisionBudget)
-	if plan.Found {
-		return nil
+	lines := map[string]geometry.BendLine{}
+	for _, b := range part.BendLines() {
+		lines[b.EntityID] = b
 	}
 	finding := func(b geometry.BendLine, sev constants.Severity, msg string) Finding {
 		return Finding{
@@ -83,32 +87,74 @@ func (BendCollisionRule) Check(part *geometry.Part, p *capability.Profile) []Fin
 		}
 	}
 	if !plan.Exhausted {
-		var ids []string
-		for _, b := range lines {
-			ids = append(ids, b.EntityID)
-		}
-		f := finding(lines[0], constants.SeverityReview, "No bend order clear of the tooling was found before the search stopped; whether one exists is not known")
-		f.EntityIDs, f.Location, f.Span = ids, nil, nil
+		f := finding(lines[plan.EntityIDs[0]], constants.SeverityReview, "No bend order clear of the tooling was found before the search stopped; whether one exists is not known")
+		f.EntityIDs, f.Location, f.Span = slices.Clone(plan.EntityIDs), nil, nil
 		return []Finding{f}
+	}
+	var out []Finding
+	for _, b := range plan.Blocked {
+		var hit []string
+		if b.Punch {
+			hit = append(hit, "the punch")
+		}
+		if b.Die {
+			hit = append(hit, "the die")
+		}
+		if b.Ram {
+			hit = append(hit, "the ram above the punch")
+		}
+		msg := "No bend order forms the part: forming this bend runs it into " + strings.Join(hit, " and ")
+		out = append(out, finding(lines[b.EntityID], constants.SeverityError, msg))
+	}
+	return out
+}
+
+// PlanBends searches for an order that forms every bend of the part clear of the press brake's tooling (see brake.Model.Sequence), and says how each bend was formed or which could not be. It is nil when the capability gives no tooling or the part has nothing to bend.
+func PlanBends(part *geometry.Part, p *capability.Profile) *geometry.BendPlan {
+	if p.Bending == nil || p.Bending.Tooling == nil {
+		return nil
+	}
+	m, lines := foldModel(part, p)
+	if m == nil {
+		return nil
+	}
+	tool := toolingMM(p.Bending.Tooling)
+	plan := m.Sequence(tool, collisionBudget)
+	out := &geometry.BendPlan{Found: plan.Found, Exhausted: plan.Exhausted, Forming: map[string]geometry.BendForming{}, Blocked: []geometry.BendBlocked{}}
+	for _, b := range lines {
+		out.EntityIDs = append(out.EntityIDs, b.EntityID)
+	}
+	if plan.Found {
+		positions := map[brake.Place]constants.PunchPosition{brake.PlaceStart: constants.PunchPositionStart, brake.PlaceMiddle: constants.PunchPositionMiddle, brake.PlaceEnd: constants.PunchPositionEnd}
+		for i, bi := range plan.Order {
+			step, line := plan.Steps[i], lines[bi]
+			f := geometry.BendForming{Sequence: i + 1, PunchPosition: positions[step.Place]}
+			if tool.PunchThroatDepth > 0 {
+				f.ThroatSide = throatSide(line, step.Mirrored)
+			}
+			out.Forming[line.EntityID] = f
+		}
+		return out
 	}
 	var blocked []int
 	for bi := range plan.Blocked {
 		blocked = append(blocked, bi)
 	}
 	slices.Sort(blocked)
-	var out []Finding
 	for _, bi := range blocked {
 		r := plan.Blocked[bi]
-		msg := "No bend order forms the part: forming this bend runs it into the punch"
-		switch {
-		case r.Punch && r.Die:
-			msg = "No bend order forms the part: forming this bend runs it into the punch and the die"
-		case r.Die:
-			msg = "No bend order forms the part: forming this bend runs it into the die"
-		}
-		out = append(out, finding(lines[bi], constants.SeverityError, msg))
+		out.Blocked = append(out.Blocked, geometry.BendBlocked{EntityID: lines[bi].EntityID, Punch: r.Punch, Die: r.Die, Ram: r.Ram})
 	}
 	return out
+}
+
+// throatSide is the side of the bend line, from its start to its end, that a gooseneck's throat opens toward. The punch stands on the inside of the bend, and its throat opens to the right of the line for a bend up (toward the viewer) unless the punch faced the other way round; down, the inside is under the sheet and the sides swap (see brake.Tooling.punch).
+func throatSide(b geometry.BendLine, mirrored bool) constants.LineSide {
+	up := b.Spec.Direction != constants.BendDirectionDown
+	if up != mirrored {
+		return constants.LineSideRight
+	}
+	return constants.LineSideLeft
 }
 
 // toolingMM converts the capability's tooling for the simulation.

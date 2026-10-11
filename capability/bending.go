@@ -36,7 +36,7 @@ type Bending struct {
 
 // BrakeTooling is a press brake's punch and die, as cross-sections and lengths. Angles are in millionths of a degree.
 type BrakeTooling struct {
-	// PunchNose, PunchThroatDepth and PunchThroatHeight describe a gooseneck punch: above the nose (the straight part over the tip) the body is set back by the throat's depth, away from the flange being formed, for the throat's height, so a return flange taller than the web it stands beside clears it. All 0 for a straight punch.
+	// PunchNose, PunchThroatDepth and PunchThroatHeight describe a gooseneck punch: above the nose (the straight part over the tip) a neck slopes back at 45 degrees to the body, set back by the throat's depth, away from the flange being formed, so a return flange taller than the web it stands beside clears it. All 0 for a straight punch.
 	PunchNose, PunchThroatDepth, PunchThroatHeight measure.Length
 	// PunchTipAngle is the included angle of the punch's tip; PunchWidth the width of its body; PunchHeight how far it reaches above its tip (to the ram); PunchLength its length along the bend, 0 for segmented tooling assembled to each bend's length.
 	PunchTipAngle                        measure.Ratio

@@ -137,9 +137,56 @@ func TestSequence(t *testing.T) {
 	if p := channel(t, 60, 20, 40).Sequence(straight, 100); p.Found || !p.Exhausted || len(p.Blocked) == 0 {
 		t.Errorf("narrow deep channel: %+v, want no order", p)
 	}
-	// One 40 mm wide with 10 mm sides clears it.
-	if p := channel(t, 60, 10, 50).Sequence(straight, 100); !p.Found || len(p.Order) != 2 {
-		t.Errorf("wide shallow channel: %+v, want an order", p)
+	// One 40 mm wide with 10 mm sides clears it, the punch centered on each bend.
+	p := channel(t, 60, 10, 50).Sequence(straight, 100)
+	if !p.Found || len(p.Order) != 2 || len(p.Steps) != 2 {
+		t.Fatalf("wide shallow channel: %+v, want an order", p)
+	}
+	for i, st := range p.Steps {
+		if st.Collides() || !st.Simulated || st.Mirrored || st.Place != PlaceMiddle {
+			t.Errorf("wide shallow channel step %d: %+v, want the straight punch at the middle", i, st)
+		}
+	}
+	// With a punch only 20 mm tall, a channel 30 mm wide with 60 mm sides swings its first side over the punch, into the holder and ram above it.
+	short := straight
+	short.PunchHeight = 20
+	if p := channel(t, 150, 60, 90).Sequence(short, 100); p.Found || len(p.Blocked) == 0 {
+		t.Errorf("deep channel on a short punch: %+v, want no order", p)
+	} else {
+		for bi, r := range p.Blocked {
+			if !r.Ram || r.Punch {
+				t.Errorf("deep channel on a short punch, bend %d: %+v, want the ram and not the punch", bi, r)
+			}
+		}
+	}
+}
+
+// TestOwnFlanges forms one bend, whose two flanges the punch must fit between: an 86° punch forms 90°, not 135°.
+func TestOwnFlanges(t *testing.T) {
+	for _, tt := range []struct {
+		angle float64
+		found bool
+	}{{90, true}, {135, false}} {
+		m, err := New(rect(100, 60), []Bend{{A: geometry.Point{X: 0, Y: 30}, B: geometry.Point{X: 100, Y: 30}, Angle: tt.angle, InsideRadius: 1.5, Up: true}}, 1.5, 0.44, 1)
+		if err != nil {
+			t.Fatal(err)
+		}
+		p := m.Sequence(straight, 100)
+		if p.Found != tt.found {
+			t.Errorf("%v° bend on an 86° punch: %+v, want found %v", tt.angle, p, tt.found)
+		}
+		if !tt.found && !p.Blocked[0].Punch {
+			t.Errorf("%v° bend on an 86° punch: %+v, want the punch", tt.angle, p.Blocked[0])
+		}
+	}
+	// A gooseneck's neck slopes back clear of the bend's own flanges at 90°.
+	goose := Tooling{PunchTipAngle: 86, PunchWidth: 12, PunchHeight: 100, PunchNose: 12, PunchThroatDepth: 25, PunchThroatHeight: 60, DieOpening: 12, DieWidth: 15, DieHeight: 60}
+	m, err := New(rect(100, 120), []Bend{along(60)}, 1.5, 0.44, 1)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if p := m.Sequence(goose, 100); !p.Found {
+		t.Errorf("90° bend on a gooseneck: %+v, want found", p)
 	}
 }
 
@@ -163,7 +210,7 @@ func BenchmarkSequence(b *testing.B) {
 	}
 }
 
-// TestPunchShape checks the punch cross-section: a straight punch is a tip and a body over the tip, a gooseneck sets its body back behind the nose, away from the +y side, and mirrors to the other side.
+// TestPunchShape checks the punch cross-section: a straight punch is a tip and a body over the tip, a gooseneck carries its nose back at 45 degrees to a body set back behind it, away from the +y side, and mirrors to the other side.
 func TestPunchShape(t *testing.T) {
 	straight := Tooling{PunchTipAngle: 90, PunchWidth: 10, PunchHeight: 100}
 	s := straight.punch(false)
@@ -172,12 +219,24 @@ func TestPunchShape(t *testing.T) {
 	}
 	goose := Tooling{PunchTipAngle: 90, PunchWidth: 10, PunchHeight: 100, PunchNose: 20, PunchThroatDepth: 30, PunchThroatHeight: 50}
 	g := goose.punch(false)
-	// Below the nose the body is in place; above it the throat clears the +y side by its depth; above the throat the shank stays set back.
-	if !g.near(4, 15, 0) || g.near(4, 40, 0) || !g.near(-34, 40, 0) || g.near(4, 90, 0) || !g.near(-34, 90, 0) {
-		t.Errorf("gooseneck: nose %v, +y above nose %v, throat %v, +y shank %v, shank %v", g.near(4, 15, 0), g.near(4, 40, 0), g.near(-34, 40, 0), g.near(4, 90, 0), g.near(-34, 90, 0))
+	// The nose is under the tip; above it the throat clears the +y side; the neck slopes back from the nose's top (20) to the body (50), which stays set back by the throat's depth; behind the neck, below the body, is clear.
+	checks := []struct {
+		name string
+		y, x float64
+		in   bool
+	}{{"nose", 4, 15, true}, {"+y above nose", 4, 40, false}, {"neck", -15, 35, true}, {"behind neck", -34, 40, false}, {"body", -34, 90, true}, {"+y shank", 4, 90, false}}
+	for _, c := range checks {
+		if g.near(c.y, c.x, 0) != c.in {
+			t.Errorf("gooseneck %s (%v, %v): inside %v, want %v", c.name, c.y, c.x, !c.in, c.in)
+		}
 	}
 	m := goose.punch(true)
-	if !m.near(-4, 15, 0) || m.near(-4, 40, 0) || !m.near(34, 40, 0) {
-		t.Errorf("mirrored gooseneck: nose %v, -y above nose %v, throat %v", m.near(-4, 15, 0), m.near(-4, 40, 0), m.near(34, 40, 0))
+	if !m.near(-4, 15, 0) || m.near(-4, 40, 0) || !m.near(15, 35, 0) || !m.near(34, 90, 0) {
+		t.Errorf("mirrored gooseneck: nose %v, -y above nose %v, neck %v, body %v", m.near(-4, 15, 0), m.near(-4, 40, 0), m.near(15, 35, 0), m.near(34, 90, 0))
+	}
+	// The ram stands over the shank, above the punch.
+	r := goose.ram(false)
+	if !r.near(-34, 150, 0) || r.near(-34, 90, 0) || r.near(4, 150, 0) {
+		t.Errorf("ram: over the shank %v, beside the body %v, over the throat %v", r.near(-34, 150, 0), r.near(-34, 90, 0), r.near(4, 150, 0))
 	}
 }

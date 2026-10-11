@@ -342,7 +342,20 @@
                           "value": "3.39292",
                           "unit": "mm"
                         },
-                        "assumed": []
+                        "assumed": [],
+                        "start": {
+                          "x": "0",
+                          "y": "-41.69646",
+                          "unit": "mm"
+                        },
+                        "end": {
+                          "x": "60",
+                          "y": "-41.69646",
+                          "unit": "mm"
+                        },
+                        "sequence": null,
+                        "punch_position": null,
+                        "throat_side": null
                       }
                     ]
                   }

@@ -97,6 +97,8 @@ func check(ctx context.Context, req CheckRequest, step constants.Process, bendin
 		if err := applyBends(part, req.Bends, modelBends, profile); err != nil {
 			return CheckResult{}, err
 		}
+		// The bend order is searched once: the collision rule reports from it and the result's bends say how each was formed.
+		part.BendPlan = rules.PlanBends(part, profile)
 	}
 	res := CheckResult{Process: profile.Process, EngineVersion: EngineVersion, Verdict: constants.VerdictManufacturable, Findings: []rules.Finding{}, Skipped: rules.Skipped(profile)}
 	for i, p := range parts {

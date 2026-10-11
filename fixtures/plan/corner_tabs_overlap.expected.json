@@ -412,7 +412,20 @@
                           "value": "3.39292",
                           "unit": "mm"
                         },
-                        "assumed": []
+                        "assumed": [],
+                        "start": {
+                          "x": "0",
+                          "y": "-61.69646",
+                          "unit": "mm"
+                        },
+                        "end": {
+                          "x": "60",
+                          "y": "-61.69646",
+                          "unit": "mm"
+                        },
+                        "sequence": null,
+                        "punch_position": null,
+                        "throat_side": null
                       },
                       {
                         "object": "dfm_bend",
@@ -434,7 +447,20 @@
                           "value": "3.39292",
                           "unit": "mm"
                         },
-                        "assumed": []
+                        "assumed": [],
+                        "start": {
+                          "x": "81.69646",
+                          "y": "-60",
+                          "unit": "mm"
+                        },
+                        "end": {
+                          "x": "81.69646",
+                          "y": "0",
+                          "unit": "mm"
+                        },
+                        "sequence": null,
+                        "punch_position": null,
+                        "throat_side": null
                       },
                       {
                         "object": "dfm_bend",
@@ -456,7 +482,20 @@
                           "value": "3.39292",
                           "unit": "mm"
                         },
-                        "assumed": []
+                        "assumed": [],
+                        "start": {
+                          "x": "61.69646",
+                          "y": "-88.39292",
+                          "unit": "mm"
+                        },
+                        "end": {
+                          "x": "61.69646",
+                          "y": "-68.39292",
+                          "unit": "mm"
+                        },
+                        "sequence": null,
+                        "punch_position": null,
+                        "throat_side": null
                       },
                       {
                         "object": "dfm_bend",
@@ -478,7 +517,20 @@
                           "value": "3.39292",
                           "unit": "mm"
                         },
-                        "assumed": []
+                        "assumed": [],
+                        "start": {
+                          "x": "88.39292",
+                          "y": "-61.69646",
+                          "unit": "mm"
+                        },
+                        "end": {
+                          "x": "108.39292",
+                          "y": "-61.69646",
+                          "unit": "mm"
+                        },
+                        "sequence": null,
+                        "punch_position": null,
+                        "throat_side": null
                       }
                     ]
                   }

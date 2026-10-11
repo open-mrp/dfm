@@ -27,6 +27,34 @@ type BendSpec struct {
 	AllowanceMM float64
 }
 
+// BendPlan is the order the bending check found to form a part's bends on the press brake's tooling, or why it found none (set by the bending check when the capability gives the tooling).
+type BendPlan struct {
+	// Found: an order forms every bend clear of the tooling. Exhausted: every order was tried (when not Found, none clears); false when the search stopped first.
+	Found, Exhausted bool
+	// Forming is how each bend line was formed in the order, by entity ID, when Found.
+	Forming map[string]BendForming
+	// Blocked are the bend lines no order could form at the furthest the search got, in drawing order, when not Found and Exhausted.
+	Blocked []BendBlocked
+	// EntityIDs are the bend lines the search formed, in drawing order.
+	EntityIDs []string
+}
+
+// BendForming is how one bend was formed in the order found.
+type BendForming struct {
+	// Sequence is the bend's position in the order, from 1.
+	Sequence int
+	// PunchPosition is where the punch stood along the bend line.
+	PunchPosition constants.PunchPosition
+	// ThroatSide is the side of the bend line a gooseneck punch's throat opened toward; empty for a straight punch.
+	ThroatSide constants.LineSide
+}
+
+// BendBlocked is a bend no order could form, and what it ran into.
+type BendBlocked struct {
+	EntityID        string
+	Punch, Die, Ram bool
+}
+
 // Length is the bend's length.
 func (b BendLine) Length() float64 { return b.A.Dist(b.B) }
 

@@ -46,11 +46,11 @@ type PunchInput struct {
 	TipAngle AngleInput `json:"tip_angle" validate:"required"`
 	// Width of the punch's body.
 	Width QuantityInput `json:"width" validate:"required"`
-	// How far the punch reaches above its tip, up to the ram (a gooseneck punch is modeled as straight).
+	// How far the punch reaches above its tip, up to its holder; the holder and ram above it are taken to be as wide as the punch's shank.
 	Height QuantityInput `json:"height" validate:"required"`
 	// Length of the punch along the bend; the part may be slid to put the bend at its start, middle or end. Omitted for segmented tooling, assembled to each bend's length.
 	Length field.Optional[QuantityInput] `json:"length,omitzero"`
-	// A gooseneck punch's throat: the body set back behind the tip, which lets a return flange taller than the web beside it clear the punch. Omitted for a straight punch.
+	// A gooseneck punch's throat: above the nose, a neck sloping back at 45 degrees to the body, set back behind the tip, which lets a return flange taller than the web beside it clear the punch. Omitted for a straight punch.
 	Gooseneck field.Optional[GooseneckInput] `json:"gooseneck,omitzero"`
 }
 
@@ -58,7 +58,7 @@ type PunchInput struct {
 type GooseneckInput struct {
 	// Height of the straight nose above the tip, before the throat begins.
 	NoseHeight QuantityInput `json:"nose_height" validate:"required"`
-	// How far the body is set back from the tip's face, on the side away from the flange being formed.
+	// How far the body is set back from the tip's face, on the side away from the flange being formed; the neck reaches it this far above the nose.
 	ThroatDepth QuantityInput `json:"throat_depth" validate:"required"`
 	// Height of the set-back part of the body, above the nose.
 	ThroatHeight QuantityInput `json:"throat_height" validate:"required"`
