@@ -87,7 +87,7 @@ Run by a plan's bending step against a press brake capability.
 | `bend_zones_overlap`                       | error           | Two bends are closer than half their bend allowances added together.                                 |
 | `flange_too_short`                         | error / warning | The shorter flange beside a bend is below `flange_length`.                                           |
 | `bend_tooling_unchecked`                   | review          | No `tooling` is given and two parallel bends turning the same way form a channel.                    |
-| `bend_tool_collision`                      | error, review   | No bend order forms the part without hitting the punch or die. Review when the search stopped early. |
+| `bend_tool_collision`                      | error, review   | No bend order forms the part without hitting the punch, die or the ram above the punch; a bend's own flanges count at its final angle. Review when the search stopped early. A part that clears reports the order and how each bend was formed. |
 | `bend_flanges_collide`                     | error           | Two flanges overlap once every bend is formed.                                                       |
 | `feature_too_close_to_bend`                | error / warning | A hole or cut-out is closer to a bend line than `feature_distance`.                                  |
 | `bend_relief_missing`                      | error           | A bend line ends where the material beside it stays flat.                                            |

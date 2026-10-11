@@ -364,7 +364,20 @@
                           "angle",
                           "direction",
                           "inside_radius"
-                        ]
+                        ],
+                        "start": {
+                          "x": "40",
+                          "y": "40",
+                          "unit": "mm"
+                        },
+                        "end": {
+                          "x": "107",
+                          "y": "40",
+                          "unit": "mm"
+                        },
+                        "sequence": null,
+                        "punch_position": null,
+                        "throat_side": null
                       },
                       {
                         "object": "dfm_bend",
@@ -390,7 +403,20 @@
                           "angle",
                           "direction",
                           "inside_radius"
-                        ]
+                        ],
+                        "start": {
+                          "x": "40",
+                          "y": "25",
+                          "unit": "mm"
+                        },
+                        "end": {
+                          "x": "107",
+                          "y": "25",
+                          "unit": "mm"
+                        },
+                        "sequence": null,
+                        "punch_position": null,
+                        "throat_side": null
                       },
                       {
                         "object": "dfm_bend",
@@ -416,7 +442,20 @@
                           "angle",
                           "direction",
                           "inside_radius"
-                        ]
+                        ],
+                        "start": {
+                          "x": "110",
+                          "y": "43",
+                          "unit": "mm"
+                        },
+                        "end": {
+                          "x": "110",
+                          "y": "110",
+                          "unit": "mm"
+                        },
+                        "sequence": null,
+                        "punch_position": null,
+                        "throat_side": null
                       },
                       {
                         "object": "dfm_bend",
@@ -442,7 +481,20 @@
                           "angle",
                           "direction",
                           "inside_radius"
-                        ]
+                        ],
+                        "start": {
+                          "x": "125",
+                          "y": "43",
+                          "unit": "mm"
+                        },
+                        "end": {
+                          "x": "125",
+                          "y": "110",
+                          "unit": "mm"
+                        },
+                        "sequence": null,
+                        "punch_position": null,
+                        "throat_side": null
                       }
                     ]
                   }

@@ -206,7 +206,18 @@ func bends(bs []dfm.Bend) *List[Bend] {
 			InsideRadius:  quantity(&radius, ""),
 			BendAllowance: quantity(dec(b.Allowance), ""),
 			Assumed:       b.Assumed,
+			Start:         point(b.Start.X, b.Start.Y),
+			End:           point(b.End.X, b.End.Y),
 		})
+		if f := b.Forming; f != nil {
+			bend := &out[len(out)-1]
+			sequence, position := f.Sequence, f.PunchPosition
+			bend.Sequence, bend.PunchPosition = &sequence, &position
+			if f.ThroatSide != "" {
+				side := f.ThroatSide
+				bend.ThroatSide = &side
+			}
+		}
 	}
 	return NewList(out, PageInfo{})
 }

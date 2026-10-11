@@ -162,6 +162,16 @@ type Bend struct {
 	BendAllowance *Quantity `json:"bend_allowance" validate:"required"`
 	// What the request did not give and was assumed: angle (90), direction (up), inside_radius (the tooling's).
 	Assumed []string `json:"assumed"`
+	// Where the bend line starts in the drawing; throat_side and punch_position are measured from it toward end.
+	Start *Point `json:"start" validate:"required"`
+	// Where the bend line ends in the drawing.
+	End *Point `json:"end" validate:"required"`
+	// Position of this bend, from 1, in the order the bending check found that forms every bend clear of the press brake's tooling: the bends before it are formed when it is, the ones after it are flat. Null when the capability gives no tooling or no order was found.
+	Sequence *int `json:"sequence"`
+	// Where along the bend line the punch stood when it formed the bend in that order: start (the punch's end at the line's start), middle (centered) or end. Null when sequence is null.
+	PunchPosition *constants.PunchPosition `json:"punch_position"`
+	// For a gooseneck punch, the side of the bend line, looking from start to end with the drawing seen from its viewer, that the punch's throat opened toward when it formed the bend. Null for a straight punch, or when sequence is null.
+	ThroatSide *constants.LineSide `json:"throat_side"`
 }
 
 // HoleGroup is a part's round holes of one drawn diameter and operation.

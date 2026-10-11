@@ -347,7 +347,7 @@
         },
         "throat_depth": {
           "$ref": "#/$defs/QuantityInput",
-          "description": "How far the body is set back from the tip's face, on the side away from the flange being formed."
+          "description": "How far the body is set back from the tip's face, on the side away from the flange being formed; the neck reaches it this far above the nose."
         },
         "throat_height": {
           "$ref": "#/$defs/QuantityInput",
@@ -861,11 +861,11 @@
       "properties": {
         "gooseneck": {
           "$ref": "#/$defs/GooseneckInput",
-          "description": "A gooseneck punch's throat: the body set back behind the tip, which lets a return flange taller than the web beside it clear the punch. Omitted for a straight punch."
+          "description": "A gooseneck punch's throat: above the nose, a neck sloping back at 45 degrees to the body, set back behind the tip, which lets a return flange taller than the web beside it clear the punch. Omitted for a straight punch."
         },
         "height": {
           "$ref": "#/$defs/QuantityInput",
-          "description": "How far the punch reaches above its tip, up to the ram (a gooseneck punch is modeled as straight)."
+          "description": "How far the punch reaches above its tip, up to its holder; the holder and ram above it are taken to be as wide as the punch's shank."
         },
         "length": {
           "$ref": "#/$defs/QuantityInput",

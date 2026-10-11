@@ -63,7 +63,7 @@ func (p *poly) dist(y, x float64) float64 {
 	return best
 }
 
-// punch is the punch's cross-section, measured from its tip (in the inner arc's midpoint): depth x toward the ram, lateral y. A gooseneck's body is set back behind the tip from the nose up, away from the +y side, or from the -y side when mirrored.
+// punch is the punch's cross-section, measured from its tip (in the inner arc's midpoint): depth x toward the ram, lateral y. A gooseneck's body is set back behind the tip from the nose up, away from the +y side, or from the -y side when mirrored. The nose and the body are joined by a neck that slopes back at 45 degrees from the nose's top until it reaches the body, as a real gooseneck's does: the throat opens above it, and a flange that curls into the throat at that angle clears it, while the material between the nose and the body is there to be hit.
 func (tool Tooling) punch(mirrored bool) shape {
 	tip := tool.PunchTipAngle * math.Pi / 360
 	hw := tool.PunchWidth / 2
@@ -77,22 +77,45 @@ func (tool Tooling) punch(mirrored bool) shape {
 		newPoly([2]float64{-hw, tipDepth}, [2]float64{hw, tipDepth}, [2]float64{hw, nose}, [2]float64{-hw, nose}),
 	}
 	if tool.PunchThroatDepth > 0 && nose < tool.PunchHeight {
-		// The throat: the body moved away from the +y side by the throat's depth, for its height, then the shank at the same offset up to the ram.
+		// The neck: the nose's section carried back at 45 degrees by the throat's depth, then the body at that offset up to the ram.
 		d := tool.PunchThroatDepth
-		top := math.Min(tool.PunchHeight, nose+tool.PunchThroatHeight)
-		s = append(s, newPoly([2]float64{-hw - d, nose}, [2]float64{hw - d, nose}, [2]float64{hw - d, top}, [2]float64{-hw - d, top}))
-		if top < tool.PunchHeight {
-			s = append(s, newPoly([2]float64{-hw - d, top}, [2]float64{hw - d, top}, [2]float64{hw - d, tool.PunchHeight}, [2]float64{-hw - d, tool.PunchHeight}))
+		neckTop := math.Min(tool.PunchHeight, nose+d)
+		back := neckTop - nose
+		s = append(s, newPoly([2]float64{-hw, nose}, [2]float64{hw, nose}, [2]float64{hw - back, neckTop}, [2]float64{-hw - back, neckTop}))
+		if neckTop < tool.PunchHeight {
+			s = append(s, newPoly([2]float64{-hw - d, neckTop}, [2]float64{hw - d, neckTop}, [2]float64{hw - d, tool.PunchHeight}, [2]float64{-hw - d, tool.PunchHeight}))
 		}
 	}
-	if mirrored {
-		for i := range s {
-			pts := make([][2]float64, len(s[i].pts))
-			for j, p := range s[i].pts {
-				pts[len(pts)-1-j] = [2]float64{-p[0], p[1]}
-			}
-			s[i] = newPoly(pts...)
+	return mirror(s, mirrored)
+}
+
+// ramReach is how far above the punch the ram's column is checked: past any flange.
+const ramReach = 10000
+
+// ram is the column above the punch's shank: the holder that clamps the punch and the ram that drives it are at least as wide as the shank and run the length of the machine, so a flange that rises above the punch over its shank runs into them.
+func (tool Tooling) ram(mirrored bool) shape {
+	hw := tool.PunchWidth / 2
+	d := 0.0
+	if tool.PunchThroatDepth > 0 {
+		tipDepth := hw / math.Tan(tool.PunchTipAngle*math.Pi/360)
+		nose := math.Min(tool.PunchHeight, math.Max(tipDepth, tool.PunchNose))
+		d = math.Min(tool.PunchThroatDepth, tool.PunchHeight-nose)
+	}
+	h := tool.PunchHeight
+	return mirror(shape{newPoly([2]float64{-hw - d, h}, [2]float64{hw - d, h}, [2]float64{hw - d, h + ramReach}, [2]float64{-hw - d, h + ramReach})}, mirrored)
+}
+
+// mirror reflects a cross-section across its depth axis when mirrored, keeping each polygon's winding.
+func mirror(s shape, mirrored bool) shape {
+	if !mirrored {
+		return s
+	}
+	for i := range s {
+		pts := make([][2]float64, len(s[i].pts))
+		for j, p := range s[i].pts {
+			pts[len(pts)-1-j] = [2]float64{-p[0], p[1]}
 		}
+		s[i] = newPoly(pts...)
 	}
 	return s
 }

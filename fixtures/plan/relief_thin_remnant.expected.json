@@ -369,7 +369,20 @@
                           "angle",
                           "direction",
                           "inside_radius"
-                        ]
+                        ],
+                        "start": {
+                          "x": "30",
+                          "y": "60",
+                          "unit": "mm"
+                        },
+                        "end": {
+                          "x": "70",
+                          "y": "60",
+                          "unit": "mm"
+                        },
+                        "sequence": null,
+                        "punch_position": null,
+                        "throat_side": null
                       }
                     ]
                   }

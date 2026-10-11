@@ -1,8 +1,8 @@
 // Package brake simulates forming a flat part on a press brake: bending its bend lines one after another, in a sequence, and checking at each step whether the part runs into the punch or the die. It also folds the finished part and finds the flanges that run into each other (Collisions).
 //
-// The flat part is sampled on a grid and split into flanges along its bend lines (a tree, rooted at the largest flange). A state gives every bend an angle; each flange is placed by the rigid motions of the bends between it and the root, and the samples inside a bend's zone are wrapped around its arc. While a bend is formed, from flat to its angle in steps, a sample of the part inside the punch or the die is a collision, except the bend's own arc and, for the punch, the two flanges the bend joins: the tools form those. The bends formed earlier in the sequence are at their angles; the later ones are flat.
+// The flat part is sampled on a grid and split into flanges along its bend lines (a tree, rooted at the largest flange). A state gives every bend an angle; each flange is placed by the rigid motions of the bends between it and the root, and the samples inside a bend's zone are wrapped around its arc. While a bend is formed, from flat to its angle in steps, a sample of the part inside the punch, the die or the ram's column above the punch's shank is a collision, except the bend's own arc. The bend's own two flanges are checked at its final angle only: they close toward the punch as it forms, so a punch that fits between them at the end fits all the way. The bends formed earlier in the sequence are at their angles; the later ones are flat.
 //
-// The punch stands on the bisector of the bend so far, its tip in the inner arc. The die lies under the flange nearer the root, which rests on it, centered on the bend's middle. The punch may sit at three places along the bend line (its start, middle and end), as an operator slides the part along the tooling; the bend collides only when every place does, and with the punch or the die when that tool is hit at every place.
+// The punch stands on the bisector of the bend so far, its tip in the inner arc. A gooseneck's nose is joined to its set-back body by a neck sloping back at 45 degrees, and it may face either way round; the bend collides only when it does both ways. The die lies under the flange nearer the root, which rests on it, centered on the bend's middle. The punch may sit at three places along the bend line (its start, middle and end), as an operator slides the part along the tooling; the bend collides only when every place does, and with a tool when that tool is hit at every place. For a bend that clears, Sequence records which way the punch faced and where it stood.
 package brake
 
 import (
@@ -37,15 +37,28 @@ type Bend struct {
 	Up           bool // toward the viewer of the flat part
 }
 
-// Result is what forming one bend runs into, at the best place along it.
+// Place is where the punch stands along a bend line: at its start, its middle or its end.
+type Place int
+
+const (
+	PlaceStart Place = iota
+	PlaceMiddle
+	PlaceEnd
+)
+
+// Result is what forming one bend runs into, at the best place along it, or for a bend that clears, how it was formed.
 type Result struct {
-	Punch, Die bool
+	// Ram is the holder and ram above the punch's shank.
+	Punch, Die, Ram bool
 	// Simulated is false when the bend line does not divide the part into two flanges, so there is nothing to form.
 	Simulated bool
+	// For a bend that clears: whether a gooseneck punch faced the other way round (see Tooling.punch), and where it stood.
+	Mirrored bool
+	Place    Place
 }
 
-// Collides reports whether the bend runs into either tool.
-func (r Result) Collides() bool { return r.Punch || r.Die }
+// Collides reports whether the bend runs into the tooling.
+func (r Result) Collides() bool { return r.Punch || r.Die || r.Ram }
 
 // ErrEmpty is returned for a part with no material to sample.
 var ErrEmpty = errors.New("brake: nothing to sample")
@@ -513,15 +526,31 @@ func (m *Model) place(angles []float64, cur int, only []int32) (pos []solid.Vec,
 func (m *Model) Simulate(seq []int, tool Tooling) []Result {
 	angles := make([]float64, len(m.bends))
 	out := make([]Result, len(seq))
+	k := tool.kit()
 	for si, bi := range seq {
-		out[si] = m.form(bi, angles, tool)
+		out[si] = m.form(bi, angles, tool, &k)
 		angles[bi] = m.bends[bi].Angle * math.Pi / 180
 	}
 	return out
 }
 
+// kit is the punch and the ram above it, each way round a gooseneck can face, built once for a search.
+type kit struct {
+	punch, ram [2]shape
+	ways       int
+}
+
+func (tool Tooling) kit() kit {
+	k := kit{punch: [2]shape{tool.punch(false)}, ram: [2]shape{tool.ram(false)}, ways: 1}
+	// A gooseneck punch may face either way.
+	if tool.PunchThroatDepth > 0 {
+		k.punch[1], k.ram[1], k.ways = tool.punch(true), tool.ram(true), 2
+	}
+	return k
+}
+
 // form bends bi from flat to its angle, with the other bends at angles.
-func (m *Model) form(bi int, angles []float64, tool Tooling) Result {
+func (m *Model) form(bi int, angles []float64, tool Tooling, k *kit) Result {
 	if m.child[bi] < 0 {
 		return Result{}
 	}
@@ -529,25 +558,23 @@ func (m *Model) form(bi int, angles []float64, tool Tooling) Result {
 		tool.DieAngle = max(180-m.bends[bi].Angle, minDieAngle)
 	}
 	die := tool.die()
-	// A gooseneck punch may face either way; the bend collides only when it does both ways.
-	ways := []shape{tool.punch(false)}
-	if tool.PunchThroatDepth > 0 {
-		ways = append(ways, tool.punch(true))
-	}
+	// The bend collides only when it does whichever way a gooseneck faces.
 	var first Result
-	for w, punch := range ways {
-		places := m.formWith(bi, angles, tool, punch, die)
-		// The bend collides only if no place clears it. The punch collides when it does at every place, the die likewise; when the places collide with different tools, the middle place says which.
-		best := Result{Simulated: true}
-		for _, p := range places {
-			if !p.Collides() {
-				return best
+	for w := range k.ways {
+		mirrored := w == 1
+		places := m.formWith(bi, angles, tool, k.punch[w], k.ram[w], die)
+		// The bend collides only if no place clears it; the middle place is tried first, as an operator centers the part. A tool collides when it does at every place; when the places collide with different tools, the middle place says which.
+		for _, p := range [3]Place{PlaceMiddle, PlaceStart, PlaceEnd} {
+			if !places[p].Collides() {
+				return Result{Simulated: true, Mirrored: mirrored, Place: p}
 			}
 		}
+		best := Result{Simulated: true}
 		best.Punch = places[0].Punch && places[1].Punch && places[2].Punch
 		best.Die = places[0].Die && places[1].Die && places[2].Die
-		if !best.Punch && !best.Die {
-			best.Punch, best.Die = places[1].Punch, places[1].Die
+		best.Ram = places[0].Ram && places[1].Ram && places[2].Ram
+		if !best.Collides() {
+			best.Punch, best.Die, best.Ram = places[1].Punch, places[1].Die, places[1].Ram
 		}
 		if w == 0 {
 			first = best
@@ -557,7 +584,7 @@ func (m *Model) form(bi int, angles []float64, tool Tooling) Result {
 }
 
 // formWith forms bend bi from flat to its angle with one punch, reporting what each place along the bend ran into.
-func (m *Model) formWith(bi int, angles []float64, tool Tooling, punch, die shape) [3]Result {
+func (m *Model) formWith(bi int, angles []float64, tool Tooling, punch, ram, die shape) [3]Result {
 	final := m.bends[bi].Angle
 	// Place the whole part once with this bend flat; each step then moves only what the bend's angle places.
 	angles[bi] = 0
@@ -568,7 +595,7 @@ func (m *Model) formWith(bi int, angles []float64, tool Tooling, punch, die shap
 		ang := math.Min(step, final)
 		angles[bi] = ang * math.Pi / 180
 		m.place(angles, bi, moving)
-		m.check(bi, angles, tool, punch, die, places[:])
+		m.check(bi, angles, tool, punch, ram, die, places[:], ang >= final)
 		if ang >= final || places[0].Collides() && places[1].Collides() && places[2].Collides() {
 			break
 		}
@@ -579,8 +606,9 @@ func (m *Model) formWith(bi int, angles []float64, tool Tooling, punch, die shap
 
 // Plan is the outcome of searching for a bend sequence.
 type Plan struct {
-	// Order is a sequence forming every bend clear of the tooling, when Found.
+	// Order is a sequence forming every bend clear of the tooling, when Found, and Steps how each bend in it was formed (which way a gooseneck faced, where the punch stood).
 	Order []int
+	Steps []Result
 	Found bool
 	// Exhausted is true when every sequence was tried (none clears, when not Found); false when the search ran out of its budget first.
 	Exhausted bool
@@ -595,10 +623,12 @@ func (m *Model) Sequence(tool Tooling, budget int) Plan {
 	if n > maxSequenceBends {
 		return Plan{}
 	}
+	k := tool.kit()
 	failed := map[uint64]bool{}
 	angles := make([]float64, n)
 	var plan Plan
 	var path []int
+	var steps []Result
 	spent := 0
 	var search func(done uint64) bool
 	search = func(done uint64) bool {
@@ -609,6 +639,7 @@ func (m *Model) Sequence(tool Tooling, budget int) Plan {
 			return false
 		}
 		var next []int
+		var cleared [maxSequenceBends]Result
 		blocked := map[int]Result{}
 		for bi := range n {
 			if done&(1<<bi) != 0 {
@@ -618,10 +649,11 @@ func (m *Model) Sequence(tool Tooling, budget int) Plan {
 				return false
 			}
 			spent++
-			if r := m.form(bi, angles, tool); r.Collides() {
+			if r := m.form(bi, angles, tool, &k); r.Collides() {
 				blocked[bi] = r
 			} else {
 				next = append(next, bi)
+				cleared[bi] = r
 			}
 		}
 		if len(blocked) > 0 {
@@ -634,10 +666,11 @@ func (m *Model) Sequence(tool Tooling, budget int) Plan {
 		for _, bi := range next {
 			angles[bi] = m.bends[bi].Angle * math.Pi / 180
 			path = append(path, bi)
+			steps = append(steps, cleared[bi])
 			if search(done | 1<<bi) {
 				return true
 			}
-			path = path[:len(path)-1]
+			path, steps = path[:len(path)-1], steps[:len(steps)-1]
 			angles[bi] = 0
 			if spent >= budget {
 				return false
@@ -647,14 +680,15 @@ func (m *Model) Sequence(tool Tooling, budget int) Plan {
 		return false
 	}
 	if search(0) {
-		return Plan{Order: path, Found: true, Exhausted: true}
+		return Plan{Order: path, Steps: steps, Found: true, Exhausted: true}
 	}
 	plan.Exhausted = spent < budget
 	return plan
 }
 
 // check tests one state of bend bi against the tooling at each place, recording what each place runs into.
-func (m *Model) check(bi int, angles []float64, tool Tooling, punch, die shape, places []Result) {
+// The bend's own two flanges are tested against the punch and the ram only at its final angle: they close toward the punch as the bend forms, so a punch that fits between them at the end fits all the way.
+func (m *Model) check(bi int, angles []float64, tool Tooling, punch, ram, die shape, places []Result, final bool) {
 	pos, frames, inArc := m.posBuf, m.frameBuf, m.inArcBuf
 	a := m.arc(bi, angles[bi])
 	g := frames[m.parentRegion[m.child[bi]]]
@@ -694,11 +728,17 @@ func (m *Model) check(bi int, angles []float64, tool Tooling, punch, die shape, 
 				places[k].Die = true
 			}
 		}
-		if m.region[i] == childReg || m.region[i] == parentReg {
+		if !final && (m.region[i] == childReg || m.region[i] == parentReg) {
 			continue
 		}
 		rel := q.Sub(apex)
-		if !punch.near(rel.Dot(lat), rel.Dot(d), margin) {
+		y, x := rel.Dot(lat), rel.Dot(d)
+		if ram.near(y, x, margin) {
+			for k := range places {
+				places[k].Ram = true
+			}
+		}
+		if !punch.near(y, x, margin) {
 			continue
 		}
 		c := rel.Dot(along)

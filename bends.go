@@ -24,6 +24,10 @@ type Bend struct {
 	Allowance measure.Length
 	// Assumed names what the request did not give and was defaulted: "angle", "direction", "inside_radius".
 	Assumed []string
+	// Start and End are the bend line's ends in the drawing; ThroatSide is measured looking from Start to End.
+	Start, End geometry.Point
+	// Forming is how the bend was formed in the bend order found on the press brake's tooling; nil when the capability gives no tooling or no order was found.
+	Forming *geometry.BendForming
 }
 
 // applyBends sets how every bend line of the drawing is bent: as an assignment gives, or else 90 degrees up at the brake's inside radius. An assignment naming an entity that is not a bend line is an error.
@@ -93,7 +97,12 @@ func partBends(drawing, p *geometry.Part) []Bend {
 			continue
 		}
 		allowance, _ := measure.FromMM(b.Spec.AllowanceMM)
-		bend := Bend{EntityID: b.EntityID, Length: l, Angle: b.Spec.Angle, Direction: b.Spec.Direction, InsideRadius: b.Spec.InsideRadius, Allowance: allowance, Assumed: []string{}}
+		bend := Bend{EntityID: b.EntityID, Length: l, Angle: b.Spec.Angle, Direction: b.Spec.Direction, InsideRadius: b.Spec.InsideRadius, Allowance: allowance, Assumed: []string{}, Start: b.A, End: b.B}
+		if plan := drawing.BendPlan; plan != nil && plan.Found {
+			if f, ok := plan.Forming[b.EntityID]; ok {
+				bend.Forming = &f
+			}
+		}
 		for _, x := range []struct {
 			given bool
 			name  string

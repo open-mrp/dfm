@@ -349,7 +349,20 @@
                           "angle",
                           "direction",
                           "inside_radius"
-                        ]
+                        ],
+                        "start": {
+                          "x": "0",
+                          "y": "55",
+                          "unit": "mm"
+                        },
+                        "end": {
+                          "x": "100",
+                          "y": "55",
+                          "unit": "mm"
+                        },
+                        "sequence": null,
+                        "punch_position": null,
+                        "throat_side": null
                       },
                       {
                         "object": "dfm_bend",
@@ -375,7 +388,20 @@
                           "angle",
                           "direction",
                           "inside_radius"
-                        ]
+                        ],
+                        "start": {
+                          "x": "0",
+                          "y": "40",
+                          "unit": "mm"
+                        },
+                        "end": {
+                          "x": "100",
+                          "y": "40",
+                          "unit": "mm"
+                        },
+                        "sequence": null,
+                        "punch_position": null,
+                        "throat_side": null
                       },
                       {
                         "object": "dfm_bend",
@@ -401,7 +427,20 @@
                           "angle",
                           "direction",
                           "inside_radius"
-                        ]
+                        ],
+                        "start": {
+                          "x": "0",
+                          "y": "25",
+                          "unit": "mm"
+                        },
+                        "end": {
+                          "x": "100",
+                          "y": "25",
+                          "unit": "mm"
+                        },
+                        "sequence": null,
+                        "punch_position": null,
+                        "throat_side": null
                       }
                     ]
                   }

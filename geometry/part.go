@@ -58,6 +58,8 @@ type Report struct {
 	HoleOpConflicts []HoleOpConflict
 	// BendSpecs says how each bend line is bent, by entity ID (set by the bending check).
 	BendSpecs map[string]BendSpec
+	// BendPlan is the bend order found on the press brake's tooling (set by the bending check when the capability gives the tooling; nil otherwise).
+	BendPlan *BendPlan
 	// CornerLoops are small loops at corners of paths, one entry per path; they were removed.
 	CornerLoops []CornerLoops
 	// Duplicates are paths and circles that exactly repeat other geometry; they were dropped from the part.
