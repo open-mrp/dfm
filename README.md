@@ -1,5 +1,7 @@
 # dfm
 
+[Here](https://openmrp.ai/dfm) is a live demo of this engine in operation
+
 A small, deterministic design-for-manufacturing (DFM) engine written in Go. It answers one question: can this design be manufactured with this capability and this stock?
 
 ```go
